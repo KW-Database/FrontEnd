@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import JoinForm from '../../components/Jiwoo/JoinForm';
+import FindID from '../../components/Jiwoo/FindID';
 import '../../App.css';
 
-class JoinPage extends Component {
+class FindIDPage extends Component {
     render() {
         return (
             <div className="Page">
-                <div className="joinform">
-                    <JoinForm></JoinForm>
+                <div id="Find">
+                    <FindID></FindID>
                 </div>    
             </div>
         );
     }
 }
 
-export default JoinPage;
+export default FindIDPage;
