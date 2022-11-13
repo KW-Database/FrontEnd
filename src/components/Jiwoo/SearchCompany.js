@@ -1,34 +1,37 @@
+import React, { useState } from 'react';
 import styled from "styled-components";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import SearchBar from './SearchBar';
 
-const Search = styled.div`
-  display:flex;
-  align-items: center;
-  position: relative;
-`;
+const Table = styled.div`
+    display:flex; justify-content:center;
+`
 
-const Icon = styled.span`
-  position: absolute;
-  left : 15px;
-  opacity: 0.4;
-`;
+const dummyData = [
+  {name: "기업1", desc: "기업개요1"}
+];
 
-const Input = styled.input`
-  padding: 20px 60px;
-  border : 1px solid rgba(0,0,0,0.2);
-  border-radius: 5px;
-  width: 360px;
-  font-size : 20px;
-`;
-
-
-function SensorSearch({search, onChange}){
+function SearchCompany() {
+  const [search, setSearch] = useState("");
+  const onChange = (e) => {
+      setSearch(e.currentTarget.value);
+  };
   return (
-    <Search>
-      <Input type = "text" value={search} onChange={onChange} placeholder="Search for Sensor"/>
-      <Icon><FontAwesomeIcon icon="magnifying-glass" size="2x" /></Icon>
-    </Search>
+    <div>
+      <SearchBar value={search} onChange={onChange} /> <p />
+      <Table>
+        <table class="ComapnySearch" border="1">
+          <tr>
+            <td width="70px" height="40px">기업명</td>
+            <td>{dummyData[0].name}</td>
+          </tr>
+          <tr>
+            <td>기업개요</td>
+            <td class="company_desc" height="230px">{dummyData[0].desc}</td>
+          </tr>
+        </table> 
+      </Table>
+    </div>
   );
 }
 
-export default SensorSearch;
+export default SearchCompany;
