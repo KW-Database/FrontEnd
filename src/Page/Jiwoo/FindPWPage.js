@@ -6,9 +6,7 @@ class FindPWPage extends Component {
     render() {
         return (
             <div className="Page">
-                <div id="Find">
-                    <FindPW></FindPW>
-                </div>    
+                <FindPW />   
             </div>
         );
     }

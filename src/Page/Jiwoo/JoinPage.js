@@ -6,9 +6,7 @@ class JoinPage extends Component {
     render() {
         return (
             <div className="Page">
-                <div className="joinform">
-                    <JoinForm></JoinForm>
-                </div>    
+                <JoinForm />    
             </div>
         );
     }

@@ -36,103 +36,26 @@ h2 {
   margin-left: 50px;
 }
 
-.Upper-Layer {
-  position: absolute; width: 1536px; height: 70px; left: 0px; top: 0px;
-  display: flex; align-items: center;  
+.Background {
+  position:absolute; top:70px; width:1560px; height:100%; background-color:gray;
 }
-
-#Home-button {
-  position: absolute; width: 60px; height: 50px; top: -1px;
-  padding: 12px 32px; border-radius: 8px;
-}
-
-#User-button {
-  position: absolute; width: 60px; height: 50px; left: 1300px; top: -1px;
-  padding: 12px 32px; border-radius: 8px;
-}
-
-#title {
-  position: absolute; width: 1200px; height:70px; left:150px;
-  display: flex; align-items: center; justify-content: center;
-}
-
-#logout {
-  position: absolute; left: 1400px; top: 15px; width:100px; height:40px; font-size:20px;    
-  border:0; border-radius:20px; color:white; background-color:skyblue;
-}
-
+    
 .Page {
   display:flex; justify-content:center;
 }
 
-#join-write {
-  width:400px; height:35px; font-size:15px; 
-  border:1px solid black; border-radius:5px;
+table {
+  width:400px;
 }
 
-.joinform {
-  position: absolute; width: 440px; height: 560px; left: 550px; top: 50px;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+table.CompanySearch {
+  width:400px; table-layout:fixed;
 }
 
-#sign-up {
-  width: 200px; height: 35px; border-radius:10px; background-color:#20c997;
+.CompanySearch tr {
+  text-align:center;
 }
 
-#joinPage_additional {
-  position: absolute; width: 248px; height: 26px; left: 589px; top: 838px;
-  font-family: 'Poppins'; font-style: normal; font-weight: 400; font-size: 14px; line-height: 21px; 
-  display: flex; align-items: center; text-align: center;
-}
-
-.Page {
-  display:flex; justify-content:center;
-}
-
-#Login {
-  position:absolute; top:100px; width:500px; height:450px; 
-  padding:10px 50px 10px 50px; border:5px solid gray; border-radius:15px; justify-content:center;
-}
-
-#UserID, #UserPW {
-  width:500px; height:35px; font-size:15px;
-  border:2px solid black; border-radius:5px; 
-}
-
-#loginbutton {
-  width:70%; height:50px; font-size:20px; background-color:solid gray;
-  border:0; border-radius:20px; margin-top:20px; color:black; 
-}
-
-#Find {
-  position:absolute; top:100px; width:500px; height:600px; 
-  padding:10px 50px 10px 50px; border:5px solid gray; border-radius:15px; 
-  display:flex; justify-content:center; align-items:center;
-}
-
-#find-write {
-  width:400px; height:50px; font-size:20px; margin:20px;
-  border:1px solid black; border-radius:5px;
-}
-
-#find-button {
-  width: 300px; height: 40px; font-size: 15px; 
-  border-radius:10px; background-color:#20c997;
-}
-
-#Today_finance {
-  position: absolute; width: 600px; height: 350px; left: 120px; top: 100px;
-  border:1px solid black;
-  padding-top:20px; font-size:40px; text-align: center; 
-}
-
-#Today_finance_graph {
-  box-sizing: border-box;
-  position: absolute; width: 600px; height: 260px; 
-  border: 3px solid red;
-}
-
-#Search_Company {
-  position: absolute; width: 500px; height: 350px; left: 870px; top: 100px; 
-  padding-top:20px; border: 1px solid black;
+td.company_desc {
+  text-align:left;
 }

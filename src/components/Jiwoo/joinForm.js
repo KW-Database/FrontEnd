@@ -1,6 +1,25 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import '../../App.css';
+
+const Joinform = styled.div`
+    position: absolute; width: 440px; height: 560px; left: 550px; top: 50px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+`
+
+const Join_write = styled.input`
+    width:400px; height:35px; font-size:15px; 
+    border:1px solid black; border-radius:5px;
+`
+
+const Join_select = styled.select`
+    width:150px; height:35px; font-size:15px; 
+    border:1px solid black; border-radius:5px; font-color:solid gray;
+`
+
+const Sign_up = styled.input`
+    width: 200px; height: 35px; border-radius:10px; background-color:skyblue;   
+`
 
 function JoinForm () {
     const [Inputs, setInputs] = useState({
@@ -51,33 +70,33 @@ function JoinForm () {
     }
     
     return (
-        <div>
+        <Joinform>
             <h1>&nbsp;&nbsp;회원가입</h1><p />
-            <input type="text" name="ID" value={ID} placeholder="Enter ID" id="join-write" onChange={handleChange}></input>
+            <Join_write type="text" name="ID" value={ID} placeholder="Enter ID" onChange={handleChange} />
             <p />
-            <input type="password" name="PW" value={PW} placeholder="Password" id="join-write" onChange={handleChange}></input>
+            <Join_write type="password" name="PW" value={PW} placeholder="Password" ionChange={handleChange} />
             <p />
-            <input type="password" name="confirmPW" value={confirmPW} placeholder="Confirm Password" id="join-write" onChange={handleChange}></input>
+            <Join_write type="password" name="confirmPW" value={confirmPW} placeholder="Confirm Password" onChange={handleChange} />
             <p />
-            <input type="text" name="Name" value={Name} placeholder="Your Name" id="join-write" onChange={handleChange}></input>
+            <Join_write type="text" name="Name" value={Name} placeholder="Your Name" onChange={handleChange} />
             <p />
-            <input type="text" name="Age" value={Age} placeholder="Your Age (숫자만)" id="join-write" onChange={handleChange}></input>
+            <Join_write type="text" name="Age" value={Age} placeholder="Your Age (숫자만)" onChange={handleChange} />
             <p />
-            <input type="text" name="Email" value={Email} placeholder="Your Email Address" id="join-write" onChange={handleChange}></input>
+            <Join_write type="text" name="Email" value={Email} placeholder="Your Email Address" onChange={handleChange} />
             <p />
-            <input type="text" name="PhoneNum" value={PhoneNum} placeholder="Enter Your Phone Number ( - 포함 )" id="join-write" onChange={handleChange}></input>
+            <Join_write type="text" name="PhoneNum" value={PhoneNum} placeholder="Enter Your Phone Number ( - 포함 )" onChange={handleChange} />
             <p />
-            <select name="Sex" value={Sex} id="join-write" font-color="solid gray" onChange={handleChange}>
+            <Join_select name="Sex" value={Sex}  onChange={handleChange}>
                 <option value="">Your Sex</option>
-                <option value="male">male</option>
-                <option value="female">female</option>
-            </select>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </Join_select>
             <p />
-            <input type="submit" value="SIGN UP" id="sign-up" onClick={handleSubmit}></input>
+            <Sign_up type="submit" value="SIGN UP" id="sign-up" onClick={handleSubmit} />
             <p />
             <br />
-            Already have an Account? <Link to='/'>Sign In</Link>    
-        </div> 
+            Already have an Account? <Link to='/login'>Sign In</Link>    
+        </Joinform> 
     );
 }
 

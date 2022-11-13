@@ -6,10 +6,8 @@ class FindIDPage extends Component {
     render() {
         return (
             <div className="Page">
-                <div id="Find">
-                    <FindID></FindID>
-                </div>    
-            </div>
+                <FindID />
+            </div>    
         );
     }
 }
