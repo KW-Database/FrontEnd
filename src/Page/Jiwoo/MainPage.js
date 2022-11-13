@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import UpperLayer from '../../components/Jiwoo/UpperLayer';
-import Today_finance_graph from '../../components/Today_finance';
+import Today_finance_graph from '../../components/Jiwoo/Today_finance';
 import SearchCompany from '../../components/Jiwoo/SearchCompany';
 import Top10_table from '../../components/Jiwoo/Top10';
 import Recommend_buy_table from '../../components/Jiwoo/Recommend_buy';
