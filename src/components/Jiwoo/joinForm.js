@@ -74,7 +74,7 @@ function JoinForm () {
             <h1>&nbsp;&nbsp;회원가입</h1><p />
             <Join_write type="text" name="ID" value={ID} placeholder="Enter ID" onChange={handleChange} />
             <p />
-            <Join_write type="password" name="PW" value={PW} placeholder="Password" ionChange={handleChange} />
+            <Join_write type="password" name="PW" value={PW} placeholder="Password" onChange={handleChange} />
             <p />
             <Join_write type="password" name="confirmPW" value={confirmPW} placeholder="Confirm Password" onChange={handleChange} />
             <p />

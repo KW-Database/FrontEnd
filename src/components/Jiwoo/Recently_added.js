@@ -6,18 +6,18 @@ const Table = styled.div`
 `
 
 const dummyData = [
-    {name: "기업1", endprice : 1, diff : 1, diffrate: 1},
-    {name: "기업2", endprice : 2, diff : 2, diffrate: 2},
-    {name: "기업3", endprice : 3, diff : 3, diffrate: 3},
-    {name: "기업4", endprice : 4, diff : 4, diffrate: 4},
-    {name: "기업5", endprice : 5, diff : 5, diffrate: 5},
-    {name: "기업6", endprice : 6, diff : 6, diffrate: 6},
-    {name: "기업7", endprice : 7, diff : 7, diffrate: 7},
-    {name: "기업8", endprice : 8, diff : 8, diffrate: 8},
-    {name: "기업9", endprice : 9, diff : 9, diffrate: 9},
-    {name: "기업10", endprice : 10, diff : 10, diffrate: 10},
-    {name: "기업11", endprice : 11, diff : 11, diffrate: 11},
-    {name: "기업12", endprice : 12, diff : 12, diffrate: 12}
+    {name: "기업1", endprice : 1, diff : 1, diffrate: 1, date:"2022-11-15"},
+    {name: "기업2", endprice : 2, diff : 2, diffrate: 2, date:"2022-11-14"},
+    {name: "기업3", endprice : 3, diff : 3, diffrate: 3, date:"2022-11-14"},
+    {name: "기업4", endprice : 4, diff : 4, diffrate: 4, date:"2022-11-13"},
+    {name: "기업5", endprice : 5, diff : 5, diffrate: 5, date:"2022-11-12"},
+    {name: "기업6", endprice : 6, diff : 6, diffrate: 6, date:"2022-11-11"},
+    {name: "기업7", endprice : 7, diff : 7, diffrate: 7, date:"2022-11-11"},
+    {name: "기업8", endprice : 8, diff : 8, diffrate: 8, date:"2022-11-10"},
+    {name: "기업9", endprice : 9, diff : 9, diffrate: 9, date:"2022-11-09"},
+    {name: "기업10", endprice : 10, diff : 10, diffrate: 10, date:"2022-11-09"},
+    {name: "기업11", endprice : 11, diff : 11, diffrate: 11, date:"2022-11-08"},
+    {name: "기업12", endprice : 12, diff : 12, diffrate: 12, date:"2022-11-08"}
   ];
 
 function Recently_added_table () {
@@ -37,28 +37,28 @@ function Recently_added_table () {
             <Table>
                 <table border="1">
                     <tr>
-                        <td>기업명</td><td>종가</td><td>변화량</td><td>변화율</td>
+                        <td>기업명</td><td>종가</td><td>변화량</td><td>변화율</td><td>상장날짜</td>
                     </tr>
                     <tr>
-                        <td>{dummyData[0].name}</td><td>{dummyData[0].endprice}</td><td>{dummyData[0].diff}</td><td>{dummyData[0].diffrate}</td>
+                        <td>{dummyData[0].name}</td><td>{dummyData[0].endprice}</td><td>{dummyData[0].diff}</td><td>{dummyData[0].diffrate}</td><td>{dummyData[0].date}</td>
                     </tr>
                     <tr>
-                        <td>{dummyData[1].name}</td><td>{dummyData[1].endprice}</td><td>{dummyData[1].diff}</td><td>{dummyData[1].diffrate}</td>
+                        <td>{dummyData[1].name}</td><td>{dummyData[1].endprice}</td><td>{dummyData[1].diff}</td><td>{dummyData[1].diffrate}</td><td>{dummyData[1].date}</td>
                     </tr>
                     <tr>
-                        <td>{dummyData[2].name}</td><td>{dummyData[2].endprice}</td><td>{dummyData[2].diff}</td><td>{dummyData[2].diffrate}</td>
+                        <td>{dummyData[2].name}</td><td>{dummyData[2].endprice}</td><td>{dummyData[2].diff}</td><td>{dummyData[2].diffrate}</td><td>{dummyData[2].date}</td>
                     </tr>
                     <tr>
-                        <td>{dummyData[3].name}</td><td>{dummyData[3].endprice}</td><td>{dummyData[3].diff}</td><td>{dummyData[3].diffrate}</td>
+                        <td>{dummyData[3].name}</td><td>{dummyData[3].endprice}</td><td>{dummyData[3].diff}</td><td>{dummyData[3].diffrate}</td><td>{dummyData[3].date}</td>
                     </tr>
                     <tr>
-                        <td>{dummyData[4].name}</td><td>{dummyData[4].endprice}</td><td>{dummyData[4].diff}</td><td>{dummyData[4].diffrate}</td>
+                        <td>{dummyData[4].name}</td><td>{dummyData[4].endprice}</td><td>{dummyData[4].diff}</td><td>{dummyData[4].diffrate}</td><td>{dummyData[4].date}</td>
                     </tr>
                     <tr>
-                        <td>{dummyData[5].name}</td><td>{dummyData[5].endprice}</td><td>{dummyData[5].diff}</td><td>{dummyData[5].diffrate}</td>
+                        <td>{dummyData[5].name}</td><td>{dummyData[5].endprice}</td><td>{dummyData[5].diff}</td><td>{dummyData[5].diffrate}</td><td>{dummyData[5].date}</td>
                     </tr>
                     <tr>
-                        <td>{dummyData[6].name}</td><td>{dummyData[6].endprice}</td><td>{dummyData[6].diff}</td><td>{dummyData[6].diffrate}</td>
+                        <td>{dummyData[6].name}</td><td>{dummyData[6].endprice}</td><td>{dummyData[6].diff}</td><td>{dummyData[6].diffrate}</td><td>{dummyData[6].date}</td>
                     </tr>
                 </table>
             </Table>

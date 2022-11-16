@@ -19,14 +19,14 @@ const Input = styled.input`
   padding: 20px 50px;
   border : 1px solid rgba(0,0,0,0.2);
   border-radius: 5px;
-  width: 300px;
+  width: 600px;
   font-size : 15px;
 `;
 
 function SearchBar({search, onChange}) {
     return(
         <Search>
-            <Input type="text" value={search} onChange={onChange} placeholder="Search for Company" />
+            <Input type="text" value={search} onChange={onChange} placeholder="Search" />
             <Icon><FontAwesomeIcon icon={faMagnifyingGlass} size="2x" /></Icon>
         </Search>
     );

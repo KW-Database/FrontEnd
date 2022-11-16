@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import EachCompany from './EachCompany';
+import EachUser from './EachUser';
 import styled from 'styled-components';
 import SearchBar from './SearchBar';
 
@@ -23,12 +23,12 @@ const Search = styled.div`
     display:flex; justify-content: center;
 `
 
-const CompanyList = styled.div`
+const Userlist = styled.div`
     display: grid; flex-direction: row; justify-content: center; align-items: center; 
     padding: 8px; gap: 8px; width: 750px; 
     position:absolute; top:100px; border:3px solid gray; border-radius:10px;
     background-color:white; color:black;
-    grid-template-columns : repeat(1, 1fr);
+    grid-template-columns : repeat(2, 1fr);
   @media screen and (max-width : 800px){
     grid-template-columns : repeat(1, 1fr);
   }
@@ -37,35 +37,36 @@ const CompanyList = styled.div`
   }
 `
 
-function LikeList() {
+function UserList() {
     const [search, setSearch] = useState("");
     //const [selectedData, setselectedData] = useState([]);
     const onChange = (e) => {
         setSearch(e.currentTarget.value);
     };
     const dummyData = [
-        {name: "기업1", endprice : 10, diff : 1, diffrate: 1, like: 10},
-        {name: "기업2", endprice : 20, diff : 2, diffrate: 2, like: 8},
-        {name: "기업3", endprice : 30, diff : 3, diffrate: 3, like: 12},
-        {name: "기업4", endprice : 40, diff : 4, diffrate: 4, like: 5},
-        {name: "기업5", endprice : 50, diff : 5, diffrate: 5, like: 3}
+        {ID:"ID1", name: "User1"},
+        {ID:"ID2", name: "User2"},
+        {ID:"ID3", name: "User3"},
+        {ID:"ID4", name: "User4"},
+        {ID:"ID5", name: "User5"},
+        {ID:"ID6", name: "User6"}
     ]
     //let eachCom = dummyData.filter(v => selectedData.includes(v.name))
-    let eachCom = dummyData.map((v) => (<EachCompany key={v.name}
-        name={v.name} endprice={v.endprice} diff={v.diff} diffrate={v.diffrate} like={v.like}
+    let eachUser = dummyData.map((v) => (<EachUser key={v.ID}
+        ID={v.ID} name={v.name}  
     />));
     
     return (
         <ListLayer>
-            <Title>관심 목록</Title>
+            <Title>사용자 목록</Title>
             <List>
                 <Search><SearchBar search={search} onChange={onChange} /></Search>
-                <CompanyList>
-                    {eachCom}
-                </CompanyList>
+                <Userlist>
+                    {eachUser}
+                </Userlist>
             </List>
         </ListLayer>
     );
 }
 
-export default LikeList;
+export default UserList;

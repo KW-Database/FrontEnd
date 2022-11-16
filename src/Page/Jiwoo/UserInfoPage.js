@@ -16,7 +16,7 @@ const Circle = styled.img`
 `
 
 const dummyData = {
-    ID: "jiwoo0629", Name: "정지우", Age : 24, Email: "wldn990629@gmail.com", PhoneNum: "010-3757-2108", Sex: "Male"
+    ID: "jiwoo0629", PW: "1234", Name: "정지우", Age : 24, Email: "wldn990629@gmail.com", PhoneNum: "010-3757-2108", Sex: "Male"
 };
 
 class UserInfoPage extends Component {
