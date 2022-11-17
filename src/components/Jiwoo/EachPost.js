@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
 
 const Post = styled.div`
   display: flex;
@@ -36,8 +37,12 @@ const View = styled.div`
 `
 
 function EachPost(props) {
+    const navigate = useNavigate();
+    const seePost = () => {
+        navigate('/board/:id');
+    } 
     return (
-        <Post>
+        <Post onClick={seePost}>
             <글ID>{props.글ID}</글ID>  
             <Title>{props.Title}</Title>  
             <ID>{props.ID}</ID>

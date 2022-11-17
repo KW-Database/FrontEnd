@@ -28,7 +28,7 @@ const CompanyList = styled.div`
     padding: 8px; gap: 8px; width: 750px; 
     position:absolute; top:100px; border:3px solid gray; border-radius:10px;
     background-color:white; color:black;
-    grid-template-columns : repeat(2, 1fr);
+    grid-template-columns : repeat(1, 1fr);
   @media screen and (max-width : 800px){
     grid-template-columns : repeat(1, 1fr);
   }
@@ -44,16 +44,21 @@ function LikeList() {
         setSearch(e.currentTarget.value);
     };
     const dummyData = [
-        {name: "기업1", endprice : 1, diff : 1, diffrate: 1},
-        {name: "기업2", endprice : 2, diff : 2, diffrate: 2},
-        {name: "기업3", endprice : 3, diff : 3, diffrate: 3},
-        {name: "기업4", endprice : 4, diff : 4, diffrate: 4},
-        {name: "기업5", endprice : 5, diff : 5, diffrate: 5},
-        {name: "기업6", endprice : 6, diff : 6, diffrate: 6}
+        {name: "기업1", endprice : 10, diff : 1, diffrate: 1, like: 10},
+        {name: "기업2", endprice : 20, diff : 2, diffrate: 2, like: 8},
+        {name: "기업3", endprice : 30, diff : 3, diffrate: 3, like: 12},
+        {name: "기업4", endprice : 40, diff : 4, diffrate: 4, like: 5},
+        {name: "기업5", endprice : 50, diff : 5, diffrate: 5, like: 3}
     ]
-    //let eachCom = dummyData.filter(v => selectedData.includes(v.name))
-    let eachCom = dummyData.map((v) => (<EachCompany key={v.name}
-        name={v.name} endprice={v.endprice} diff={v.diff} diffrate={v.diffrate} 
+    
+    let eachCom = dummyData.filter((val)=>{
+        if(search === "") {
+            return val;
+        } else if(val.name.toLowerCase().includes(search.toLowerCase())) {
+            return val;
+        }
+    }).map((v) => (<EachCompany key={v.name}
+        name={v.name} endprice={v.endprice} diff={v.diff} diffrate={v.diffrate} like={v.like}
     />));
     
     return (

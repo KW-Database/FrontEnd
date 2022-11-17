@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import UpperLayer from '../../components/Jiwoo/UpperLayer';
-import PostWrite from '../../components/Jiwoo/PostWrite';
+import PostView from '../../components/Jiwoo/PostView';
 
 const Title = styled.div`
     position: absolute; width: 1200px; height: 100px; left: 200px; top: 20px;
@@ -9,18 +9,18 @@ const Title = styled.div`
     font-weight: 700; font-size: 50px;
 `
 
-class PostWritePage extends Component {
+class PostViewPage extends Component {
     render() {
         return(
             <div className="Page">
                 <UpperLayer></UpperLayer>
                 <div className="Background">
-                    <Title>게시글 작성</Title>
-                    <PostWrite />
+                    <Title>게시글 조회</Title>
+                    <PostView />
                 </div>
             </div>
         );
     }
 }
 
-export default PostWritePage;
+export default PostViewPage;

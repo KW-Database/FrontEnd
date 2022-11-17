@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Table = styled.div`
-    display:flex; justify-content:center;
+    display:flex; justify-content:center; font-size:20px;
 `
 
 const dummyData = [

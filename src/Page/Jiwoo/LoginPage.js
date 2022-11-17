@@ -29,8 +29,8 @@ class LoginPage extends Component {
                     <h4>Password</h4>
                     <User_Login type="password" placeholder="Password" ></User_Login>
                     <p />
-                    <Link to="/"><Loginbutton>Log in</Loginbutton></Link><p />
-                    <Link to='/findID'>Forget your ID</Link> / <Link to='/findPW'>Forget your password</Link><p />
+                    <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Loginbutton>Log in</Loginbutton></Link><p />
+                    <Link to='/findID' style={{ textDecoration : 'none', color : 'gray' }}>Forget your ID</Link> / <Link to='/findPW' style={{ textDecoration : 'none', color : 'gray' }}>Forget your password</Link><p />
                     Don't have an account? <Link to='/join'>Sign up</Link>
                 </Login>
             </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import EachPost from './EachPost';
+import EachManage from './EachManage';
 import styled from 'styled-components';
 import SearchBar from './SearchBar';
 
@@ -19,10 +19,9 @@ const Search = styled.div`
 `
 
 const Post = styled.button`
-    position: absolute; width: 120px; height: 40px; left: 1085px; top: 150px;
+    position: absolute; width: 120px; height: 40px; left: 1080px; top: 150px;
     font-size: 20px; color: #FFFFFF; background-color:skyblue;
     border:1px solid black; border-radius:10px;
-
 `
 
 const List = styled.div`
@@ -30,9 +29,9 @@ const List = styled.div`
     display:flex; justify-content: center; background-color:white;
 `
 
-const BoardList = styled.div`
+const CompanyList = styled.div`
     display: grid; flex-direction: row; justify-content: center; align-items: center; 
-    padding: 8px; gap: 8px; width: 1200px; 
+    padding: 8px; gap: 8px; width: 1200px;
     border:3px solid gray;
     background-color:white; color:black;
     grid-template-columns : repeat(1, 1fr);
@@ -50,45 +49,45 @@ const PageNumber = styled.div`
     color: black;
 `
 
-function Board () {
+function CompanyManage () {
     const [search, setSearch] = useState("");
     const onChange = (e) => {
         setSearch(e.currentTarget.value);
     };
     const dummyData = [
-        {글ID: 1, Title: "제목1", ID: "author1", Date: "2022-11-01", View: 5},
-        {글ID: 2, Title: "제목2", ID: "author2", Date: "2022-11-02", View: 10},
-        {글ID: 3, Title: "제목3", ID: "author3", Date: "2022-11-03", View: 15},
-        {글ID: 4, Title: "제목4", ID: "author4", Date: "2022-11-04", View: 20},
-        {글ID: 5, Title: "제목5", ID: "author5", Date: "2022-11-05", View: 25}
+        {ID: 1, Name: "회사1", Date: "2022-11-01", Info: "개요1"},
+        {ID: 2, Name: "회사2", Date: "2022-11-02", Info: "개요2"},
+        {ID: 3, Name: "회사3", Date: "2022-11-03", Info: "개요3"},
+        {ID: 4, Name: "회사4", Date: "2022-11-04", Info: "개요4"},
+        {ID: 5, Name: "회사5", Date: "2022-11-05", Info: "개요5"}
     ]
-
-    let eachPost = dummyData.filter((val)=>{
+    
+    let eachManage = dummyData.filter((val)=>{
         if(search === "") {
             return val;
-        } else if(val.Title.toLowerCase().includes(search.toLowerCase())) {
+        } else if(val.Name.toLowerCase().includes(search.toLowerCase())) {
             return val;
         }
-    }).map((v) => (<EachPost key={v.글ID}
-        글ID={v.글ID} Title={v.Title} ID={v.ID} Date={v.Date} View={v.View} 
+    }).map((v) => (<EachManage key={v.ID}
+        ID={v.ID} Name={v.Name} Date={v.Date} Info={v.Info}  
     />));
     
-    var num=1;
+    let num=1;
     return(
         <Board_block>
-            <Title>토론 게시판</Title>
+            <Title>주식회사 목록</Title>
             <Search><SearchBar search={search} onChange={onChange} /></Search>
-            <Link to="/board/write" style={{ textDecoration : 'none', color : 'black' }}><Post value="Post">글 작성</Post></Link>
+            <Link to="/manage/enroll" style={{ textDecoration : 'none' }}><Post value="Post">등록</Post></Link>
             <List>
-                <BoardList>
-                    {eachPost}
+                <CompanyList>
+                    {eachManage}
                     <PageNumber>
-                        <Link to='/board' style={{ textDecoration : 'none', color : 'black' }}>{num}</Link>
+                        <Link to='/manage' style={{ textDecoration : 'none' }}>{num}</Link>
                     </PageNumber>
-                </BoardList>
+                </CompanyList>
             </List>
         </Board_block>
     );
-}
+};
 
-export default Board;
+export default CompanyManage;

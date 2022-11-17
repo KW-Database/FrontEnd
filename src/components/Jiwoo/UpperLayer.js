@@ -25,20 +25,37 @@ const Logout = styled.button`
     font-size:20px; color:white; background-color:skyblue;
 `
 
+const UserData = {
+    ID: ":user"
+}
+
 function UpperLayer() {
-    return (
-        <Upper_layer>
-            <Link to="/"><Home_button src={Home} alt="Home" /></Link>
-            <Title>
-                <Link to="/"><h2>매수/매도</h2></Link>
-                <Link to="/"><h2>내 보유자산</h2></Link>
-                <Link to="/:user/likelist"><h2>내 관심주식</h2></Link>
-                <Link to="/board"><h2>토론 게시판</h2></Link>
-                <Link to="/:user/profile"><h2>내 프로필</h2></Link>
-            </Title>
-            <Link to="/login"><Logout value="logout">Logout</Logout></Link>
-        </Upper_layer>
-    ); 
+    if(UserData.ID === "admin") {
+        return( 
+            <Upper_layer>
+                <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Home_button src={Home} alt="Home" /></Link>
+                <Title>
+                    <Link to="/manage" style={{ textDecoration : 'none', color : 'gray' }}><h2>주식회사 관리</h2></Link>
+                    <Link to="/board" style={{ textDecoration : 'none', color : 'gray' }}><h2>토론 게시판</h2></Link>
+                </Title>
+                <Link to="/login" style={{ textDecoration : 'none', color : 'gray' }}><Logout value="logout">Logout</Logout></Link>
+            </Upper_layer>
+        );
+    } else if(UserData.ID === ":user") {
+        return (
+            <Upper_layer>
+                <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Home_button src={Home} alt="Home" /></Link>
+                <Title>
+                    <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><h2>매수/매도</h2></Link>
+                    <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><h2>내 보유자산</h2></Link>
+                    <Link to="/:user/likelist" style={{ textDecoration : 'none', color : 'gray' }}><h2>내 관심주식</h2></Link>
+                    <Link to="/board" style={{ textDecoration : 'none', color : 'gray' }}><h2>토론 게시판</h2></Link>
+                    <Link to="/:user/profile" style={{ textDecoration : 'none', color : 'gray' }}><h2>내 프로필</h2></Link>
+                </Title>
+                <Link to="/login" style={{ textDecoration : 'none', color : 'gray' }}><Logout value="logout">Logout</Logout></Link>
+            </Upper_layer>
+        ); 
+    }
 }
 
 export default UpperLayer;
