@@ -50,8 +50,14 @@ function LikeList() {
         {name: "기업4", endprice : 40, diff : 4, diffrate: 4, like: 5},
         {name: "기업5", endprice : 50, diff : 5, diffrate: 5, like: 3}
     ]
-    //let eachCom = dummyData.filter(v => selectedData.includes(v.name))
-    let eachCom = dummyData.map((v) => (<EachCompany key={v.name}
+    
+    let eachCom = dummyData.filter((val)=>{
+        if(search === "") {
+            return val;
+        } else if(val.name.toLowerCase().includes(search.toLowerCase())) {
+            return val;
+        }
+    }).map((v) => (<EachCompany key={v.name}
         name={v.name} endprice={v.endprice} diff={v.diff} diffrate={v.diffrate} like={v.like}
     />));
     

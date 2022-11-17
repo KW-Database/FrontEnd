@@ -26,7 +26,7 @@ const Logout = styled.button`
 `
 
 const UserData = {
-    ID: "admin"
+    ID: ":user"
 }
 
 function UpperLayer() {

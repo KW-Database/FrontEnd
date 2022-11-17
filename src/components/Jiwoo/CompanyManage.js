@@ -14,7 +14,7 @@ const Title = styled.div`
     font-weight: 700; font-size: 50px;
 `
 const Search = styled.div`
-    position: absolute; width:600px; height:70px; left:50px; top:140px; 
+    position: absolute; width:600px; height:70px; left:250px; top:140px; 
     display:flex; justify-content: center;
 `
 
@@ -31,7 +31,7 @@ const List = styled.div`
 
 const CompanyList = styled.div`
     display: grid; flex-direction: row; justify-content: center; align-items: center; 
-    padding: 8px; gap: 8px; width: 1200px; height: 450px;
+    padding: 8px; gap: 8px; width: 1200px;
     border:3px solid gray;
     background-color:white; color:black;
     grid-template-columns : repeat(1, 1fr);
@@ -61,10 +61,17 @@ function CompanyManage () {
         {ID: 4, Name: "회사4", Date: "2022-11-04", Info: "개요4"},
         {ID: 5, Name: "회사5", Date: "2022-11-05", Info: "개요5"}
     ]
-    //let eachCom = dummyData.filter(v => selectedData.includes(v.name))
-    let eachManage = dummyData.map((v) => (<EachManage key={v.ID}
+    
+    let eachManage = dummyData.filter((val)=>{
+        if(search === "") {
+            return val;
+        } else if(val.Name.toLowerCase().includes(search.toLowerCase())) {
+            return val;
+        }
+    }).map((v) => (<EachManage key={v.ID}
         ID={v.ID} Name={v.Name} Date={v.Date} Info={v.Info}  
     />));
+    
     let num=1;
     return(
         <Board_block>

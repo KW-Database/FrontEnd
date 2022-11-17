@@ -14,7 +14,7 @@ const Title = styled.div`
     font-weight: 700; font-size: 50px;
 `
 const Search = styled.div`
-    position: absolute; width:600px; height:70px; left:45px; top:140px; 
+    position: absolute; width:600px; height:70px; left:250px; top:140px; 
     display:flex; justify-content: center;
 `
 
@@ -32,7 +32,7 @@ const List = styled.div`
 
 const BoardList = styled.div`
     display: grid; flex-direction: row; justify-content: center; align-items: center; 
-    padding: 8px; gap: 8px; width: 1200px; height: 450px;
+    padding: 8px; gap: 8px; width: 1200px; 
     border:3px solid gray;
     background-color:white; color:black;
     grid-template-columns : repeat(1, 1fr);
@@ -62,10 +62,17 @@ function Board () {
         {글ID: 4, Title: "제목4", ID: "author4", Date: "2022-11-04", View: 20},
         {글ID: 5, Title: "제목5", ID: "author5", Date: "2022-11-05", View: 25}
     ]
-    //let eachCom = dummyData.filter(v => selectedData.includes(v.name))
-    let eachPost = dummyData.map((v) => (<EachPost key={v.글ID}
-        글ID={v.글ID} Title={v.Title} ID={v.ID} Date={v.Date} View={v.View}  
+
+    let eachPost = dummyData.filter((val)=>{
+        if(search === "") {
+            return val;
+        } else if(val.Title.toLowerCase().includes(search.toLowerCase())) {
+            return val;
+        }
+    }).map((v) => (<EachPost key={v.글ID}
+        글ID={v.글ID} Title={v.Title} ID={v.ID} Date={v.Date} View={v.View} 
     />));
+    
     var num=1;
     return(
         <Board_block>

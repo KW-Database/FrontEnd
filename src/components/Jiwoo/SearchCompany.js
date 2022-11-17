@@ -33,7 +33,11 @@ function SearchCompany() {
   const onSubmitSearch = (e) => {
     if (e.key === "Enter") {
       //키를 눌렀을 때 동작할 코드
-      navigate('/search');
+      navigate('/search', { 
+        state: { 
+          result: e.currentTarget.value
+        }
+      });
     }
   };
   return (

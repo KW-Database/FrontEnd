@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 import EachResult from './EachResult';
 import styled from 'styled-components';
 
@@ -32,11 +33,8 @@ const Userlist = styled.div`
 `
 
 function SearchResult() {
-    const [search, setSearch] = useState("");
-    //const [selectedData, setselectedData] = useState([]);
-    const onChange = (e) => {
-        setSearch(e.currentTarget.value);
-    };
+    const location = useLocation();
+    
     const dummyData = [
         {name: "회사1"},
         {name: "회사2"},
@@ -44,8 +42,15 @@ function SearchResult() {
         {name: "회사4"},
         {name: "회사5"}
     ]
-    //let eachCom = dummyData.filter(v => selectedData.includes(v.name))
-    let eachUser = dummyData.map((v) => (<EachResult 
+    const Value = location.state.result;
+
+    let eachResult = dummyData.filter((val)=>{
+        if(Value === "") {
+            return val;
+        } else if(val.name.toLowerCase().includes(Value.toLowerCase())) {
+            return val;
+        }
+    }).map((v) => (<EachResult 
         key={v.name} name={v.name}  
     />));
     
@@ -54,7 +59,7 @@ function SearchResult() {
             <Title>검색 결과</Title>
             <List>
                 <Userlist>
-                    {eachUser}
+                    {eachResult}
                 </Userlist>
             </List>
         </ListLayer>
