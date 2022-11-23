@@ -5,48 +5,60 @@ import styled from 'styled-components';
 import SearchBar from './SearchBar';
 
 const Board_block = styled.div`
-    position: absolute; left:200px; width:1200px;
+    position: absolute; left:280px; width:1040px;
 `
 
 const Title = styled.div`
-    position: absolute; width: 1200px; height: 100px; top: 20px;
-    display:flex; justify-content: center; align-items: center; background: #D9D9D9; 
-    font-weight: 700; font-size: 50px;
+    position: absolute; width: 560px; left:240px; height: 80px; top: 20px;
+    display:flex; justify-content: center; align-items: center; 
+    border-bottom: 1px solid black;
+    font-weight: 500; font-size: 40px; 
 `
+
 const Search = styled.div`
-    position: absolute; width:600px; height:70px; left:250px; top:140px; 
+    position: absolute; width:800px; height:70px; left:50px; top:150px; 
     display:flex; justify-content: center;
 `
 
 const Post = styled.button`
-    position: absolute; width: 120px; height: 40px; left: 1080px; top: 150px;
+    position: absolute; width: 100px; height: 40px; left: 940px; top: 160px;
     font-size: 20px; color: #FFFFFF; background-color:skyblue;
-    border:1px solid black; border-radius:10px;
+    border: 1px solid black; border-radius:20px;
 `
 
 const List = styled.div`
-    position: absolute; width:1200px; top: 210px; 
-    display:flex; justify-content: center; background-color:white;
+    position: absolute; width:1040px; top: 240px; 
+    display:flex; justify-content: center; background-color:#e7e7e7;
 `
 
 const CompanyList = styled.div`
-    display: grid; flex-direction: row; justify-content: center; align-items: center; 
-    padding: 8px; gap: 8px; width: 1200px;
-    border:3px solid gray;
-    background-color:white; color:black;
+    display: grid; flex-direction: row; width: 1040px; 
+    position: absolute; top:30px;
+    border-top:2px solid gray; 
+    background-color:#e7e7e7; color:black;
     grid-template-columns : repeat(1, 1fr);
   @media screen and (max-width : 800px){
     grid-template-columns : repeat(1, 1fr);
   }
-  @media screen and (max-width : 1200px) and (min-width : 800px){
+  @media screen and (max-width : 1040px) and (min-width : 800px){
     grid-template-columns : repeat(2, 1fr);
   }
 `
 
 const PageNumber = styled.div`
-    width: 1200px; height: 40px;
+    width: 1040px; height: 40px;
     display: flex; justify-content:center; align-items: center;
     color: black;
+`
+
+const ID = styled.div`
+    position:absolute; left:20px; width:50px;
+    display:flex; justify-content:center;
+`
+
+const Name = styled.div`
+    position:absolute; left:0px; width:1000px; width:1000px;
+    display:flex; justify-content:center;
 `
 
 function CompanyManage () {
@@ -79,10 +91,11 @@ function CompanyManage () {
             <Search><SearchBar search={search} onChange={onChange} /></Search>
             <Link to="/manage/enroll" style={{ textDecoration : 'none' }}><Post value="Post">등록</Post></Link>
             <List>
+                <ID>번호</ID><Name>기업명</Name>
                 <CompanyList>
-                    {eachManage}
+                    {eachManage}<p />
                     <PageNumber>
-                        <Link to='/manage' style={{ textDecoration : 'none' }}>{num}</Link>
+                        <Link to={`/manage?page=${num}`} style={{ textDecoration : 'none', color : 'black'}}>{num}</Link>
                     </PageNumber>
                 </CompanyList>
             </List>

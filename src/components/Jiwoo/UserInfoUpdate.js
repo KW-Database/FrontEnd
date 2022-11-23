@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const User_Info = styled.div`
-    position: absolute; width: 800px; height: 550px; left: 540px; top: 45px;
-    padding-left:40px; text-align:left;
+    position: absolute; width: 850px; height: 550px; left: 300px; top: 45px;
+    padding-left:150px; text-align:left;
     font-size: 24px; background-color:white;
 `
 
 const Title = styled.div`
-    position: absolute; width: 200px; height: 40px; left: 80px; top: 20px;
+    position: absolute; width: 200px; height: 40px; left: 400px; top: 20px;
     font-size:40px; margin-bottom:100px;
 `
 
@@ -28,9 +28,9 @@ const Input_Select = styled.select`
 `
 
 const Button = styled.button`
-    position: absolute; width: 180px; height: 45px; left: 300px; top: 360px;
-    background: #111111; opacity: 0.25; border-radius: 32px; 
-    font-size:24px; color: white;
+    position: absolute; width: 180px; height: 45px; left: 250px; top: 360px;
+    border:1px solid black; border-radius: 32px; 
+    font-size:20px; color: white; background: gray;
 `
 
 
@@ -66,37 +66,51 @@ function UserInfoUpdate (props) {
         else if(PhoneNum === '' || PhoneNum.length !== 13 || (PhoneNum[3] !== '-' && PhoneNum[8] !== '-'))
             alert("올바른 형식의 전화번호를 입력하세요.");
         else {
-            alert("정보가 수정되었습니다.");
+            if (window.confirm('정보를 수정하시겠습니까?'))
+            {
+                // They clicked Yes
+                alert("정보가 수정되었습니다.");
+            }
+            else
+            {
+            // They clicked no
+            }
+
             e.preventDefault();
             //DB에 적용하는 과정
         }
     }
 
+    var printSex;
+    if(Sex === "M")
+        printSex = "남";
+    else
+        printSex = "여";
     return(
         <User_Info>
-        <Title>Profile</Title>
+        <Title>내 프로필</Title>
           <Info_block>
-            ID
+            아이디
             <Input_text name="ID" value={ID} onChange={handleChange} />
             <p />
-            Name
+            이름
             <Input_text name="Name" value={Name} onChange={handleChange} />
             <p />
-            Age
+            나이
             <Input_text name="Age" value={Age} onChange={handleChange} />
             <p />
-            Email
+            이메일
             <Input_text name="Email" value={Email} onChange={handleChange} />
             <p />
-            PhoneNum
+            전화번호
             <Input_text name="PhoneNum" value={PhoneNum} onChange={handleChange} />
             <p />
-            Sex
-            <Input_Select value={Sex} onChange={handleChange}>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
+            성별
+            <Input_Select defaultValue={printSex} onChange={handleChange}>
+                <option value="M">남</option>
+                <option value="F">여</option>
             </Input_Select>
-            <Button onClick={handleUpdate}>Apply</Button>    
+            <Button onClick={handleUpdate}>수정하기</Button>    
           </Info_block>    
         </User_Info>
     );

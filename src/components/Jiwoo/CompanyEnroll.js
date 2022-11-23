@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Write = styled.div`
-    position: absolute; width:1100px; height:400px; left:200px; top:150px; padding:50px; 
+    position: absolute; width:900px; height:400px; left:280px; top:150px; padding:50px; 
     text-align: left; background-color: white; font-size: 24px; 
 `
 
 const Title = styled.input`
-    position: absolute; width:900px; height:40px; left:150px; top: 40px;
-    display:flex; justify-content: center; background-color:white; font-size:24px;
+    position: absolute; width:750px; height:40px; left:180px; top: 40px;
+    background-color:white; font-size:20px;
 `
 
 const Content = styled.textarea`
-    position: absolute; width:900px; height:250px; left:150px; top: 140px;
-    background-color:white; font-size:24px;
+    position: absolute; width:750px; height:250px; left:180px; top: 140px;
+    background-color:white; font-size:20px; border:2px solid black;
 `
 
 const Submit = styled.button`
-    position: absolute; left: 950px; top: 420px; width:120px; height:40px;    
+    position: absolute; width:120px; height:40px; left: 820px; top: 420px; 
     border:0; border-radius:20px; 
     font-size:20px; color:white; background-color:skyblue;
 `
@@ -54,7 +54,7 @@ function CompanyEnroll () {
             <Write>
                 기업명 : <Title type="text" name="Name" value={Name} placeholder="기업명" onChange={onChange} /> <p /><br />
                 기업개요 : <Content name="Info" value={Info} placeholder="기업개요" onChange={onChange} />
-                <Submit type="submit" value="Submit" onClick={onSubmit}>Submit</Submit>
+                <Submit type="submit" value="Submit" onClick={onSubmit}>등록</Submit>
             </Write>
         </div>
     );

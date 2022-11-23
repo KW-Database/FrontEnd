@@ -5,19 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import '../../App.css';
 
 const Find = styled.div`
-    position:absolute; top:100px; width:500px; height:600px; 
+    position:absolute; top:90px; width:500px; height:550px; 
     padding:10px 50px 10px 50px; border:5px solid gray; border-radius:15px; 
     justify-content:center; align-items:center; 
 `
 
 const Find_write = styled.input`
-    width:400px; height:50px; font-size:20px; margin:20px;
+    width:450px; height:40px; font-size:15px; margin:10px;
     border:1px solid black; border-radius:5px;
 `
 
 const Find_button = styled.button`
     width: 300px; height: 40px; font-size: 15px; 
-    border-radius:10px; background-color:skyblue;
+    border:1px solid black; border-radius:10px; background-color:skyblue;
 `
 
 function FindPW () {
@@ -48,16 +48,17 @@ function FindPW () {
     return (
         <Find>
             <h1>&nbsp;&nbsp;비밀번호 찾기</h1><p />
-            <Find_write type="text" name="ID" value={ID} placeholder="Enter ID" onChange={handleChange} />
+            <Find_write type="text" name="ID" value={ID} placeholder="아이디" onChange={handleChange} />
             <p />
-            <Find_write type="text" name="Name" value={Name} placeholder="Your Name" onChange={handleChange} />
+            <Find_write type="text" name="Name" value={Name} placeholder="이름" onChange={handleChange} />
             <p />
-            <Find_write type="text" name="Email" value={Email} placeholder="Your Email Address" onChange={handleChange} />
+            <Find_write type="text" name="Email" value={Email} placeholder="이메일" onChange={handleChange} />
             <p />
-            <Find_write type="text" name="PhoneNum" value={PhoneNum} placeholder="Enter Your Phone Number ( - 포함 )" onChange={handleChange} />
+            <Find_write type="text" name="PhoneNum" value={PhoneNum} placeholder="전화번호 ( ex) 010-xxxx-xxxx )" onChange={handleChange} />
             <p />
             <Find_button value="find-button" onClick={handleClick} >비밀번호 찾기</Find_button><p />
-            Do you want to <Link to='/login'>Sign In</Link>?
+            아이디가 기억나지 않는다면? <Link to='/findID'>아이디 찾기</Link><p />
+            <Link to='/login'>로그인</Link>하시겠습니까?
         </Find>    
     );
 }

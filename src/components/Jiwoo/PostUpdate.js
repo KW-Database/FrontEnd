@@ -2,22 +2,23 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Update = styled.div`
-    position: absolute; width:1100px; height:400px; left:200px; top:150px; padding:50px; 
+    position: absolute; width:900px; height:400px; left:275px; top:150px; padding:50px; 
     text-align: left; background-color: white; font-size: 24px; 
 `
 
 const Title = styled.input`
-    position: absolute; width:900px; height:40px; left:150px; top: 40px;
-    display:flex; justify-content: center; background-color:white; font-size:24px;
+    position: absolute; width:800px; height:40px; left:150px; top: 40px;
+    display:flex; justify-content: center; background-color:white; font-size:20px;
 `
 
 const Content = styled.textarea`
-    position: absolute; width:900px; height:250px; left:150px; top: 140px;
-    background-color:white; font-size:24px;
+    position: absolute; width:800px; height:250px; left:150px; top: 140px;
+    background-color:white; border:2px solid gray;
+    font-size:20px; font-family: sans-serif, "바탕";
 `
 
 const Submit = styled.button`
-    position: absolute; left: 950px; top: 420px; width:120px; height:40px;    
+    position: absolute; left: 830px; top: 420px; width:120px; height:40px;    
     border:0; border-radius:20px; 
     font-size:20px; color:white; background-color:skyblue;
 `
@@ -54,7 +55,7 @@ function PostUpdate(props) {
             <Update>
                 제목 : <Title type="text" name="title" value={title} placeholder="제목" onChange={onChange} /> <p /><br />
                 내용 : <Content name="content" value={content} placeholder="내용" onChange={onChange} />
-                <Submit type="submit" value="Submit" onClick={onSubmit}>Update</Submit>
+                <Submit type="submit" value="Submit" onClick={onSubmit}>수정하기</Submit>
             </Update>
         </div>
     );

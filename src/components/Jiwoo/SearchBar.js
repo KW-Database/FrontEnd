@@ -7,6 +7,7 @@ const Search = styled.div`
   display:flex;
   align-items: center;
   position: relative;
+  padding-bottom:20px;
 `;
 
 const Icon = styled.span`
@@ -16,18 +17,18 @@ const Icon = styled.span`
 `;
 
 const Input = styled.input`
-  padding: 20px 50px;
+  padding: 15px 50px;
   border : 1px solid rgba(0,0,0,0.2);
   border-radius: 5px;
-  width: 600px;
+  width: 800px;
   font-size : 15px;
 `;
 
 function SearchBar({search, onChange}) {
     return(
         <Search>
-            <Input type="text" value={search} onChange={onChange} placeholder="Search" />
-            <Icon><FontAwesomeIcon icon={faMagnifyingGlass} size="2x" /></Icon>
+            <Input type="text" value={search} onChange={onChange} placeholder=" 검색" />
+            <Icon><FontAwesomeIcon icon={faMagnifyingGlass} size="x" /></Icon>
         </Search>
     );
 }
