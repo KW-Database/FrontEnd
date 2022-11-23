@@ -17,7 +17,7 @@ const Icon = styled.span`
 `;
 
 const Input = styled.input`
-  padding: 20px 50px;
+  padding: 15px 50px;
   border : 1px solid rgba(0,0,0,0.2);
   border-radius: 5px;
   width: 1000px;
@@ -42,8 +42,8 @@ function SearchCompany() {
   };
   return (
     <Search>
-            <Input type="text" value={search} onChange={onChange} onKeyPress={onSubmitSearch} placeholder="Search" />
-            <Icon><FontAwesomeIcon icon={faMagnifyingGlass} size="2x" /></Icon>
+            <Input type="text" value={search} onChange={onChange} onKeyPress={onSubmitSearch} placeholder=" 종목 검색" />
+            <Icon><FontAwesomeIcon icon={faMagnifyingGlass} /></Icon>
     </Search>
   );
 }

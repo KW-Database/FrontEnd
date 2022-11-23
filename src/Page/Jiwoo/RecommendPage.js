@@ -5,24 +5,48 @@ import Recommend_buy_table from '../../components/Jiwoo/Recommend_buy';
 import Recommend_sell_table from '../../components/Jiwoo/Recommend_sell';
 
 const Title = styled.div`
-    position: absolute; width: 1200px; height: 100px; left: 200px; top: 20px;
-    display:flex; justify-content: center; align-items: center; background: #D9D9D9; 
-    font-weight: 700; font-size: 50px;
+    position: absolute; width: 560px; left:500px; height: 80px; top: 20px;
+    display:flex; justify-content: center; align-items: center; 
+    border-bottom: 1px solid black;
+    font-weight: 500; font-size: 40px; 
 `
 
 const BuyLayer = styled.div`
-    position: absolute; width: 560px; height:500px; left: 200px; top: 150px;
-    display:flex; justify-content: center; align-items: center; background: white;
+    position: absolute; width: 540px; height:600px; left: 250px; top: 120px;
+    display:flex; justify-content: center; align-items: center; 
 `
 
 const SellLayer = styled.div`
-    position: absolute; width: 560px; height:500px; left: 840px; top: 150px;
-    display:flex; justify-content: center; align-items: center; background: white;
+    position: absolute; width: 540px; height:600px; left: 810px; top: 120px;
+    display:flex; justify-content: center; align-items: center; 
+`
+
+const Table = styled.div`
+    position: absolute; top:90px; 
 `
 
 const SubTitle = styled.div`
     display:flex; justify-content:center; 
     position:absolute; top:20px; width:500px; font-size:30px;
+`
+
+const Category = styled.div`
+  position:absolute; top:-10px;
+`
+
+const Name = styled.div`
+    position: absolute; left:50px; width: 150px; 
+    display:flex; justify-content:left;
+`
+
+const Price = styled.div`
+    position: absolute; left:200px; width: 120px; 
+    display:flex; justify-content:center;
+`
+
+const Diff = styled.div`
+    position: absolute; left:330px; width: 120px; 
+    display:flex; justify-content:center;
 `
 
 class RecommendPage extends Component {
@@ -34,11 +58,17 @@ class RecommendPage extends Component {
                     <Title>추천 매수/매도</Title>
                     <BuyLayer>
                         <SubTitle>추천 매수</SubTitle>
-                        <Recommend_buy_table />
+                        <Table>
+                            <Category><Name>회사명</Name><Price>현재가</Price><Diff>상승/하락</Diff></Category><p />
+                            <Recommend_buy_table />
+                        </Table>
                     </BuyLayer>
                     <SellLayer>
                         <SubTitle>추천 매도</SubTitle>
-                        <Recommend_sell_table />
+                        <Table>
+                            <Category><Name>회사명</Name><Price>현재가</Price><Diff>상승/하락</Diff></Category><p />
+                            <Recommend_sell_table />
+                        </Table>
                     </SellLayer>
                 </div>
             </div>

@@ -5,9 +5,10 @@ import UpperLayer from '../../components/Jiwoo/UpperLayer';
 import CompanyUpdate from '../../components/Jiwoo/CompanyUpdate';
 
 const Title = styled.div`
-    position: absolute; width: 1200px; height: 100px; left: 200px; top: 20px;
-    display:flex; justify-content: center; align-items: center; background: #D9D9D9; 
-    font-weight: 700; font-size: 50px;
+    position: absolute; width: 560px; left:520px; height: 80px; top: 20px;
+    display:flex; justify-content: center; align-items: center; 
+    border-bottom: 1px solid black;
+    font-weight: 500; font-size: 40px; 
 `
 
 function CompanyUpdatePage () {
@@ -17,7 +18,7 @@ function CompanyUpdatePage () {
         <div className="Page">
             <UpperLayer></UpperLayer>
             <div className="Background">
-                <Title>게시글 수정</Title>
+                <Title>주식회사 정보수정</Title>
                 <CompanyUpdate _Name={location.state.Name} _Date={location.state.Date} _Info={location.state.Info} />
             </div>
         </div>

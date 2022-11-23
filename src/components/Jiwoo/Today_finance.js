@@ -2,10 +2,19 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ReactApexChart from 'react-apexcharts';
 
-const Select = styled.select`
-    width:150px; height:30px; font-size:15px; 
-    border:1px solid black; border-radius:5px; font-color:solid gray;
-`
+const Button = styled.button`
+    display: inline-flex;
+    align-items: center;
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    font-size:15px;
+    color: black;
+    background-color:white;
+    cursor: pointer;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    `
 
 const dummyData= [{
     name: '코스피',
@@ -147,6 +156,7 @@ const Today_finance_graph = () => {
         xaxis: {
           type: 'datetime',
           labels: {
+            name: 'time',
             style: {
               colors: '#8e8da4',
             },
@@ -201,20 +211,89 @@ const Today_finance_graph = () => {
         },
         labels: {
             show: false
+        },
+        plotOptions: {
+          area: {
+            colors: {
+              upward: '#3C90EB',
+              downward: '#8e8da4'
+            }
+          }
         }
       };
 
+
     return (
         <div>
-            <Select name="Name" defaultValue="코스피" onChange={HandleChange}>
-                <option value="코스피">코스피</option>
-                <option value="코스닥">코스닥</option>
-                <option value="코스피200">코스피200</option>
-            </Select>
+            <Button value="코스피" onClick={HandleChange}>코스피</Button>|
+            <Button value="코스닥" onClick={HandleChange}>코스닥</Button>|
+            <Button value="코스피200" onClick={HandleChange}>코스피200</Button>
             <ReactApexChart options={options} series={series} type="area" height={300} />
+                  
         </div>
     );
 
 }
 
 export default Today_finance_graph;
+
+
+    /*
+    const dummyData= [{
+    name: '코스피',
+    data: [
+      { x: Datetime (YYYY-MM-DD HH:MM:SS), y: [시가, 고가, 저가, 종가] },
+                                        .
+                                        .
+                                        .
+      이 형태로 데이터 쭉 받아오면
+      candle stick으로 출력 가능!
+    ],
+  }];
+    
+    var series = [{
+        name: selectData.Name,
+        data: selectData.Data,
+    }];
+
+    var options = {
+      chart: {
+        height: 350,
+        type: 'candlestick',
+      },
+      title: {
+        text: 'CandleStick Chart - Category X-axis',
+        align: 'left'
+      },
+      annotations: {
+        xaxis: [
+          {
+            borderColor: '#00E396',
+            label: {
+              borderColor: '#00E396',
+              style: {
+                fontSize: '12px',
+                color: '#fff',
+                background: '#00E396'
+              },
+              orientation: 'horizontal',
+              offsetY: 7,
+              text: 'Annotation Test'
+            }
+          }
+        ]
+      },
+      tooltip: {
+        enabled: true,
+      },
+      xaxis: {
+        type: 'datetime',
+      },
+      yaxis: {
+        tooltip: {
+          enabled: true
+        }
+      }
+    };
+    <ReactApexChart options={options} series={series} type="candlestick" height={300} />
+    */

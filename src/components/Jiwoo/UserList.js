@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import EachUser from './EachUser';
 import styled from 'styled-components';
 import SearchBar from './SearchBar';
 
 const Title = styled.div`
-    position: absolute; width: 1200px; height: 100px; left:-100px; top: 20px;
-    display:flex; justify-content: center; align-items: center; background: #D9D9D9; 
-    font-weight: 700; font-size: 50px;
+    position: absolute; width: 560px; left:220px; height: 80px; top: 20px;
+    display:flex; justify-content: center; align-items: center; 
+    border-bottom: 1px solid black;
+    font-weight: 500; font-size: 40px; 
 `
 
 const ListLayer = styled.div`
@@ -14,39 +16,49 @@ const ListLayer = styled.div`
 `
 
 const List = styled.div`
-    position: relative; width:1000px; top: 150px;
+    position: absolute; width:800px; top: 150px; 
     display:flex; justify-content: center;
 `
 
 const Search = styled.div`
-    position: absolute; width:300px; height:60px; 
+    position: absolute; width:1040px; height:60px; top:5px; left:-15px;
     display:flex; justify-content: center;
 `
 
-const Userlist = styled.div`
-    display: grid; flex-direction: row; justify-content: center;
-    padding: 8px; gap: 8px;
-    position:absolute; top:100px; 
-    border:3px solid gray; border-radius:10px;
-    background-color:white; color:black;
-    grid-template-columns : repeat(3, 1fr);
+const _UserList = styled.div`
+    display: grid; flex-direction: row; width: 800px; 
+    position: absolute; top:100px; left:105px;
+    border-top:2px solid gray; 
+    background-color:#e7e7e7; color:black;
+    grid-template-columns : repeat(1, 1fr);
   @media screen and (max-width : 800px){
     grid-template-columns : repeat(1, 1fr);
   }
-  @media screen and (max-width : 1000px) and (min-width : 200px){
+  @media screen and (max-width : 1040px) and (min-width : 800px){
     grid-template-columns : repeat(2, 1fr);
   }
-  overflow: auto;
-  &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-    border-radius: 6px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: #888888;
-  &::-webkit-scrollbar-track {
-    background-color: white;
 `
+
+const PageNumber = styled.div`
+    width: 800px; height: 40px;
+    display: flex; justify-content:center; align-items: center;
+    color: black;
+`
+
+const Category = styled.div`
+    position:absolute; top:70px; left:105px;
+`
+
+const Name = styled.div`
+    position: absolute; left:50px; width: 350px; 
+    display:flex; justify-content:center;
+`
+
+const ID = styled.div`
+    position: absolute; left:450px; width: 350px; 
+    display:flex; justify-content:center;
+`
+  
 
 function UserList() {
     const [search, setSearch] = useState("");
@@ -72,14 +84,19 @@ function UserList() {
         ID={v.ID} name={v.name}  
     />));
     
+    var num=1;
     return (
         <ListLayer>
             <Title>사용자 목록</Title>
             <List>
                 <Search><SearchBar search={search} onChange={onChange} /></Search>
-                <Userlist>
-                    {eachUser}
-                </Userlist>
+                <Category><Name>사용자명</Name><ID>아이디</ID></Category><p />
+                <_UserList>
+                    {eachUser}<p />
+                    <PageNumber>
+                        <Link to='/admin' style={{ textDecoration : 'none' }}>{num}</Link>
+                    </PageNumber>
+                </_UserList>
             </List>
         </ListLayer>
     );

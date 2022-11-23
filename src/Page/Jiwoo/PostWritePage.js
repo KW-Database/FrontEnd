@@ -4,9 +4,10 @@ import UpperLayer from '../../components/Jiwoo/UpperLayer';
 import PostWrite from '../../components/Jiwoo/PostWrite';
 
 const Title = styled.div`
-    position: absolute; width: 1200px; height: 100px; left: 200px; top: 20px;
-    display:flex; justify-content: center; align-items: center; background: #D9D9D9; 
-    font-weight: 700; font-size: 50px;
+    position: absolute; width: 560px; left:500px; height: 80px; top: 20px;
+    display:flex; justify-content: center; align-items: center; 
+    border-bottom: 1px solid black;
+    font-weight: 500; font-size: 40px; 
 `
 
 class PostWritePage extends Component {

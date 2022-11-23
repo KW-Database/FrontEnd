@@ -5,15 +5,23 @@ const User = styled.div`
   display: flex;
   flex-wrap : wrap;
   flex-direction:column;
-  width:250px; height:100px;
+  height: 15px;
   justify-content: center;
   background-color: #ecf0f1;
-  border : 5px solid black;
-  border-radius: 20px;
+  border-bottom:2px solid white;
   padding : 15px 20px;
-  margin-bottom: 20px;
-  font-size: 20px;
+  margin-bottom: 2px;
 `;
+
+const Name = styled.div`
+    position: absolute; left:50px; width: 350px;
+    display:flex; justify-content:center;
+`
+
+const ID = styled.div`
+    position: absolute; left:450px; width: 350px; 
+    display:flex; justify-content:center;
+`
 
 function EachUser(props) {
     const navigate = useNavigate();
@@ -23,7 +31,8 @@ function EachUser(props) {
 
     return (
         <User onClick={move}>
-            {props.ID}<br />{props.name}
+            <ID>{props.ID}</ID>
+            <Name>{props.name}</Name>
         </User>
     );
 }

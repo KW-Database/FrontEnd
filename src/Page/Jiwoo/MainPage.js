@@ -11,13 +11,13 @@ import Recently_added_table from '../../components/Jiwoo/Recently_added';
 import '../../App.css';
 
 const Background = styled.div`
-    position:absolute; top:20px; width:1560px; height:1450px; 
+    position:absolute; top:20px; width:1560px; height:1650px; 
     background-color:#e7e7e7; 
 `
 
 const Main_Page = styled.div`
     display:flex; justify-content:center;
-    position:absolute; left:260px; width:1040px; height:1430px; background-color:white;
+    position:absolute; left:260px; width:1040px; height:1600px; background-color:white;
 `
 
 const Company_Search = styled.div`
@@ -36,33 +36,33 @@ const Today_finance = styled.div`
 `
 
 const Recommend_buy = styled.div`
-    position:absolute; width: 400px; height: 350px; left:20px; top:500px;
+    position:absolute; width: 450px; height: 350px; left:20px; top:500px;
     padding-top:20px; font-size:30px; text-align: left; 
 `
 
 const Recommend_sell = styled.div`
-  position:absolute; width: 400px; height: 350px; left: 600px; top: 500px; 
+  position:absolute; width: 450px; height: 350px; left: 550px; top: 500px; 
   padding-top:20px; font-size:30px; text-align: left; 
 `
 
 const Top10 = styled.div`
-    position:absolute; width: 400px; left:20px; top: 900px; 
+    position:absolute; width: 450px; left:20px; top: 1020px; 
     padding-top:20px; padding-bottom:50px;
     font-size:30px; text-align: left; 
 `
 
 const Recently_added = styled.div`
-    position:absolute; width: 400px; height: 350px; left: 600px; top: 900px; 
+    position:absolute; width: 450px; height: 350px; left: 550px; top: 1020px; 
     padding-top:20px; font-size:30px; text-align: left;    
 `;
 
 const List = styled.div`
-  box-sizing: border-box; position: absolute; width: 400px; height: 280px; 
+  box-sizing: border-box; position: absolute; width: 450px; height: 280px; 
   font-size:20px; text-align:center;
 `
 
 const SeeMore = styled.div`
-    position: absolute; width:100px; height:50px; left:330px; top:40px;
+    position: absolute; width:100px; height:50px; left:380px; top:40px;
     font-size:15px; text-align:center;
 `
 
@@ -88,7 +88,7 @@ function MainPage() {
                         <List><Recommend_sell_table /></List>  
                     </Recommend_sell>
                     <Top10>
-                        TOP 10 <p />
+                        TOP 10
                         <List><Top10_table /></List>   
                     </Top10>
                     <Recently_added>

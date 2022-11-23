@@ -9,7 +9,6 @@ class CompanyManagePage extends Component {
                 <UpperLayer />
                 <div className="Background">
                     <CompanyManage />
-                    
                 </div>
             </div>
         );

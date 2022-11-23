@@ -1,0 +1,7 @@
+[
+    {"itemName": "기업1", "price" : 10, "changeAmount" : 1, "changeRate": 1, "likedNum": 10},
+    {"itemName": "기업2", "price" : 20, "changeAmount" : 2, "changeRate": 2, "likedNum": 8},
+    {"itemName": "기업3", "price" : 30, "changeAmount" : 3, "changeRate": 3, "likedNum": 12},
+    {"itemName": "기업4", "price" : 40, "changeAmount" : 4, "changeRate": 4, "likedNum": 5},
+    {"itemName": "기업5", "price" : 50, "changeAmount" : 5, "changeRate": 5, "likedNum": 3}
+]
