@@ -18,7 +18,8 @@ const Join_select = styled.select`
 `
 
 const Sign_up = styled.input`
-    width: 200px; height: 35px; border-radius:10px; background-color:skyblue;   
+    width: 200px; height: 35px; 
+    border:1px solid black; border-radius:10px; background-color:skyblue;   
 `
 
 function JoinForm () {
@@ -74,7 +75,7 @@ function JoinForm () {
             <h1>&nbsp;&nbsp;회원가입</h1><p />
             <Join_write type="text" name="ID" value={ID} placeholder="Enter ID" onChange={handleChange} />
             <p />
-            <Join_write type="password" name="PW" value={PW} placeholder="Password" ionChange={handleChange} />
+            <Join_write type="password" name="PW" value={PW} placeholder="Password" onChange={handleChange} />
             <p />
             <Join_write type="password" name="confirmPW" value={confirmPW} placeholder="Confirm Password" onChange={handleChange} />
             <p />
@@ -84,7 +85,7 @@ function JoinForm () {
             <p />
             <Join_write type="text" name="Email" value={Email} placeholder="Your Email Address" onChange={handleChange} />
             <p />
-            <Join_write type="text" name="PhoneNum" value={PhoneNum} placeholder="Enter Your Phone Number ( - 포함 )" onChange={handleChange} />
+            <Join_write type="text" name="PhoneNum" value={PhoneNum} placeholder="Enter Your Phone Number ( ex) 010-xxxx-xxxx )" onChange={handleChange} />
             <p />
             <Join_select name="Sex" value={Sex}  onChange={handleChange}>
                 <option value="">Your Sex</option>
