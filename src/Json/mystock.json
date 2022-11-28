@@ -1,5 +1,5 @@
 [
-    {"Name": "title1", "Price": 200, "Rate":20 },
-    {"Name": "title2", "Price": 300, "Rate":30 },
-    {"Name": "title3", "Price": 400, "Rate":40 }
+    {"Name": "title1", "Price": 200, "changeAmount": 20, "Rate":20 },
+    {"Name": "title2", "Price": 300, "changeAmount": 30, "Rate":30 },
+    {"Name": "title3", "Price": 400, "changeAmount": 40, "Rate":40 }
 ]

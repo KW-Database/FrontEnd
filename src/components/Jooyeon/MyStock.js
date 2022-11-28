@@ -99,7 +99,7 @@ function MyStock(){
                 <Company>
                     <Name>{props.Name}</Name>
                     <Price>{props.Price}</Price>
-                    <Diff dif={props.Rate}>▲ {props.changeAmount} ({props.changeRate}%)</Diff>  
+                    <Diff dif={props.Rate}>▲ {props.changeAmount} ({props.Rate}%)</Diff>  
                 </Company>
             </div>
         )
