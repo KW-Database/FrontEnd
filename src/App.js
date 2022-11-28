@@ -21,6 +21,8 @@ import CompanyUpdatePage from './Page/Jiwoo/CompanyUpdatePage';
 import SearchResultPage from './Page/Jiwoo/SearchResultPage';
 import RecommendPage from './Page/Jiwoo/RecommendPage';
 import RecentlyAddedPage from './Page/Jiwoo/RecentlyAddedPage';
+import MyWalletPage from './Page/Jooyeon/MyWalletPage';
+import ExchangePage from'./Page/Jooyeon/ExchangePage';
 
 function App() {
   return (
@@ -47,6 +49,8 @@ function App() {
             <Route path='/manage/:id/update' element={<CompanyUpdatePage />}></Route>
             <Route path='/recommend' element={<RecommendPage />}></Route>
             <Route path='/recently_added' element={<RecentlyAddedPage />}></Route>
+            <Route path='/:user/mywallet' element={<MyWalletPage />}></Route>
+            <Route path='/:user/exchange' element={<ExchangePage/>}></Route>
           </Routes>
         </BrowserRouter>
       </div>
