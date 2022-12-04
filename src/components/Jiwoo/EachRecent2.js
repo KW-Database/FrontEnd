@@ -6,10 +6,11 @@ const Recommend = styled.div`
   display: flex;
   flex-wrap : wrap;
   flex-direction:column;
+  justify-content:center;
   background-color: #ecf0f1;
-  height:15px; 
+  height:10px; 
   border-bottom: 2px solid white;
-  padding : 15px 30px;
+  padding : 20px 30px;
   margin-bottom: 2px;
 `;
 
@@ -43,7 +44,7 @@ function EachRecent2(props) {
     return (
         <Recommend onClick={seeRecent2}>
             <Name>{props.name}</Name>
-            <Price>{props.endprice}</Price>
+            <Price>{props.price}</Price>
             <Diff dif={props.diffrate}>▲ {props.diff} ({props.diffrate}%)</Diff> 
             <Date>{props.date}</Date>      
         </Recommend>

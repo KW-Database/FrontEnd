@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import '../../App.css';
 
 const Find = styled.div`
-    position:absolute; top:130px; width:500px; height:450px; 
+    position:absolute; top:130px; width:600px; height:450px; 
     padding:10px 50px 10px 50px; border:5px solid gray; border-radius:15px; 
     justify-content:center; align-items:center; 
 `

@@ -1,0 +1,25 @@
+{
+    "totalHoldings": 2687000,
+    "totalAppraisal": 1687000,
+    "totalPurchase": 1580000,
+    "totalRate": 6.7721515,
+    "cash": 1000000,
+    "ratePerCompany": [
+        {
+            "itemCode": "102370",
+            "itemName": "케이옥션",
+            "purchase": 200000,
+            "appraisal": 256000,
+            "totalRate": 28,
+            "itemNumber": 50
+        },
+        {
+            "itemCode": "108320",
+            "itemName": "LX세미콘",
+            "purchase": 1380000,
+            "appraisal": 1431000,
+            "totalRate": 3.6956522,
+            "itemNumber": 15
+        }
+    ]
+}

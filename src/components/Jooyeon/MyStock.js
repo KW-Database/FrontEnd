@@ -1,16 +1,8 @@
 import React, { useState }from 'react';
-import {Link} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import SearchBar from '../Jiwoo/SearchBar';
-//import EachStock from './EachStock';
-import mystock from '../../Json/mystock.json'
-
-const Title=styled.div`
-    position: absolute; width: 560px; height: 80px; top: 20px;
-    display:flex; justify-content: center; align-items: center; 
-    border-bottom: 1px solid black;
-    font-weight: 500; font-size: 40px; 
-`
+import mywallet from '../../Json/mywallet'
 
 const ListLayer = styled.div`
     display:flex; justify-content:center; 
@@ -51,10 +43,11 @@ const Company = styled.div`
   display: flex;
   flex-wrap : wrap;
   flex-direction:column;
-  height: 15px; 
+  justify-content: center;
+  height: 10px; 
   border-bottom : 2px solid white;
   background-color: #ecf0f1;
-  padding : 15px 20px;
+  padding : 20px 30px;
 `
 
 
@@ -79,27 +72,40 @@ const Diff = styled.div`
     color: ${props => (props.dif > 0) ? 'red' : 'skyblue'};
 `
 
-function MyStock(){
-    
+const Count = styled.div`
+    position: absolute; left:800px; width: 200px; 
+    display:flex; justify-content:center;
+`
+
+const UserID = "jiwoo0629";
+
+function MyStock(props){
     const [search, setSearch] = useState("");
     const onChange = (e) => {
         setSearch(e.currentTarget.value);
     };
+
+    const navigate = useNavigate();
+    const move = () => {
+        navigate(`/${UserID}/exchange`);
+        //매수/매도 화면으로 이동하도록 수정
+    }
     
-    let eachStock = mystock.filter((val)=>{
+    let eachStock = mywallet.ratePerCompany.filter((val)=>{
         if(search===""){
             return val;
         }
-        else if(val.Name.toLowerCase().includes(search.toLowerCase())){
+        else if(val.itemName.toLowerCase().includes(search.toLowerCase())){
             return val;
         }
     }).map((props)=>{
         return(
             <div>
-                <Company>
-                    <Name>{props.Name}</Name>
-                    <Price>{props.Price}</Price>
-                    <Diff dif={props.Rate}>▲ {props.changeAmount} ({props.Rate}%)</Diff>  
+                <Company onClick={move}>
+                    <Name>{props.itemName}</Name>
+                    <Price>{props.appraisal}</Price>
+                    <Diff dif={props.totalRate}>▲ {props.appraisal - props.purchase} ({(props.totalRate).toFixed(2)}%)</Diff>  
+                    <Count>{props.itemNumber}</Count>
                 </Company>
             </div>
         )
@@ -113,12 +119,12 @@ function MyStock(){
         <List>
             <Search><SearchBar search={search} onChange={onChange} /></Search>
             <Category>
-                <Name>기업명</Name><Price>현재가</Price><DiffTitle>상승/하락</DiffTitle>
+                <Name>기업명</Name><Price>현재가</Price><DiffTitle>상승/하락</DiffTitle><Count>보유주식 수</Count>
             </Category><p />
             <StockList>
                 {eachStock} <p />
                 <PageNumber>
-                    <Link to='/:user/mywallet' style={{ textDecoration : 'none', color : 'black' }}>{num}</Link>
+                    <Link to={`/${UserID}/mywallet?page=${num}`} style={{ textDecoration : 'none', color : 'black' }}>{num}</Link>
                 </PageNumber> 
             </StockList>
         </List>

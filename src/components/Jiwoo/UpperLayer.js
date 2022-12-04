@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Icon } from 'react-icons-kit';
 import { home } from 'react-icons-kit/icomoon/home';
@@ -23,7 +23,8 @@ const Logout = styled.button`
 const UserID = "jiwoo0629";
 
 function UpperLayer() {
-    if(UserID === "") {
+    //const navigate = useNavigate();
+    /*if(UserID === "") {
         return(
             <Upper_layer>
                 <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Icon icon={home} id="HomeButton" size="50" /></Link>
@@ -33,7 +34,8 @@ function UpperLayer() {
                 <Link to="/login" style={{ textDecoration : 'none', color : 'gray' }}><Logout value="logout">로그인</Logout></Link>
             </Upper_layer>
         );
-    } else if(UserID === "admin") {
+    }*/
+    if(UserID === "admin") {
         return( 
             <Upper_layer>
                 <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Icon icon={home} id="HomeButton" size="50" /></Link>
@@ -49,11 +51,10 @@ function UpperLayer() {
             <Upper_layer>
                 <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Icon icon={home} id="HomeButton" size="50" /></Link>
                 <Title>
-                    <Link to={`/${UserID}/exchange`} style={{ textDecoration : 'none', color : 'gray' }}><h2>매수/매도</h2></Link>
                     <Link to={`/${UserID}/mywallet`} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 보유자산</h2></Link>
                     <Link to={`/${UserID}/likelist`} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 관심주식</h2></Link>
                     <Link to="/board" style={{ textDecoration : 'none', color : 'gray' }}><h2>토론 게시판</h2></Link>
-                    <Link to={`/${UserID}/profile`} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 프로필</h2></Link>
+                    <Link to={`/${UserID}/profile`} state={{UserID:{UserID}}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 프로필</h2></Link>
                 </Title>
                 <Link to="/login" style={{ textDecoration : 'none', color : 'gray' }}><Logout value="logout">로그아웃</Logout></Link>
             </Upper_layer>

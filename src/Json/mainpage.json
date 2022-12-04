@@ -1,0 +1,96 @@
+{   
+    "recommend_buy": [
+        {"name": "기업1", "price" : 1, "diff" : 1, "diffrate": 1, "trans": 10},
+        {"name": "기업2", "price" : 2, "diff" : 2, "diffrate": 2, "trans": 20},
+        {"name": "기업3", "price" : 3, "diff" : 3, "diffrate": 3, "trans": 15},
+        {"name": "기업4", "price" : 4, "diff" : 4, "diffrate": 4, "trans": 25},
+        {"name": "기업5", "price" : 5, "diff" : 5, "diffrate": 5, "trans": 30},
+        {"name": "기업6", "price" : 6, "diff" : 6, "diffrate": 6, "trans": 10},
+        {"name": "기업7", "price" : 7, "diff" : 1, "diffrate": -1, "trans": 15},
+        {"name": "기업8", "price" : 8, "diff" : 2, "diffrate": -2, "trans": 20},
+        {"name": "기업9", "price" : 9, "diff" : 3, "diffrate": -3, "trans": 25},
+        {"name": "기업10", "price" : 10, "diff" : 4, "diffrate": -4, "trans": 15},
+        {"name": "기업11", "price" : 11, "diff" : 5, "diffrate": -5, "trans": 15},
+        {"name": "기업12", "price" : 12, "diff" : 6, "diffrate": -6, "trans": 25}
+    ],
+
+    "recommend_sell": [
+        {"name": "기업1", "price" : 1, "diff" : 1, "diffrate": 1, "trans": 10},
+        {"name": "기업2", "price" : 2, "diff" : 2, "diffrate": 2, "trans": 20},
+        {"name": "기업3", "price" : 3, "diff" : 3, "diffrate": 3, "trans": 15},
+        {"name": "기업4", "price" : 4, "diff" : 4, "diffrate": 4, "trans": 25},
+        {"name": "기업5", "price" : 5, "diff" : 5, "diffrate": 5, "trans": 30},
+        {"name": "기업6", "price" : 6, "diff" : 6, "diffrate": 6, "trans": 10},
+        {"name": "기업7", "price" : 7, "diff" : 1, "diffrate": -1, "trans": 15},
+        {"name": "기업8", "price" : 8, "diff" : 2, "diffrate": -2, "trans": 20},
+        {"name": "기업9", "price" : 9, "diff" : 3, "diffrate": -3, "trans": 25},
+        {"name": "기업10", "price" : 10, "diff" : 4, "diffrate": -4, "trans": 15},
+        {"name": "기업11", "price" : 11, "diff" : 5, "diffrate": -5, "trans": 15},
+        {"name": "기업12", "price" : 12, "diff" : 6, "diffrate": -6, "trans": 25}
+    ],
+
+    "volumeRank": [
+        {
+            "itemName": "LX세미콘",
+            "volume": 135015,
+            "changeAmount": 4700,
+            "changeRate": 5.2,
+            "executionPrice": 95400
+        },
+        {
+            "itemName": "케이옥션",
+            "volume": 133896,
+            "changeAmount": 180,
+            "changeRate": 3.6,
+            "executionPrice": 5120
+        }
+    ],
+    "upRank": [
+        {
+            "itemName": "LX세미콘",
+            "volume": 135015,
+            "changeAmount": 4700,
+            "changeRate": 5.2,
+            "executionPrice": 95400
+        },
+        {
+            "itemName": "케이옥션",
+            "volume": 133896,
+            "changeAmount": 180,
+            "changeRate": 3.6,
+            "executionPrice": 5120
+        }
+    ],
+    "downRank": [
+        {
+            "itemName": "케이옥션",
+            "volume": 133896,
+            "changeAmount": 180,
+            "changeRate": 3.6,
+            "executionPrice": 5120
+        },
+        {
+            "itemName": "LX세미콘",
+            "volume": 135015,
+            "changeAmount": 4700,
+            "changeRate": 5.2,
+            "executionPrice": 95400
+        }
+    ],
+    "publicDateList": [
+        {
+            "itemName": "LX세미콘",
+            "executionPrice": 95400,
+            "changeAmount": 4700,
+            "changeRate": 5.2,
+            "publicDate": "2022-11-01"
+        },
+        {
+            "itemName": "케이옥션",
+            "executionPrice": 5120,
+            "changeAmount": 180,
+            "changeRate": 3.6,
+            "publicDate": "2022-11-22"
+        }
+    ]
+}

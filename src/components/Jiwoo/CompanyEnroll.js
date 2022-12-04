@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import {useLocation} from 'react-router-dom';
+import axios from 'axios';
 import styled from 'styled-components';
 
 const Write = styled.div`
-    position: absolute; width:900px; height:400px; left:280px; top:150px; padding:50px; 
+    position: absolute; width:1000px; height:480px; left:280px; top:150px; padding:50px; 
     text-align: left; background-color: white; font-size: 24px; 
 `
 
@@ -23,6 +25,8 @@ const Submit = styled.button`
 `
 
 function CompanyEnroll () {
+    const location = useLocation();
+    const [Data, setData] = useState([]);
     const [Inputs, setInputs] = useState({
         Name: '',
         Info: ''
@@ -38,15 +42,32 @@ function CompanyEnroll () {
     };
 
     const onSubmit = (e) => {
-        if(Name=== '')
-            alert("기업명을 입력하세요.");
-        else if(Info === '')
-            alert("기업개요를 입력하세요.");
-        else {
-            alert("회사가 등록되었습니다.");
-            e.preventDefault();
-            //DB에 넣는 코드 추가
-        }
+        if (window.confirm('기업을 등록하시겠습니까?'))
+        {
+            if(Name === '')
+                alert("기업명을 입력하세요.");
+            else if(Info === '')
+                alert("기업개요를 입력하세요.")
+            else {
+                axios(
+                    {                        
+                        url: `/company/write`,
+                        method: 'post',
+                        data: {itemCode: location.itemCode, itemName:Name, date: new Date(), info: Info},
+                        baseURL: 'http://localhost:8080',
+                    }
+                ).then(function (response) {
+                    setData(response.data);
+                    //alert("성공")
+                }).catch(function (error) {
+                    //alert(error);
+                });
+            }
+                alert("기업이 등록되었습니다.");
+                e.preventDefault();
+        } else {
+            // They clicked no
+        }  
     }
 
     return(

@@ -7,30 +7,31 @@ const Recommend = styled.div`
   flex-wrap : wrap;
   flex-direction:column;
   background-color: #ecf0f1;
+  justify-content:center;
   height:10px; 
   border : 0;
-  padding : 15px 30px;
+  padding : 20px 30px;
   margin-bottom: 2px;
 `;
 
 const Name = styled.div`
-    position: relative; left:10px; width: 150px; 
+    position: relative; left:10px; width: 130px; 
     display:flex; justify-content:left;
 `
 
 const Price = styled.div`
-    position: absolute; left:160px; width: 80px; 
+    position: absolute; left:140px; width: 80px; 
     display:flex; justify-content:center;
 `
 
 const Diff = styled.div`
-    position: absolute; left:250px; width: 80px; 
+    position: absolute; left:220px; width: 130px; 
     display:flex; justify-content:center;
     color: ${props => (props.dif > 0) ? 'red' : 'skyblue'}
 `
 
 const Date = styled.div`
-    position: absolute; left:340px; width: 100px; 
+    position: absolute; left:350px; width: 100px; 
     display:flex; justify-content:center;
 `
 
@@ -43,7 +44,7 @@ function EachRecent(props) {
     return (
         <Recommend onClick={seeRecent}>
             <Name>{props.name}</Name>
-            <Price>{props.endprice}</Price>
+            <Price>{props.price}</Price>
             <Diff dif={props.diffrate}>▲ {props.diff} ({props.diffrate}%)</Diff>   
             <Date>{props.date}</Date>      
         </Recommend>

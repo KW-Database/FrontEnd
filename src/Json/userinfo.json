@@ -1,4 +1,4 @@
-[
+
     {
         "id" : "jiwoo0629", 
         "pw" : "1234", 
@@ -8,35 +8,4 @@
         "phoneNumber" : "010-3757-2108", 
         "sex" : "M", 
         "adminAuth" : 1
-    },
-    {
-        "id" : "gwon99", 
-        "pw" : "1234", 
-        "name" : "박지원", 
-        "age" : 24, 
-        "email" : "gwon99@gmail.com", 
-        "phoneNumber" : "010-7593-5320", 
-        "sex" : "M", 
-        "adminAuth" : 1
-    },
-    {
-        "id" : "kiki-daehakseng", 
-        "pw" : "1234", 
-        "name" : "기현성", 
-        "age" : 24, 
-        "email" : "kiki@gmail.com", 
-        "phoneNumber" : "010-3236-7291", 
-        "sex" : "M", 
-        "adminAuth" : 1
-    },
-    {
-        "id" : "jooyeon99", 
-        "pw" : "1234", 
-        "name" : "이주연", 
-        "age" : 24, 
-        "email" : "jooyeon99@gmail.com", 
-        "phoneNumber" : "010-8461-7874", 
-        "sex" : "F", 
-        "adminAuth" : 1
     }
-]

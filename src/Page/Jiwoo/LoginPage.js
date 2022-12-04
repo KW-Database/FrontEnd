@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import '../../App.css';
 
 const Login = styled.div`
-    position:absolute; top:150px; width:500px; height:400px; 
+    position:absolute; top:150px; width:600px; height:400px; 
     padding:10px 50px 10px 50px; border:5px solid gray; border-radius:15px; 
 `
 
@@ -22,7 +22,7 @@ class LoginPage extends Component {
         return (
             <div className="Page">
                 <Login>
-                    <h1>로그인</h1>
+                    <br /><h1>로그인</h1><br />
                     <User_Login type="text" placeholder=" 아이디"></User_Login>
                     <p />
                     <User_Login type="password" placeholder=" 비밀번호" ></User_Login>

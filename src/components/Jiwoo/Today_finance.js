@@ -14,7 +14,24 @@ const Button = styled.button`
     cursor: pointer;
     padding-left: 1rem;
     padding-right: 1rem;
-    `
+`
+
+const SelectData = styled.div`
+  display:flex; justify-content:center; 
+`
+
+const SelectButton = styled.div`
+  position:absolute; left:0px; top:15px; 
+  display:flex; justify-content:left;
+  border-radius:1px solid black;
+`
+
+const Time_button = styled.button`
+  position:relative; top:-5px;
+  width:60px; height:35px; margin-left:15px; 
+  border:0; border-bottom:2px solid gray; 
+  font-size:15px; background-color:white;
+`
 
 const dummyData= [{
     name: '코스피',
@@ -130,6 +147,18 @@ const Today_finance_graph = () => {
             }
         }
     }
+
+    const HandleClick = (e) => {
+      if(e.target.value === "day") {
+        alert("1일")
+      } else if(e.target.value === "week") {
+        alert("1주")
+      } else if(e.target.value === "month") {
+        alert("1달")
+      } else if(e.target.value === "year") {
+        alert("1년")
+      }
+    }
     
     useEffect(() => {
     });
@@ -222,12 +251,19 @@ const Today_finance_graph = () => {
         }
       };
 
-
     return (
         <div>
-            <Button value="코스피" onClick={HandleChange}>코스피</Button>|
-            <Button value="코스닥" onClick={HandleChange}>코스닥</Button>|
-            <Button value="코스피200" onClick={HandleChange}>코스피200</Button>
+            <SelectData>
+              <Button value="코스피" onClick={HandleChange}>코스피</Button>|
+              <Button value="코스닥" onClick={HandleChange}>코스닥</Button>|
+              <Button value="코스피200" onClick={HandleChange}>코스피200</Button>
+            </SelectData>
+            <SelectButton>
+              <Time_button value="day" onClick = {HandleClick}>1일</Time_button>
+              <Time_button value="week" onClick = {HandleClick}>1주</Time_button>
+              <Time_button value="month" onClick = {HandleClick}>1개월</Time_button>
+              <Time_button value="year" onClick = {HandleClick}>1년</Time_button>
+            </SelectButton>
             <ReactApexChart options={options} series={series} type="area" height={300} />
                   
         </div>
@@ -236,64 +272,3 @@ const Today_finance_graph = () => {
 }
 
 export default Today_finance_graph;
-
-
-    /*
-    const dummyData= [{
-    name: '코스피',
-    data: [
-      { x: Datetime (YYYY-MM-DD HH:MM:SS), y: [시가, 고가, 저가, 종가] },
-                                        .
-                                        .
-                                        .
-      이 형태로 데이터 쭉 받아오면
-      candle stick으로 출력 가능!
-    ],
-  }];
-    
-    var series = [{
-        name: selectData.Name,
-        data: selectData.Data,
-    }];
-
-    var options = {
-      chart: {
-        height: 350,
-        type: 'candlestick',
-      },
-      title: {
-        text: 'CandleStick Chart - Category X-axis',
-        align: 'left'
-      },
-      annotations: {
-        xaxis: [
-          {
-            borderColor: '#00E396',
-            label: {
-              borderColor: '#00E396',
-              style: {
-                fontSize: '12px',
-                color: '#fff',
-                background: '#00E396'
-              },
-              orientation: 'horizontal',
-              offsetY: 7,
-              text: 'Annotation Test'
-            }
-          }
-        ]
-      },
-      tooltip: {
-        enabled: true,
-      },
-      xaxis: {
-        type: 'datetime',
-      },
-      yaxis: {
-        tooltip: {
-          enabled: true
-        }
-      }
-    };
-    <ReactApexChart options={options} series={series} type="candlestick" height={300} />
-    */

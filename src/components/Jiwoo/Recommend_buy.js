@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import EachRecommend from './EachRecommend';
+import mainpage from '../../Json/mainpage.json';
 
 const List = styled.div`
     display:flex; justify-content: center; 
@@ -39,13 +40,13 @@ const dummyData = [
 function Recommend_buy_table () {
        
     var i = 0;
-    let eachRecommend = dummyData.filter((val)=>{
+    let eachRecommend = mainpage.recommend_buy.filter((val)=>{
         if(i < 10) {
             i++;
             return val;
         }
     }).map((v) => (<EachRecommend key={v.name}
-        name={v.name} endprice={v.endprice} diff={v.diff} diffrate={v.diffrate}
+        name={v.name} price={v.price} diff={v.diff} diffrate={v.diffrate}
     />));
     
     return (

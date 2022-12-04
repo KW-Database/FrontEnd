@@ -35,7 +35,7 @@ const Top10_List = styled.div`
   }
 `
 
-const dummyData = [
+/*const dummyData = [
     {name: "기업1", endprice : 1, diff : 1, diffrate: 1, trans: 10},
     {name: "기업2", endprice : 2, diff : 2, diffrate: 2, trans: 20},
     {name: "기업3", endprice : 3, diff : 3, diffrate: 3, trans: 15},
@@ -48,9 +48,9 @@ const dummyData = [
     {name: "기업10", endprice : 10, diff : 4, diffrate: -4, trans: 15},
     {name: "기업11", endprice : 11, diff : 5, diffrate: -5, trans: 15},
     {name: "기업12", endprice : 12, diff : 6, diffrate: -6, trans: 25}
-  ];
+  ];*/
 
-function Top10_table () {
+function Top10_table (props) {
     const [option, setoption] = useState({
         op: '거래량'
     })
@@ -58,25 +58,28 @@ function Top10_table () {
     const DiffOption = (e) => {
         setoption({
             ...option,
-            op: e.target.value
+            op: e.target.value,
         })
     }
 
+    var Data;
+
+    if(option.op === '거래량') {
+        Data = props.volumeRank;
+    } else if(option.op === '상승') {
+        Data = props.upRank;
+    } else if(option.op === '하락') {
+        Data = props.downRank;
+    }
+
     var i = 0;
-    let eachRecommend = dummyData.sort((a, b) => {
-        if(option.op === "거래량")
-            return b.trans - a.trans;
-        else if(option.op === "상승")
-            return b.diffrate - a.diffrate;
-        else if(option.op === "하락")
-            return a.diffrate - b.diffrate;
-    }).filter((val)=>{
+    let eachRecommend = Data.filter((val)=>{
         if(i < 10) {
             i++;
             return val;
         }
-    }).map((v) => (<EachRecommend key={v.name}
-        name={v.name} endprice={v.endprice} diff={v.diff} diffrate={v.diffrate}
+    }).map((v) => (<EachRecommend key={v.itemName}
+        name={v.itemName} price={v.executionPrice} diff={v.changeAmount} diffrate={v.changeRate}
     />));
     
     return (

@@ -6,10 +6,11 @@ const Result = styled.div`
   display: flex;
   flex-wrap : wrap;
   flex-direction:column;
-  height: 15px; 
+  height: 10px; 
+  justify-content: center;
   border-bottom : 2px solid white;
   background: #ecf0f1;
-  padding : 15px 20px;
+  padding : 20px 30px;
 `
 
 const ID = styled.div`
@@ -22,10 +23,14 @@ const Name = styled.div`
     display:flex; text-align:left; 
 `
 
+const UserID = "jiwoo0629"
+
 function EachResult(props) {
     const navigate = useNavigate();
     const move = () => {
-        navigate('/:user/exchange');
+        navigate(`/${UserID}/exchange`, {state:{
+            UserID: UserID, itemCode:props.itemCode
+        }});
         //매수/매도 화면으로 이동하도록 수정
     }
 

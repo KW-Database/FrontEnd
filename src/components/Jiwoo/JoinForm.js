@@ -17,9 +17,15 @@ const Join_select = styled.select`
     border:1px solid black; border-radius:5px; font-color:solid gray;
 `
 
+const Dup_test = styled.button`
+    position:absolute; left:450px;
+    width: 100px; height:35px;
+    border:0; border-radius:8px; background-color:lightgray;
+`
+
 const Sign_up = styled.input`
     width: 200px; height: 35px; 
-    border:1px solid black; border-radius:10px; background-color:skyblue;   
+    border:0; border-radius:10px; background-color:skyblue;   
 `
 
 function JoinForm () {
@@ -43,10 +49,20 @@ function JoinForm () {
             [name]: value
         });
     };
+
+    var dup;
+    const handleDup = (e) => {
+        //DB에 API 보내서 중복여부확인 
+        //-> 존재하면 dup=true, alert("아이디가 이미 존재합니다.")
+        //-> 존재안하면 dup=false, alert("사용가능한 아이디입니다.")
+        //
+    }
     
     const handleSubmit = (e) => {
         if(ID === '')
             alert("아이디를 입력하세요.");
+        else if(dup === true)
+            alert("이미 존재하는 아이디입니다. 아이디를 다시 입력하세요.")
         else if(PW === '')
             alert("비밀번호를 입력하세요.");
         else if(confirmPW === '')
@@ -74,6 +90,7 @@ function JoinForm () {
         <Joinform>
             <h1>&nbsp;&nbsp;회원가입</h1><p />
             <Join_write type="text" name="ID" value={ID} placeholder="Enter ID" onChange={handleChange} />
+            <Dup_test onClick={handleDup}>중복확인</Dup_test>
             <p />
             <Join_write type="password" name="PW" value={PW} placeholder="Password" onChange={handleChange} />
             <p />
