@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-//import EachCompany from './EachCompany';
 import styled from 'styled-components';
 import SearchBar from './SearchBar';
-import Pagination from './Pagination';
+import Pagination from 'react-js-pagination';
 import likelist from  '../../Json/likelist';
 
 const Title = styled.div`
@@ -55,10 +55,11 @@ const Company = styled.div`
   display: flex;
   flex-wrap : wrap;
   flex-direction:column;
-  height: 15px; 
+  height: 10px; 
+  justify-content:center;
   border-bottom : 2px solid white;
   background-color: #ecf0f1;
-  padding : 15px 20px;
+  padding : 20px 30px;
 `
 
 const Name = styled.div`
@@ -88,23 +89,80 @@ const Like = styled.div`
 `
 
 const LikeButton= styled.button`
-    position: absolute; left:950px; width:25px; height:45px;
+    position: absolute; left:950px; width:25px; height:40px;
     font-size:15px; font-weight:700; margin-top:1px;
     border:0; border-radius:3px; 
     display:flex; justify-content:center; align-items:center;
 `
 
+const PaginationBox = styled.div`
+  .pagination { display: flex; justify-content: center; margin-top: 15px;}
+  ul { list-style: none; padding: 0; }
+  ul.pagination li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #e2e2e2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem; 
+  }
+  ul.pagination li:first-child{ border-radius: 5px 0 0 5px; }
+  ul.pagination li:last-child{ border-radius: 0 5px 5px 0; }
+  ul.pagination li a { text-decoration: none; color: #337ab7; font-size: 1rem; }
+  ul.pagination li.active a { color: white; }
+  ul.pagination li.active { background-color: #337ab7; }
+  ul.pagination li a:hover,
+  ul.pagination li a.active { color: blue; }
+`
+
+const UserID = "jiwoo0629"
+
 function LikeList() {
     const navigate = useNavigate();
     const move = () => {
-        navigate('/:user/exchange');
+        navigate(`/${UserID}/exchange`);
         //매수/매도 화면으로 이동하도록 수정
     }
+
+    const [Data, setData] = useState([]);
+    
+    useEffect(() => {
+		axios(
+            {
+                url: '/user/likedItem',
+                method: 'get',
+                data: UserID,
+                baseURL: 'http://localhost:8080',
+            }
+          ).then(function (response) {
+            setData(response.data);
+            //alert("성공")
+          }).catch(function (error) {
+            //alert(error);
+        });
+    }, []);
 
     const handleClick = (e) => {
         if (window.confirm('관심 목록에서 삭제하시겠습니까?'))
         {
             // They clicked Yes
+            axios(
+                {
+                    url: '/user/likedItem',
+                    method: 'delete',
+                    data: {
+                        id: UserID, 
+                        itemCode: e.target.value
+                    },
+                    baseURL: 'http://localhost:8080',
+                }
+              ).then(function (response) {
+                //alert("성공")
+              }).catch(function (error) {
+                //alert(error);
+            });
             alert('삭제되었습니다.')
         }
         else
@@ -114,31 +172,32 @@ function LikeList() {
     }
     
     const [search, setSearch] = useState("");
-    //const [currentPage, setCurrentPage] = useState(1);
-    //const [DataPerPage, setPostsPerPage] = useState(5);
+    const [page, setPage] = useState(1);
+    const items = 5;
+    const handlePageChange = (page) => { 
+        setPage(page); 
+    };
     
     const onChange = (e) => {
+        setPage(1);
         setSearch(e.currentTarget.value);
     };
 
-    /*const indexOfLast = currentPage * DataPerPage;
-    const indexOfFirst = indexOfLast - DataPerPage;
-    const currentData = () => {
-        let currentPosts = 0;
-        currentPosts = dummyData.slice(indexOfFirst, indexOfLast);
-        return currentPosts;
-    };*/
-    
-    let eachCom = likelist.filter((val)=>{
+    let filtered_data = likelist.filter((val)=>{
         if(search === "") {
             return val;
         } else if(val.itemName.toLowerCase().includes(search.toLowerCase())) {
             return val;
         }
-    }).map((props) => {
+    })
+ 
+    let eachCom = filtered_data.slice(
+        items*(page-1),
+        items*(page-1) + items
+    ).map((props) => {
         return (
             <div>
-                <LikeButton onClick = {handleClick}>X</LikeButton>
+                <LikeButton value={props.itemCode} onClick = {handleClick}>X</LikeButton>
                 <Company onClick={move}>
                     <Name>{props.itemName}</Name>
                     <Price>{props.price}</Price>
@@ -148,8 +207,7 @@ function LikeList() {
             </div>    
         );
     });
-    
-    var num=1;
+
     return (
         <ListLayer>
             <Title>관심 목록</Title>
@@ -160,9 +218,15 @@ function LikeList() {
                 </Category><p />
                 <CompanyList>
                     {eachCom} <p />
-                    <PageNumber>
-                        <Link to='/:user/likelist' style={{ textDecoration : 'none', color : 'black' }}>{num}</Link>
-                    </PageNumber> 
+                    <PaginationBox>
+                      <Pagination
+                        activePage={page}
+                        itemsCountPerPage={items}
+                        totalItemsCount={filtered_data.length}
+                        pageRangeDisplayed={5}
+                        onChange={handlePageChange}>
+                      </Pagination>
+                    </PaginationBox>
                 </CompanyList>
             </List>
         </ListLayer>
@@ -170,9 +234,3 @@ function LikeList() {
 }
 
 export default LikeList;
-
-/*
-<PageNumber>
-    <Link to='/:user/likelist' style={{ textDecoration : 'none', color : 'black' }}>{num}</Link>
-</PageNumber> 
-*/

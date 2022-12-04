@@ -1,0 +1,7 @@
+[
+    {"postId": 1, "Title": "제목1", "Content": "내용1", "ID": "jiwoo0629", "Date": "2022-11-01", "View": 5},
+    {"postId": 2, "Title": "제목2", "Content": "내용2", "ID": "author2", "Date": "2022-11-02", "View": 10},
+    {"postId": 3, "Title": "제목3", "Content": "내용3", "ID": "author3", "Date": "2022-11-03", "View": 15},
+    {"postId": 4, "Title": "제목4", "Content": "내용4", "ID": "author4", "Date": "2022-11-04", "View": 20},
+    {"postId": 5, "Title": "제목5", "Content": "내용5", "ID": "author5", "Date": "2022-11-05", "View": 25}
+]

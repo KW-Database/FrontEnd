@@ -6,10 +6,11 @@ const Post = styled.div`
   display: flex;
   flex-wrap : wrap;
   flex-direction:column;
-  height: 15px; 
+  height: 10px; 
+  justify-content: center;
   border-bottom : 2px solid white;
   background-color: #ecf0f1;
-  padding : 15px 20px;
+  padding : 20px 30px;
 `
 
 const 글ID = styled.div`
@@ -39,18 +40,21 @@ const View = styled.div`
 function EachPost(props) {
     const navigate = useNavigate();
     const seePost = () => {
-        navigate(`/board/${props.글ID}`, {
+        const view = props.View + 1;
+        navigate(`/board/${props.postId}`, {
             state: {
-                글ID : props.글ID,
+                postId : props.postId,
                 title : props.Title,
                 content : props.Content,
-                ID : props.ID
+                ID : props.ID,
+                Date : props.Date,
+                View : view
             },
         });
     } 
     return (
         <Post onClick={seePost}>
-            <글ID>{props.글ID}</글ID>  
+            <글ID>{props.postId}</글ID>  
             <Title>{props.Title}</Title>  
             <ID>{props.ID}</ID>
             <Date>{props.Date}</Date>

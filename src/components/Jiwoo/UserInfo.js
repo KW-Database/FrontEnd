@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 import userinfo from '../../Json/userinfo';
+import userlist from '../../Json/userlist';
 import styled from 'styled-components';
 
 const User_Info = styled.div`
@@ -35,70 +37,53 @@ const Button2 = styled.button`
     font-size:20px; color: white;
 `
 
-function handleDelete () {
-    if(userinfo.id === "admin") {
-        if (window.confirm('회원 정보를 삭제하시겠습니까?'))
-        {
-            // They clicked Yes
-            alert('회원 정보가 삭제되었습니다.')
-        }
-        else
-        {
-            // They clicked no
-        }
-    }
-    else {
-        if (window.confirm('회원탈퇴 하시겠습니까?'))
-        {
-            // They clicked Yes
-            alert('회원탈퇴 되었습니다.')
-        }
-        else
-        {
-            // They clicked no
-        }
-    }
-}
-
-function DiffButton(e) {
-    const navigate = useNavigate();
-    const goUpdate = () => {
-        // 두번재 인자의 state 속성에 원하는 파라미터를 넣어준다. (id, job을 넣어봤다)
-        navigate(`/${e.ID}/update`, {
-          state: {
-            ID: e.ID,
-            Name: e.Name,
-            Age: e.Age,
-            Email: e.Email,
-            PhoneNum: e.PhoneNum,
-            Sex: e.Sex
-          }
-        });
-    };
-
-    if(userinfo.id === "admin") {
-        return(
-            <Button1 onClick={handleDelete}>삭제</Button1>
-        );
-    } else {
-        return(
-            <div>
-                <Button1 onClick={goUpdate}>회원정보 수정</Button1>
-                <Button2 onClick={handleDelete}>회원 탈퇴</Button2>
-            </div>
-        );
-    }
-}
+const Button3 = styled.button`
+    position: absolute; width: 180px; height: 45px; left: 250px; top: 370px;
+    background: red; opacity: 0.5; border-radius: 32px; 
+    font-size:20px; color: white;
+`
 
 function UserInfo (props) {
+    const UserID = props.UserID;
+    const [Data, setData] = useState([]);
+    const { state } = useLocation();
+
+    useEffect(() => {
+        axios(
+            {
+                url: `/info`,
+                method: 'get',
+                data: UserID,
+                baseURL: 'http://localhost:8080',
+            }
+          ).then(function (response) {
+            setData(response.data);
+            //alert("성공")
+          }).catch(function (error) {
+            //alert(error);
+        });
+    }, []);
+
+    var Info;
+    if(UserID === "admin") {
+        var i;
+        for(i=0; i<userlist.length;i++) {
+            if(state.id === userlist[i].id)
+                break;
+        }
+        Info = state;
+    } else {
+        Info = userinfo;
+    }
+
     const Inputs = {
-        ID: userinfo[0].id,
-        PW: userinfo[0].pw,
-        Name: userinfo[0].name,
-        Age: userinfo[0].age,
-        Email: userinfo[0].email,
-        PhoneNum: userinfo[0].phoneNumber,
-        Sex: userinfo[0].sex
+        ID: Info.id,
+        PW: Info.pw,
+        Name: Info.name,
+        Age: Info.age,
+        Email: Info.email,
+        PhoneNum: Info.phoneNumber,
+        Sex: Info.sex
     };
     
     const { ID, PW, Name, Age, Email, PhoneNum, Sex } = Inputs;
@@ -109,7 +94,7 @@ function UserInfo (props) {
             printSex = "남";
         else
             printSex = "여";
-        if(userinfo.id === "admin") {
+        if(UserID === "admin") {
             return(
                 <Info_block>
                     아이디
@@ -160,6 +145,94 @@ function UserInfo (props) {
             );
         }
     }
+
+    function handleDelete (e) {
+        if(UserID === "admin") {
+            if (window.confirm('회원 정보를 삭제하시겠습니까?'))
+            {
+                // They clicked Yes
+                axios(
+                    {
+                      url: `/delete`,
+                      method: 'delete',
+                      data: props.UserID,
+                      baseURL: 'http://localhost:8080',
+                    }
+                  ).then(function (response) {
+                      setData(response.data);
+                      //alert("성공")
+                  }).catch(function (error) {
+                      //alert(error);
+                  });
+                  alert('회원 정보가 삭제되었습니다.')
+                  //redirect
+                  e.preventDefault();
+            }
+            else
+            {
+                // They clicked no
+            }
+        }
+        else {
+            if (window.confirm('회원탈퇴 하시겠습니까?'))
+            {
+                // They clicked Yes
+                axios(
+                    {
+                      url: `/delete`,
+                      method: 'delete',
+                      data: props.UserID,
+                      baseURL: 'http://localhost:8080',
+                    }
+                  ).then(function (response) {
+                      setData(response.data);
+                      //alert("성공")
+                  }).catch(function (error) {
+                      //alert(error);
+                  });
+                  alert('회원탈퇴 되었습니다.')
+                  //redirect
+                  e.preventDefault();
+            }
+            else
+            {
+                // They clicked no
+            }
+        }
+    }
+    
+    function DiffButton(e) {
+        const navigate = useNavigate();
+        const goUpdate = () => {
+            
+            navigate(`/${e.ID}/update`, {
+              state: {
+                ID: e.ID,
+                PW: e.PW,
+                Name: e.Name,
+                Age: e.Age,
+                Email: e.Email,
+                PhoneNum: e.PhoneNum,
+                Sex: e.Sex,
+                AdminAuth: userinfo.adminAuth
+              }
+            });
+        };
+    
+        if(UserID === "admin") {
+            return(
+                <Button3 onClick={handleDelete}>삭제</Button3>
+            );
+        } else {
+            return(
+                <div>
+                    <Button1 onClick={goUpdate}>회원정보 수정</Button1>
+                    <Button2 onClick={handleDelete}>회원 탈퇴</Button2>
+                </div>
+            );
+        }
+    }
+
 
     return(
         <User_Info>

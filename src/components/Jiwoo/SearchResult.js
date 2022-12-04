@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import axios from 'axios';
 import EachResult from './EachResult';
 import styled from 'styled-components';
 
@@ -50,14 +51,30 @@ const PageNumber = styled.div`
 `
 
 function SearchResult() {
+    const [Data, setData] = useState([]);
     const location = useLocation();
     
+    useEffect(() => {
+        axios(
+            {
+                url: `/search`,
+                method: 'get',
+                baseURL: 'http://localhost:8080',
+            }
+          ).then(function (response) {
+            setData(response.data);
+            //alert("성공")
+          }).catch(function (error) {
+            //alert(error);
+        });
+    }, []);
+    
     const dummyData = [
-        {ID: 1, name: "회사1"},
-        {ID: 2, name: "회사2"},
-        {ID: 3, name: "회사3"},
-        {ID: 4, name: "회사4"},
-        {ID: 5, name: "회사5"}
+        {ID: 1, itemCode:"000001", name: "기업1"},
+        {ID: 2, itemCode:"000002", name: "기업2"},
+        {ID: 3, itemCode:"000003", name: "기업3"},
+        {ID: 4, itemCode:"000004", name: "기업4"},
+        {ID: 5, itemCode:"000005", name: "기업5"}
     ]
     const Value = location.state.result;
 
@@ -67,8 +84,8 @@ function SearchResult() {
         } else if(val.name.toLowerCase().includes(Value.toLowerCase())) {
             return val;
         }
-    }).map((v) => (<EachResult 
-        key={v.ID} ID={v.ID} name={v.name}  
+    }).map((v) => (<EachResult key={v.ID} 
+        ID={v.ID} itemCode={v.itemCode} name={v.name}  
     />));
     
     var num=1;

@@ -6,10 +6,11 @@ const Company = styled.div`
   display: flex;
   flex-wrap : wrap;
   flex-direction:column;
-  height: 15px; 
+  height: 10px; 
+  justify-content:center;
   border-bottom : 2px solid white;
   background-color: #ecf0f1;
-  padding : 15px 20px;
+  padding : 20px 30px;
 `
 
 const Name = styled.div`

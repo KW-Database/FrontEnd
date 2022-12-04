@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import EachPost from './EachPost';
 import styled from 'styled-components';
 import SearchBar from './SearchBar';
+import Pagination from 'react-js-pagination';
+import Board_Data from '../../Json/Board.json';
 
 const Board_block = styled.div`
     position: absolute; left:280px; width:1040px;
@@ -69,36 +71,56 @@ const View = styled.div`
     display:flex; justify-content:center;
 `
 
-const PageNumber = styled.div`
-    width: 1040px; height: 40px;
-    display: flex; justify-content:center; align-items: center;
-    color: black;
+const PaginationBox = styled.div`
+  .pagination { display: flex; justify-content: center; margin-top: 15px;}
+  ul { list-style: none; padding: 0; }
+  ul.pagination li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #e2e2e2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem; 
+  }
+  ul.pagination li:first-child{ border-radius: 5px 0 0 5px; }
+  ul.pagination li:last-child{ border-radius: 0 5px 5px 0; }
+  ul.pagination li a { text-decoration: none; color: #337ab7; font-size: 1rem; }
+  ul.pagination li.active a { color: white; }
+  ul.pagination li.active { background-color: #337ab7; }
+  ul.pagination li a:hover,
+  ul.pagination li a.active { color: blue; }
 `
 
 function Board () {
     const [search, setSearch] = useState("");
+    const [page, setPage] = useState(1);
+    const items = 5;
+    
+    const handlePageChange = (page) => { 
+        setPage(page); 
+    };
     const onChange = (e) => {
+        setPage(1);
         setSearch(e.currentTarget.value);
     };
-    const dummyData = [
-        {글ID: 1, Title: "제목1", Content: "내용1", ID: "jiwoo0629", Date: "2022-11-01", View: 5},
-        {글ID: 2, Title: "제목2", Content: "내용2", ID: "author2", Date: "2022-11-02", View: 10},
-        {글ID: 3, Title: "제목3", Content: "내용3", ID: "author3", Date: "2022-11-03", View: 15},
-        {글ID: 4, Title: "제목4", Content: "내용4", ID: "author4", Date: "2022-11-04", View: 20},
-        {글ID: 5, Title: "제목5", Content: "내용5", ID: "author5", Date: "2022-11-05", View: 25}
-    ]
 
-    let eachPost = dummyData.filter((val)=>{
+    let filtered_data = Board_Data.filter((val)=>{
         if(search === "") {
             return val;
         } else if(val.Title.toLowerCase().includes(search.toLowerCase())) {
             return val;
         }
-    }).map((v) => (<EachPost key={v.글ID}
-        글ID={v.글ID} Title={v.Title} Content={v.Content} ID={v.ID} Date={v.Date} View={v.View} 
+    })
+
+    let eachPost = filtered_data.slice(
+        items*(page-1),
+        items*(page-1) + items
+    ).map((v) => (<EachPost key={v.postId}
+        postId={v.postId} Title={v.Title} Content={v.Content} ID={v.ID} Date={v.Date} View={v.View} 
     />));
     
-    var num=1;
     return(
         <Board_block>
             <Title>토론 게시판</Title>
@@ -108,9 +130,15 @@ function Board () {
                 <글ID>번호</글ID><_Title>제목</_Title><ID>아이디</ID><Date>날짜</Date><View>조회수</View><p />
                 <BoardList>
                     {eachPost}<p />
-                    <PageNumber>
-                        <Link to={`/board?page=${num}`} style={{ textDecoration : 'none', color : 'black' }}>{num}</Link>
-                    </PageNumber>        
+                    <PaginationBox>
+                      <Pagination
+                        activePage={page}
+                        itemsCountPerPage={items}
+                        totalItemsCount={filtered_data.length}
+                        pageRangeDisplayed={5}
+                        onChange={handlePageChange}>
+                      </Pagination>
+                    </PaginationBox>       
                 </BoardList>
             </List>
         </Board_block>

@@ -4,7 +4,7 @@ import UpperLayer from '../../components/Jiwoo/UpperLayer';
 import UserInfo from '../../components/Jiwoo/UserInfo';
 
 const Background = styled.div`
-    position:absolute; top:70px; width:1560px; height:100%; 
+    position:absolute; top:70px; width:1560px; height:700px; 
     background-color:#daedf4;
 `
 

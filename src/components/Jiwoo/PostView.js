@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 import styled from 'styled-components';
 
 const View = styled.div`
-    position: absolute; width:900px; height:400px; left:275px; top:150px; padding:50px; 
+    position: absolute; width:1000px; height:480px; left:275px; top:150px; padding:50px; 
     text-align: left; background-color: white; font-size: 24px; 
 `
 
@@ -37,48 +38,81 @@ font-size:20px; color:white; background-color:lightgreen;
 `
 const UserInfo = {ID: "jiwoo0629"};
 
-function DiffFunc(location) {
-    const navigate = useNavigate();
-    const goUpdate = () => {
-        // 두번재 인자의 state 속성에 원하는 파라미터를 넣어준다. (id, job을 넣어봤다)
-        navigate(`/board/${location.state.글ID}/update`, {
-          state: {
-            Title: location.state.title,
-            Content: location.state.content
-          }
-        });
-    };
-
-    if(UserInfo.ID === "admin") {
-        return(
-            <div>
-                <Button2 onClick={handleDelete}>글 삭제</Button2>
-                <Link to='/board' style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
-            </div>
-        );
-    } else if(UserInfo.ID === location.state.ID) {
-        return(
-            <div>
-                <Button1 onClick={goUpdate}>글 수정</Button1>
-                <Button2 onClick={handleDelete}>글 삭제</Button2>
-                <Link to='/board' style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
-            </div>
-             
-        );
-    } else {
-        return(
-            <Link to='/board' style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
-        );
-    }
-}
-
-function handleDelete () {
-    alert("게시글이 삭제되었습니다.")
-    //DB에서 데이터 삭제
-}
-
-function PostView () { 
+function PostView (props) { 
+    const [Data, setData] = useState([]);
     const location = useLocation();
+    
+    useEffect(() => {
+        axios(
+            {
+                url: `/${location.state.postId}`,
+                method: 'get',
+                baseURL: 'http://localhost:8080',
+            }
+          ).then(function (response) {
+            setData(response.data);
+            //alert("성공")
+          }).catch(function (error) {
+            //alert(error);
+        });
+    }, []);
+
+    function DiffFunc(location) {
+        const navigate = useNavigate();
+        const goUpdate = () => {
+            // 두번재 인자의 state 속성에 원하는 파라미터를 넣어준다. (id, job을 넣어봤다)
+            navigate(`/board/${location.state.postId}/update`, {
+              state: {
+                Title: location.state.title,
+                Content: location.state.content
+              }
+            });
+        };
+    
+        if(UserInfo.ID === "admin") {
+            return(
+                <div>
+                    <Button2 onClick={handleDelete}>글 삭제</Button2>
+                    <Link to='/board' style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
+                </div>
+            );
+        } else if(UserInfo.ID === location.state.ID) {
+            return(
+                <div>
+                    <Button1 onClick={goUpdate}>글 수정</Button1>
+                    <Button2 onClick={handleDelete}>글 삭제</Button2>
+                    <Link to='/board' style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
+                </div>
+                 
+            );
+        } else {
+            return(
+                <Link to='/board' style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
+            );
+        }
+    }
+    
+    function handleDelete (e) {
+        if (window.confirm('글을 삭제하시겠습니까?'))
+            {
+                axios(
+                      {
+                        url: `/${props.postId}/delete`,
+                        method: 'delete',
+                        baseURL: 'http://localhost:8080',
+                      }
+                    ).then(function (response) {
+                        //alert("성공")
+                    }).catch(function (error) {
+                        //alert(error);
+                    });
+                    alert("게시글이 삭제되었습니다.")
+                    //redirect
+                    e.preventDefault();
+            } else {
+                // They clicked no
+            }  
+    }
     return(
         <div>
             <View>

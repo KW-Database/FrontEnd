@@ -10,7 +10,7 @@ const Recommend = styled.div`
   background-color: #ecf0f1;
   height:10px; 
   border : 0;
-  padding : 15px 30px;
+  padding : 20px 30px;
   margin-bottom: 2px;
 `;
 
@@ -20,12 +20,12 @@ const Name = styled.div`
 `
 
 const Price = styled.div`
-    position: absolute; left:200px; width: 120px; 
+    position: absolute; left:180px; width: 120px; 
     display:flex; justify-content:center;
 `
 
 const Diff = styled.div`
-    position: absolute; left:330px; width: 120px; 
+    position: absolute; left:320px; width: 120px; 
     display:flex; justify-content:center;
     color: ${props => (props.dif > 0) ? 'red' : 'skyblue'}
 `
@@ -49,7 +49,7 @@ function EachRecommend(props) {
     return (
         <Recommend onClick={seeRecommend}>
             <Name>{props.name}</Name>
-            <Price>{props.endprice}</Price>
+            <Price>{props.price}</Price>
             <Diff dif={props.diffrate}>{Arrow()} {props.diff} ({props.diffrate}%)</Diff>    
         </Recommend>
     );

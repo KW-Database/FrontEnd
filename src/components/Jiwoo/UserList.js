@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import EachUser from './EachUser';
 import styled from 'styled-components';
 import SearchBar from './SearchBar';
+import Pagination from 'react-js-pagination';
+import userlist from '../../Json/userlist.json'
 
 const Title = styled.div`
     position: absolute; width: 560px; left:220px; height: 80px; top: 20px;
@@ -39,12 +41,6 @@ const _UserList = styled.div`
   }
 `
 
-const PageNumber = styled.div`
-    width: 800px; height: 40px;
-    display: flex; justify-content:center; align-items: center;
-    color: black;
-`
-
 const Category = styled.div`
     position:absolute; top:70px; left:105px;
 `
@@ -58,33 +54,57 @@ const ID = styled.div`
     position: absolute; left:450px; width: 350px; 
     display:flex; justify-content:center;
 `
-  
+
+const PaginationBox = styled.div`
+  .pagination { display: flex; justify-content: center; margin-top: 15px;}
+  ul { list-style: none; padding: 0; }
+  ul.pagination li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #e2e2e2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem; 
+  }
+  ul.pagination li:first-child{ border-radius: 5px 0 0 5px; }
+  ul.pagination li:last-child{ border-radius: 0 5px 5px 0; }
+  ul.pagination li a { text-decoration: none; color: #337ab7; font-size: 1rem; }
+  ul.pagination li.active a { color: white; }
+  ul.pagination li.active { background-color: #337ab7; }
+  ul.pagination li a:hover,
+  ul.pagination li a.active { color: blue; }
+`
 
 function UserList() {
     const [search, setSearch] = useState("");
-    //const [selectedData, setselectedData] = useState([]);
+    const [page, setPage] = useState(1);
+    const items = 5;
+    
+    const handlePageChange = (page) => { 
+        setPage(page); 
+    };
     const onChange = (e) => {
+        setPage(1);
         setSearch(e.currentTarget.value);
     };
-    const dummyData = [
-        {ID:"ID1", name: "User1"},
-        {ID:"ID2", name: "User2"},
-        {ID:"ID3", name: "User3"},
-        {ID:"ID4", name: "User4"},
-        {ID:"ID5", name: "User5"}
-    ]
-    
-    let eachUser = dummyData.filter((val)=>{
+
+    let filtered_data = userlist.filter((val)=>{
         if(search === "") {
             return val;
-        } else if(val.name.toLowerCase().includes(search.toLowerCase()) || val.ID.toLowerCase().includes(search.toLowerCase())) {
+        } else if(val.name.toLowerCase().includes(search.toLowerCase()) || val.id.toLowerCase().includes(search.toLowerCase())) {
             return val;
         }
-    }).map((v) => (<EachUser key={v.ID}
-        ID={v.ID} name={v.name}  
+    });
+    
+    let eachUser = filtered_data.slice(
+        items*(page-1),
+        items*(page-1) + items
+    ).map((v) => (<EachUser key={v.id}
+        id={v.id} pw={v.pw} name={v.name} age={v.age} email={v.email} phoneNumber={v.phoneNumber} sex={v.sex}
     />));
     
-    var num=1;
     return (
         <ListLayer>
             <Title>사용자 목록</Title>
@@ -93,9 +113,15 @@ function UserList() {
                 <Category><Name>사용자명</Name><ID>아이디</ID></Category><p />
                 <_UserList>
                     {eachUser}<p />
-                    <PageNumber>
-                        <Link to='/admin' style={{ textDecoration : 'none' }}>{num}</Link>
-                    </PageNumber>
+                    <PaginationBox>
+                      <Pagination
+                        activePage={page}
+                        itemsCountPerPage={items}
+                        totalItemsCount={filtered_data.length}
+                        pageRangeDisplayed={5}
+                        onChange={handlePageChange}>
+                      </Pagination>
+                    </PaginationBox> 
                 </_UserList>
             </List>
         </ListLayer>

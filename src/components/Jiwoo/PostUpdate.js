@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 
 const Update = styled.div`
-    position: absolute; width:900px; height:400px; left:275px; top:150px; padding:50px; 
+    position: absolute; width:1000px; height:480px; left:275px; top:150px; padding:50px; 
     text-align: left; background-color: white; font-size: 24px; 
 `
 
@@ -24,6 +25,7 @@ const Submit = styled.button`
 `
 
 function PostUpdate(props) {
+    const [Data, setData] = useState([]);
     const [Inputs, setInputs] = useState({
         title: props._title,
         content: props._content
@@ -39,15 +41,34 @@ function PostUpdate(props) {
     };
 
     const onSubmit = (e) => {
-        if(title === '')
-            alert("제목을 입력하세요.");
-        else if(content === '')
-            alert("내용을 입력하세요.");
-        else {
-            alert("게시글이 수정되었습니다.");
-            e.preventDefault();
-            //DB에 넣는 코드 추가
-        }
+        if (window.confirm('글을 수정하시겠습니까?'))
+        {
+            // They clicked Yes
+            if(title === '')
+                alert("제목을 입력하세요.");
+            else if(content === '')
+                alert("내용을 입력하세요.");
+            else {
+                axios(
+                  {
+                    url: `${props.postId}/update`,
+                    method: 'post',
+                    data: {postId: props.postId, title:title, content:content, id:props.ID, Date:new Date(), View:props.View },
+                    baseURL: 'http://localhost:8080',
+                  }
+                ).then(function (response) {
+                    setData(response.data);
+                    //alert("성공")
+                }).catch(function (error) {
+                    //alert(error);
+                });
+                alert("게시글이 수정되었습니다.");
+                //redirect
+                e.preventDefault();
+            }
+        } else {
+            // They clicked no
+        }    
     }
 
     return(

@@ -1,15 +1,18 @@
+import React from 'react';
+import axios from 'axios';
 import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
+
 
 const User = styled.div`
   display: flex;
   flex-wrap : wrap;
   flex-direction:column;
-  height: 15px;
+  height: 10px;
   justify-content: center;
   background-color: #ecf0f1;
   border-bottom:2px solid white;
-  padding : 15px 20px;
+  padding : 20px 30px;
   margin-bottom: 2px;
 `;
 
@@ -26,12 +29,14 @@ const ID = styled.div`
 function EachUser(props) {
     const navigate = useNavigate();
     const move = () => {
-        navigate('/:user/profile');
+        navigate(`/${props.id}/profile`, {state:{
+            id:props.id, pw:props.pw, name:props.name, age:props.age, email:props.email, phoneNumber:props.phoneNumber, sex:props.sex
+        }});
     }
 
     return (
         <User onClick={move}>
-            <ID>{props.ID}</ID>
+            <ID>{props.id}</ID>
             <Name>{props.name}</Name>
         </User>
     );
