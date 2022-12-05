@@ -45,7 +45,7 @@ function Recommend_buy_table () {
             return val;
         }
     }).map((v) => (<EachRecommend key={v.name}
-        name={v.name} endprice={v.endprice} diff={v.diff} diffrate={v.diffrate}
+        name={v.name} price={v.endprice} diff={v.diff} diffrate={v.diffrate}
     />));
     
     return (

@@ -40,10 +40,13 @@ function Exchange_title () {
 
     const HandleClick = () => {
         var num;
-        if(like.liked === 1)
+        if(like.liked === 1) {
             num = 0;
-        else    
+            //axios - delete로 이 주식을 관심목록에서 제거
+        } else {    
             num = 1;
+            //axios - post로 이 주식을 관심목록에 추가
+        }
         setlike({
             ...like,
             liked: num

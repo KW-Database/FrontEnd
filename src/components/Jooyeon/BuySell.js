@@ -14,23 +14,24 @@ const Input = styled.input`
 `
 
 const BuyButton = styled.button`
-    position:absolute; width:120px; height:30px; left:700px; top:150px;
+    position:absolute; width:120px; height:30px; left:700px; top:160px;
     display:flex; justify-content:center; background-color:skyblue;
     font-size:15px; font-weight:600;
-    border:0; border-radius:20px;
+    border:0; border-radius:20px; box-shadow:2px 2px lightgray;
 `
 
 const SellButton = styled.button`
-    position:absolute; width:120px; height:30px; left:850px; top:150px;
+    position:absolute; width:120px; height:30px; left:850px; top:160px;
     display:flex; justify-content:center; background-color:red;
     font-size:15px; font-weight:600;
-    border:0; border-radius:20px;
+    border:0; border-radius:20px; box-shadow:2px 2px lightgray;
 `
 
 const OptionButton = styled.button`
     position: absolute; left:440px; top:55px;
     width:70px; height:30px; font-size:15px; margin-left:10px; margin-top:5px;
     border:0; border-radius:5px; text-align:center; background-color:lightgreen;
+    box-shadow:2px 2px lightgray;
 `
 
 const BuyInfoLayer = styled.div`
@@ -46,9 +47,10 @@ const Input2 = styled.input`
 
 function BuySell () {  
     const [purchase, setpurchase] = useState({
-        count: 0, price: 0    
+        count: 0, price: 0
     })
     const {count, price} = purchase;
+    const possible_sell = Number(Price_info.itemNumber);
 
     const HandleChange = (e) => {
         const { value, name } = e.target;
@@ -59,48 +61,62 @@ function BuySell () {
     }
 
     var total;
-    if (price === 0 || count === 0)
+    if (price == 0 || count == 0)
         total = 0;
     else
         total = count * price;
 
-    var possible;
-    if (price === 0)
-        possible = 0;
+    var possible_buy;
+    if (price == 0)
+        possible_buy = 0;
     else
-        possible = Math.floor(Price_info.cash / price);
+        possible_buy = Math.floor(Price_info.cash / price);
 
     const HandlePrice = () => {
         setpurchase({
-            price: Price_info.cur
+            ...purchase,
+            price: Number(Price_info.cur)
         })
     }
 
     const HandleBuy = () => {
+        console.log("price: "+ price+ "count: "+ count);
         alert("매수");
-        if(count === 0 || count.isNaN()) {
-            alert("주문수량을 올바르게 입력하세요.");
-        } else if(price === 0 || price.isNaN()) {
-            alert("주문가격을 올바르게 입력하세요.");
+
+        if((price == 0 || price.isNaN())||(count==0 ||count.isNaN())){
+            alert("수량과 가격을 올바르게 입력하세요.")
+        }
+        /*
+        if(count == 0 || count.isNaN()) {
+            alert("수량을 올바르게 입력하세요.")
+        } else if(price == 0 || price.isNaN()) {
+            alert("가격을 올바르게 입력하세요.")
+        } */
+        
+        if(Number(total) > Number(possible_buy)) {
+            alert("보유한 현금보다 더 많은 양을 구매할 수 없습니다. 수량과 금액을 다시 입력하세요.")
         }
     }
 
     const HandleSell = () => {
         alert("매도");
-        if(count === 0 || count.isNaN()) {
-            alert("주문수량을 올바르게 입력하세요.");
-        } else if(price === 0 || price.isNaN()) {
-            alert("주문가격을 올바르게 입력하세요.");
-        }
+        if(count == 0 || count.isNaN()) {
+            alert("수량을 올바르게 입력하세요.");  
+        } else if(price == 0 || price.isNaN()) {
+            alert("가격을 올바르게 입력하세요.");
+        } else if(count > Price_info.itemNumber) {
+            alert("보유한 주식보다 많은 양을 판매할 수 없습니다. 수량을 다시 입력하세요.");
+        } 
     }
 
     return(
         <div>
             <InputLayer>
-                주문수량&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Input type="text" name="count" value={count} onChange={HandleChange} /> 주<br />
-                주문금액&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Input type="text" name="price" value={price} onChange={HandleChange} /> 원<br />
-                거래금액&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Input type="text" name="total" value={total} disabled /> 원<br />
-                주문가능수량&nbsp;&nbsp;<Input type="text" name="possible" value={possible} disabled /> 주<br />
+                거래수량&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Input type="text" name="count" value={count} onChange={HandleChange} /> 주<br />
+                거래금액&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Input type="text" name="price" value={price} onChange={HandleChange} /> 원<br />
+                거래총금액&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Input type="text" name="total" value={total} disabled /> 원<br />
+                주문가능수량&nbsp;&nbsp;<Input type="text" name="possible_buy" value={possible_buy} disabled /> 주<br />
+                판매가능수량&nbsp;&nbsp;<Input type="text" name="possible_sell" value={possible_sell} disabled /> 주
             </InputLayer>
             <OptionButton onClick = {HandlePrice}>시장가</OptionButton>
             <BuyInfoLayer>

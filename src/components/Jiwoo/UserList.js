@@ -102,7 +102,7 @@ function UserList() {
         items*(page-1),
         items*(page-1) + items
     ).map((v) => (<EachUser key={v.id}
-        id={v.id} pw={v.pw} name={v.name} age={v.age} email={v.email} phoneNumber={v.phoneNumber} sex={v.sex}
+        id={v.id} pw={v.pw} name={v.name} age={v.age} email={v.email} phoneNumber={v.phoneNumber} sex={v.sex} UserID="admin"
     />));
     
     return (

@@ -23,9 +23,10 @@ const Search = styled.div`
 `
 
 const Post = styled.button`
-    position: absolute; width: 100px; height: 40px; left: 940px; top: 160px;
+    position: absolute; width: 100px; height: 40px; left: 940px; top: 170px;
     font-size: 20px; color: #FFFFFF; background-color:skyblue;
-    border: 1px solid black; border-radius:20px;
+    border: 0; border-radius:20px;
+    box-shadow:2px 2px lightgray;
 `
 
 const List = styled.div`

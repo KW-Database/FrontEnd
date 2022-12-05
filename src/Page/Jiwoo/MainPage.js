@@ -12,13 +12,14 @@ import Recently_added_table from '../../components/Jiwoo/Recently_added';
 import mainpage from '../../Json/mainpage.json';
 
 const Background = styled.div`
-    position:absolute; top:20px; width:1560px; height:1650px; 
+    position:absolute; top:20px; width:1560px; height:1680px; 
     background-color:#e7e7e7; 
 `
 
 const Main_Page = styled.div`
     display:flex; justify-content:center;
-    position:absolute; left:260px; width:1040px; height:1600px; background-color:white;
+    position:absolute; left:260px; width:1040px; height:1580px; background-color:white;
+    border-radius:5px;
 `
 
 const Company_Search = styled.div`
@@ -34,6 +35,8 @@ const Title = styled.div`
 const Today_finance = styled.div`
     position:absolute; width: 1000px; height: 350px; top:150px;
     padding-top:20px; border:1px solid black;
+    border-radius:5px;
+    box-shadow:6px 6px 2px 2px #e7e7e7; 
 `
 
 const Recommend_buy = styled.div`
@@ -113,8 +116,8 @@ function MainPage() {
                         <List><Top10_table volumeRank={mainpage.volumeRank} upRank={mainpage.upRank} downRank={mainpage.downRank}/></List>   
                     </Top10>
                     <Recently_added>
-                        최근 상장된 주식 <Link to={`/recently_added`} state={{}} style={{ textDecoration : 'none', color : 'black' }}><SeeMore>더보기▽</SeeMore></Link> <p /> 
-                        <List><Recently_added_table publicDateList={mainpage.publicDateList} /></List>   
+                        최근 상장된 주식 <Link to='/recently_added' state={mainpage.publicList} style={{ textDecoration : 'none', color : 'black' }}><SeeMore>더보기▽</SeeMore></Link> <p /> 
+                        <List><Recently_added_table publicList={mainpage.publicList} /></List>   
                     </Recently_added>    
                 </Main_Page>  
             </div>

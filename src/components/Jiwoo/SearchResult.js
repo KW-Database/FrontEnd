@@ -3,6 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import axios from 'axios';
 import EachResult from './EachResult';
 import styled from 'styled-components';
+import Pagination from 'react-js-pagination';
 
 const Title = styled.div`
     position: absolute; width: 560px; height: 80px; top: 20px;
@@ -40,14 +41,30 @@ const ID = styled.div`
 `
 
 const Name = styled.div`
-    position:absolute; left:300px; width: 700px;
+    position:absolute; left:350px; width: 450px;
     display:flex; text-align:left; 
 `
 
-const PageNumber = styled.div`
-    width: 800px; height: 40px;
-    display: flex; justify-content:center; align-items: center;
-    color: black; 
+const PaginationBox = styled.div`
+  .pagination { display: flex; justify-content: center; margin-top: 15px;}
+  ul { list-style: none; padding: 0; }
+  ul.pagination li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #e2e2e2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem; 
+  }
+  ul.pagination li:first-child{ border-radius: 5px 0 0 5px; }
+  ul.pagination li:last-child{ border-radius: 0 5px 5px 0; }
+  ul.pagination li a { text-decoration: none; color: #337ab7; font-size: 1rem; }
+  ul.pagination li.active a { color: white; }
+  ul.pagination li.active { background-color: #337ab7; }
+  ul.pagination li a:hover,
+  ul.pagination li a.active { color: blue; }
 `
 
 function SearchResult() {
@@ -78,17 +95,27 @@ function SearchResult() {
     ]
     const Value = location.state.result;
 
-    let eachResult = dummyData.filter((val)=>{
+    const [page, setPage] = useState(1);
+    const items = 5;
+    const handlePageChange = (page) => { 
+        setPage(page); 
+    };
+
+    let filtered_data = dummyData.filter((val)=>{
         if(Value === "") {
             return val;
         } else if(val.name.toLowerCase().includes(Value.toLowerCase())) {
             return val;
         }
-    }).map((v) => (<EachResult key={v.ID} 
+    })
+
+    let eachResult = filtered_data.slice(
+        items*(page-1),
+        items*(page-1) + items
+    ).map((v) => (<EachResult key={v.ID} 
         ID={v.ID} itemCode={v.itemCode} name={v.name}  
     />));
     
-    var num=1;
     return (
         <ListLayer>
             <Title>'{Value}' 검색 결과</Title>
@@ -96,9 +123,15 @@ function SearchResult() {
                 <ID>번호</ID><Name>기업명</Name>
                 <Userlist>
                     {eachResult}<p />
-                    <PageNumber>
-                        <Link to='/search' style={{ textDecoration : 'none', color : 'black' }}>{num}</Link>
-                    </PageNumber>
+                    <PaginationBox>
+                      <Pagination
+                        activePage={page}
+                        itemsCountPerPage={items}
+                        totalItemsCount={filtered_data.length}
+                        pageRangeDisplayed={5}
+                        onChange={handlePageChange}>
+                      </Pagination>
+                    </PaginationBox> 
                 </Userlist>
             </List>
         </ListLayer>

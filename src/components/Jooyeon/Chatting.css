@@ -1,9 +1,14 @@
 .title_layer {
-    width:400px; background-color:skyblue;
+    width:400px; background-color: rgb(171, 227, 249);
+    border-radius:5px;
 }
   
 .title {
   width:100%; text-align:center; 
+}
+
+.refreshButton {
+    position:absolute; left:330px;
 }
 
 .input-form {

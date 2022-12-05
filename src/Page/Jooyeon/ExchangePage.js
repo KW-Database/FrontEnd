@@ -10,12 +10,13 @@ import StockByAge from '../../components/Jooyeon/StockByAge';
 const Exchange = styled.div`    
     position: absolute; width:1000px; height:400px; left:50px; top:20px; 
     display:flex; justify-content: center; background-color:white;
+    border-radius:5px;  box-shadow:3px 3px lightgray;
 `
 
 const Title = styled.div`
     position:absolute; width:1000px; height:60px;
     displya: flex; justify-content: center; align-items: center;
-    border-bottom:1px solid black;
+    border-bottom:2px solid gray;
 `
 
 const Graph = styled.div`
@@ -26,19 +27,22 @@ const Graph = styled.div`
 const Info = styled.div`
     position:absolute; left:700px; top:60px; height:340px;
     display:flex; justify-content: center;
-    border-left: 1px solid gray;
+    border-left: 2px solid gray;
 `
 
 const BuySell_layer = styled.div`    
-    position: absolute; width:1000px; height:200px; left:50px; top:430px; 
+    position: absolute; width:1000px; height:210px; left:50px; top:430px; 
     display:flex; justify-content: center; background-color:white;
+    border-radius:5px; box-shadow:3px 3px lightgray;
 `
 
 const Chat_layer = styled.div`
-    position: absolute; width:400px; height:600px; left:1100px; top:20px; 
+    position: absolute; width:400px; height:610px; left:1100px; top:20px; 
     display:flex; justify-content: center; background-color:white; 
-    
+    border-radius:5px; box-shadow:3px 3px lightgray;
 `
+
+const price = 35.65;
 
 function ExchangePage () {
     return(
@@ -47,7 +51,7 @@ function ExchangePage () {
             <div className="Background">
                 <Exchange>
                     <Title><Exchange_title /></Title>
-                    <Graph><Exchange_graph /></Graph>
+                    <Graph><Exchange_graph price={price}/></Graph>
                     <Info><StockByAge /></Info>
                 </Exchange>
                 <BuySell_layer><BuySell /></BuySell_layer>
