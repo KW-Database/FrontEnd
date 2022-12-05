@@ -79,34 +79,28 @@ function BuySell () {
         })
     }
 
-    const HandleBuy = () => {
-        console.log("price: "+ price+ "count: "+ count);
-        alert("매수");
-
-        if((price == 0 || price.isNaN())||(count==0 ||count.isNaN())){
-            alert("수량과 가격을 올바르게 입력하세요.")
-        }
-        /*
-        if(count == 0 || count.isNaN()) {
+    const HandleBuy = () => {      
+        if(count == 0 ) {
             alert("수량을 올바르게 입력하세요.")
-        } else if(price == 0 || price.isNaN()) {
+        } else if(price == 0 ) {
             alert("가격을 올바르게 입력하세요.")
-        } */
-        
-        if(Number(total) > Number(possible_buy)) {
+        } else if(total > possible_buy) {
             alert("보유한 현금보다 더 많은 양을 구매할 수 없습니다. 수량과 금액을 다시 입력하세요.")
+        } else {
+            alert("매수");
         }
     }
 
     const HandleSell = () => {
-        alert("매도");
-        if(count == 0 || count.isNaN()) {
+        if(count == 0) {
             alert("수량을 올바르게 입력하세요.");  
-        } else if(price == 0 || price.isNaN()) {
+        } else if(price == 0 ) {
             alert("가격을 올바르게 입력하세요.");
         } else if(count > Price_info.itemNumber) {
             alert("보유한 주식보다 많은 양을 판매할 수 없습니다. 수량을 다시 입력하세요.");
-        } 
+        } else {
+            alert("매도");
+        }
     }
 
     return(

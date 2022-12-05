@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
 import '../../App.css';
@@ -18,25 +18,40 @@ const Loginbutton = styled.button `
     border:0; border-radius:20px; margin-top:20px; color:black;
     box-shadow:3px 3px #e7e7e7;
 `
+function LoginPage () {
+    const [Input, setInput] = useState({
+        ID: '',
+        PW: ''
+    })
 
-class LoginPage extends Component {
-    render() {
+    const {ID, PW} = Input;
+
+    const HandleChange = (e) => {
+        const { value, name } = e.target;
+        setInput({
+            ...Input,
+            [name]: value
+        });
+    }
+
+    const HandleLogin = () => {
+        //로그인
+    }
         return (
             <div className="Page">
                 <Login>
                     <br /><h1>로그인</h1><br />
-                    <User_Login type="text" placeholder=" 아이디"></User_Login>
+                    <User_Login type="text" value={ID} placeholder=" 아이디" onChange={HandleChange}></User_Login>
                     <p />
-                    <User_Login type="password" placeholder=" 비밀번호" ></User_Login>
+                    <User_Login type="password" value={PW} placeholder=" 비밀번호" onChange={HandleChange}></User_Login>
                     <p />
-                    <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Loginbutton>로그인</Loginbutton></Link><p /><br />
+                    <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Loginbutton onClick={HandleLogin}>로그인</Loginbutton></Link><p /><br />
                     <Link to='/findID' style={{ textDecoration : 'none', color : 'gray' }}>아이디 찾기</Link> / &nbsp;
                     <Link to='/findPW' style={{ textDecoration : 'none', color : 'gray' }}>비밀번호 찾기</Link> / &nbsp;
                     <Link to='/join' style={{ textDecoration : 'none', color : 'gray' }}>회원가입</Link>
                 </Login>
             </div>
         );
-    }
 }
 
 export default LoginPage;

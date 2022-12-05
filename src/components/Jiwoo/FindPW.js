@@ -19,7 +19,7 @@ const Find_write = styled.input`
 
 const Find_button = styled.button`
     width: 300px; height: 40px; font-size: 15px; 
-    border:1px solid black; border-radius:10px; background-color:skyblue;
+    border:0; border-radius:10px; background-color:skyblue;
     box-shadow:3px 3px #e7e7e7;
 `
 
