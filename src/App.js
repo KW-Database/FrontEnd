@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import JoinPage from './Page/Jiwoo/JoinPage';
 import LoginPage from './Page/Jiwoo/LoginPage';
 import FindIDPage from './Page/Jiwoo/FindIDPage';
@@ -23,6 +23,18 @@ import RecommendPage from './Page/Jiwoo/RecommendPage';
 import RecentlyAddedPage from './Page/Jiwoo/RecentlyAddedPage';
 import MyWalletPage from './Page/Jooyeon/MyWalletPage';
 import ExchangePage from'./Page/Jooyeon/ExchangePage';
+import {useSelector} from 'react-redux';
+
+/*
+const PrivateRoute=()=>{
+  const{user}=useSelector(({user})=>({user:user.user}));
+  if(!user){
+    return <Navigate to="/login" replace/>;
+  }
+  return <Outlet />;
+};
+*/
+
 
 function App() {
   return (

@@ -64,7 +64,11 @@ const Value = styled.div`
     earningRatio: 70
 };*/
 
+//data: location.state.itemCode,
+
 function MyWallet(props){
+    const [Data, setData] = useState([]);
+
     return(
         <Layer>
             <Title>내 보유자산</Title>
@@ -79,8 +83,6 @@ function MyWallet(props){
         </Layer>
         
     )
-    
-    
 
 };
 

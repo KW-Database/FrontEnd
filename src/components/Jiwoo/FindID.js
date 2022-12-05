@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import '../../App.css';
+import axios from 'axios';
 
 const Find = styled.div`
     position:absolute; top:130px; width:600px; height:450px; 
@@ -23,6 +24,7 @@ const Find_button = styled.button`
 `
 
 function FindID () {
+    const [Data, setData]=useState([]);//?
     const [Inputs, setInputs] = useState({
         Name: '',
         Email: '',
@@ -42,7 +44,24 @@ function FindID () {
 
     const handleClick = (e) => {
         //Name, Email, PhoneNum의 조합이 DB 안에 존재하면 해당하는 ID 출력, 아니면 에러메시지 출력
-        alert("아이디 찾기");
+        axios(
+            {
+                url:`/findID`,
+                method:'get',
+                data:{
+                    username: Name,
+                    email:Email,
+                    phone_number:PhoneNum
+                }, //??adminauth
+                baseURL:'http://localhost:8080',
+            }
+        ).then(function (response) {
+            setData(response.data);
+            //alert("성공") **해당 ID 출력
+        }).catch(function (error) {
+            //alert(error);
+        });
+        alert("아이디 찾기"); //삭제 예정
         Navigate('/login');
     }
     

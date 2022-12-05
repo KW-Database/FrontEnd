@@ -53,7 +53,7 @@ function CompanyView () {
     useEffect(() => {
         axios(
             {
-                url: `/${location.state.itemCode}`,
+                url: `/company`,
                 method: 'get',
                 baseURL: 'http://localhost:8080',
             }
@@ -70,9 +70,9 @@ function CompanyView () {
         {
             axios(
                 {                        
-                    url: `company/delete`,
+                    url: `/company`,
                     method: 'delete',
-                    data: location.state.itemCode,
+                    data: {code: location.state.itemCode},//?
                     baseURL: 'http://localhost:8080',
                 }
             ).then(function (response) {

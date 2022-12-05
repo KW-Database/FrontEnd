@@ -41,7 +41,6 @@ const Button = styled.button`
 
 function UserInfoUpdate (props) {
     const [Data, setData] = useState([]);
-
     const [Inputs, setInputs] = useState({
         ID: props._ID,
         Name: props._Name,
@@ -84,7 +83,6 @@ function UserInfoUpdate (props) {
                           baseURL: 'http://localhost:8080',
                         }
                       ).then(function (response) {
-                          setData(response.data);
                           //alert("성공")
                       }).catch(function (error) {
                           //alert(error);
