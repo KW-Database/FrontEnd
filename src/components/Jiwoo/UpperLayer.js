@@ -18,6 +18,7 @@ const Logout = styled.button`
     position: absolute; left: 1400px; top: 15px; width:100px; height:40px;    
     border:0; border-radius:20px; 
     font-size:20px; color:white; background-color:skyblue;
+    box-shadow:2px 2px lightgray;
 `
 
 const UserID = "jiwoo0629";

@@ -3,28 +3,32 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 const Update = styled.div`
-    position: absolute; width:1000px; height:480px; left:280px; top:150px; padding:50px; 
+    position: absolute; width:1000px; height:480px; left:300px; top:150px; padding:50px; 
     text-align: left; background-color: white; font-size: 24px; 
+    border-radius:10px; box-shadow:5px 5px lightgray;
 `
 
 const Title = styled.input`
     position: absolute; width:750px; height:40px; left:170px; top: 40px;
     display:flex; justify-content: center; background-color:white; font-size:20px;
+    border-radius:5px;
 `
 
 const Date = styled.input `
     position: absolute; width:750px; height:40px; left:170px; top: 100px;
     display:flex; justify-content: center; background-color:white; font-size:20px;
+    border-radius:5px;
 `
 
 const Content = styled.textarea`
     position: absolute; width:750px; height:250px; left:170px; top: 160px;
     background-color:white; font-size:20px; font-family: sans-serif, "바탕";
+    border-radius:5px;
 `
 
 const Submit = styled.button`
     position: absolute; left: 810px; top: 430px; width:120px; height:40px;    
-    border:0; border-radius:20px; 
+    border:0; border-radius:20px; box-shadow:3px 3px #e7e7e7;
     font-size:20px; color:white; background-color:skyblue;
 `
 

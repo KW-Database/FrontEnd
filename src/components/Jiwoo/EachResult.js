@@ -19,7 +19,7 @@ const ID = styled.div`
 `
 
 const Name = styled.div`
-    position:absolute; left:300px; width: 700px;
+    position:absolute; left:350px; width: 450px;
     display:flex; text-align:left; 
 `
 

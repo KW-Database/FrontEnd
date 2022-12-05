@@ -23,7 +23,7 @@ const RecentList = styled.div`
 `
 
 function Recently_added_table (props) {
-    const Data = props.publicDateList;
+    const Data = props.publicList;
         
     var i = 0;
     let eachRecent = Data.sort((a, b) => {

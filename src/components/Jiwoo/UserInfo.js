@@ -6,13 +6,14 @@ import userlist from '../../Json/userlist';
 import styled from 'styled-components';
 
 const User_Info = styled.div`
-    position: absolute; width: 850px; height: 550px; left: 300px; top: 45px;
+    position: absolute; width: 850px; height: 550px; left: 350px; top: 45px;
     padding-left:150px; text-align:left; 
     font-size: 24px; background-color:white;
+    border-radius:10px; box-shadow:5px 5px lightgray;
 `
 
 const Title = styled.div`
-    position: absolute; width: 200px; height: 40px; left: 400px; top: 20px;
+    position: absolute; width: 200px; height: 40px; left: 350px; top: 20px;
     font-size:40px; margin-bottom:100px;
 `
 
@@ -21,32 +22,39 @@ const Info_block = styled.div`
 `
 
 const Input_text = styled.input`
-    position:absolute; left:150px; width:400px; height:30px; font-size:20px;
+    position:absolute; left:150px; width:400px; height:35px; font-size:20px;
     border:1px solid black; border-radius:5px; color: black;
+    box-shadow:2px 2px lightgray;
 `
 
 const Button1 = styled.button`
-    position: absolute; width: 180px; height: 45px; left: 130px; top: 370px;
-    background: #111111; opacity: 0.5; border-radius: 32px; 
+    position: absolute; width: 180px; height: 45px; left: 80px; top: 370px;
+    background: #111111; opacity: 0.5; 
+    border:0; border-radius: 32px; 
     font-size:20px; color: white;
+    box-shadow:3px 3px lightgray;
 `
 
 const Button2 = styled.button`
-    position: absolute; width: 180px; height: 45px; left: 400px; top: 370px;
-    background: red; opacity: 0.5; border-radius: 32px; 
+    position: absolute; width: 180px; height: 45px; left: 340px; top: 370px;
+    background: red; opacity: 0.5;
+    border:0; border-radius: 32px; 
     font-size:20px; color: white;
+    box-shadow:3px 3px lightgray;
 `
 
 const Button3 = styled.button`
-    position: absolute; width: 180px; height: 45px; left: 250px; top: 370px;
-    background: red; opacity: 0.5; border-radius: 32px; 
+    position: absolute; width: 180px; height: 45px; left: 210px; top: 370px;
+    background: red; opacity: 0.5; 
+    border:0; border-radius: 32px; 
     font-size:20px; color: white;
+    box-shadow:3px 3px lightgray;
 `
 
-function UserInfo (props) {
-    const UserID = props.UserID;
+function UserInfo () {
     const [Data, setData] = useState([]);
     const { state } = useLocation();
+    const UserID = state.UserID;
 
     useEffect(() => {
         axios(
@@ -155,7 +163,7 @@ function UserInfo (props) {
                     {
                       url: `/delete`,
                       method: 'delete',
-                      data: props.UserID,
+                      data: state.UserID,
                       baseURL: 'http://localhost:8080',
                     }
                   ).then(function (response) {
@@ -181,7 +189,7 @@ function UserInfo (props) {
                     {
                       url: `/delete`,
                       method: 'delete',
-                      data: props.UserID,
+                      data: state.UserID,
                       baseURL: 'http://localhost:8080',
                     }
                   ).then(function (response) {
