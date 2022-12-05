@@ -195,9 +195,9 @@ function LikeList() {
                 <LikeButton value={props.itemCode} onClick = {handleClick}>X</LikeButton>
                 <Company onClick={move}>
                     <Name>{props.itemName}</Name>
-                    <Price>{props.price}</Price>
-                    <Diff dif={props.changeRate}>▲ {props.changeAmount} ({props.changeRate}%)</Diff>  
-                    <Like>♥ {props.likedNum}</Like>
+                    <Price>{props.price.toLocaleString('en-AU')}</Price>
+                    <Diff dif={props.changeRate}>▲ {props.changeAmount.toLocaleString('en-AU')} ({props.changeRate}%)</Diff>  
+                    <Like>♥ {props.likedNum.toLocaleString('en-AU')}</Like>
                 </Company>
             </div>    
         );

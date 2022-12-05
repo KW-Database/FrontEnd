@@ -45,7 +45,7 @@ const dummyData = [
 function StockByAge () {
     let eachAge = dummyData.map((v) => (
         <Container>
-            <Age>{v.age} :</Age><Count>{String(v.count).replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,")}</Count>
+            <Age>{v.age} :</Age><Count>{v.count.toLocaleString('en-AU')}</Count>
         </Container>
     ));
     

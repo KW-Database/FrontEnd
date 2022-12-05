@@ -14,11 +14,13 @@ const Find = styled.div`
 const Find_write = styled.input`
     width:450px; height:40px; font-size:15px; margin:10px;
     border:1px solid black; border-radius:5px;
+    box-shadow:2px 2px #e7e7e7;
 `
 
 const Find_button = styled.button`
     width: 300px; height: 40px; font-size: 15px; 
-    border:1px solid black; border-radius:10px; background-color:skyblue;
+    border:0; border-radius:10px; background-color:skyblue;
+    box-shadow:3px 3px #e7e7e7;
 `
 
 function FindID () {
@@ -65,14 +67,14 @@ function FindID () {
     
     return (
         <Find>
-            <h1>&nbsp;&nbsp;아이디 찾기</h1><p />
+            <p /><h1>&nbsp;아이디 찾기</h1><p />
             <Find_write type="text" name="Name" value={Name} placeholder="이름" onChange={handleChange} />
             <p />
             <Find_write type="text" name="Email" value={Email} placeholder="이메일" onChange={handleChange} />
             <p />
             <Find_write type="text" name="PhoneNum" value={PhoneNum} placeholder="전화번호 ( ex) 010-xxxx-xxxx )" onChange={handleChange} />
             <p />
-            <Find_button value="find-button" onClick={handleClick} >아이디 찾기</Find_button><p />
+            <Find_button value="find-button" onClick={handleClick} >아이디 찾기</Find_button><p /><br />
             <Link to='/login'>로그인</Link>하시겠습니까?
         </Find>
     );

@@ -116,26 +116,26 @@ function JoinForm () {
     
     return (
         <Joinform>
-            <h1>&nbsp;&nbsp;회원가입</h1><p />
-            <Join_write type="text" name="ID" value={ID} placeholder="Enter ID" onChange={handleChange} />
+            <h1>&nbsp;회원가입</h1><p />
+            <Join_write type="text" name="ID" value={ID} placeholder="아이디" onChange={handleChange} />
             <Dup_test onClick={handleDup}>중복확인</Dup_test>
             <p />
-            <Join_write type="password" name="PW" value={PW} placeholder="Password" onChange={handleChange} />
+            <Join_write type="password" name="PW" value={PW} placeholder="비밀번호" onChange={handleChange} />
             <p />
-            <Join_write type="password" name="confirmPW" value={confirmPW} placeholder="Confirm Password" onChange={handleChange} />
+            <Join_write type="password" name="confirmPW" value={confirmPW} placeholder="비밀번호 확인" onChange={handleChange} />
             <p />
-            <Join_write type="text" name="Name" value={Name} placeholder="Your Name" onChange={handleChange} />
+            <Join_write type="text" name="Name" value={Name} placeholder="이름" onChange={handleChange} />
             <p />
-            <Join_write type="text" name="Age" value={Age} placeholder="Your Age (숫자만)" onChange={handleChange} />
+            <Join_write type="text" name="Age" value={Age} placeholder="나이 (숫자만)" onChange={handleChange} />
             <p />
-            <Join_write type="text" name="Email" value={Email} placeholder="Your Email Address" onChange={handleChange} />
+            <Join_write type="text" name="Email" value={Email} placeholder="이메일" onChange={handleChange} />
             <p />
-            <Join_write type="text" name="PhoneNum" value={PhoneNum} placeholder="Enter Your Phone Number ( ex) 010-xxxx-xxxx )" onChange={handleChange} />
+            <Join_write type="text" name="PhoneNum" value={PhoneNum} placeholder="전화번호 ( ex) 010-xxxx-xxxx )" onChange={handleChange} />
             <p />
             <Join_select name="Sex" value={Sex}  onChange={handleChange}>
-                <option value="">Your Sex</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
+                <option value="">성별</option>
+                <option value="M">남</option>
+                <option value="F">여</option>
             </Join_select>
             <p />
             <Sign_up type="submit" value="SIGN UP" id="sign-up" onClick={handleSubmit} />

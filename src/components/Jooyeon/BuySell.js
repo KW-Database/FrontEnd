@@ -75,7 +75,7 @@ function BuySell () {
     const HandlePrice = () => {
         setpurchase({
             ...purchase,
-            price: Number(Price_info.cur)
+            price: Price_info.cur
         })
     }
 
@@ -114,14 +114,14 @@ function BuySell () {
             <InputLayer>
                 거래수량&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Input type="text" name="count" value={count} onChange={HandleChange} /> 주<br />
                 거래금액&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Input type="text" name="price" value={price} onChange={HandleChange} /> 원<br />
-                거래총금액&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Input type="text" name="total" value={total} disabled /> 원<br />
-                주문가능수량&nbsp;&nbsp;<Input type="text" name="possible_buy" value={possible_buy} disabled /> 주<br />
-                판매가능수량&nbsp;&nbsp;<Input type="text" name="possible_sell" value={possible_sell} disabled /> 주
+                거래총금액&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Input type="text" name="total" value={total.toLocaleString('en-AU')} disabled /> 원<br />
+                주문가능수량&nbsp;&nbsp;<Input type="text" name="possible_buy" value={possible_buy.toLocaleString('en-AU')} disabled /> 주<br />
+                판매가능수량&nbsp;&nbsp;<Input type="text" name="possible_sell" value={possible_sell.toLocaleString('en-AU')} disabled /> 주
             </InputLayer>
             <OptionButton onClick = {HandlePrice}>시장가</OptionButton>
             <BuyInfoLayer>
-                상한가&nbsp;<Input2 type="text" name="BuyHighest" value={(Price_info.yesterday * 1.3).toFixed(0)} disabled /> 원 <p />
-                하한가&nbsp;<Input2 type="text" name="BuyLowest" value={(Price_info.yesterday * 0.7).toFixed(0)} disabled /> 원 <p />
+                상한가&nbsp;<Input2 type="text" name="BuyHighest" value={Math.floor(Price_info.yesterday * 1.3).toLocaleString('en-AU')} disabled /> 원 <p />
+                하한가&nbsp;<Input2 type="text" name="BuyLowest" value={Math.floor(Price_info.yesterday * 0.7).toLocaleString('en-AU')} disabled /> 원 <p />
             </BuyInfoLayer>
             <BuyButton onClick = {HandleBuy}>매수</BuyButton> 
             <SellButton onClick = {HandleSell}>매도</SellButton>

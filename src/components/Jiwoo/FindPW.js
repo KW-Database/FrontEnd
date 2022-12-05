@@ -14,11 +14,13 @@ const Find = styled.div`
 const Find_write = styled.input`
     width:450px; height:40px; font-size:15px; margin:10px;
     border:1px solid black; border-radius:5px;
+    box-shadow:2px 2px #e7e7e7;
 `
 
 const Find_button = styled.button`
     width: 300px; height: 40px; font-size: 15px; 
     border:1px solid black; border-radius:10px; background-color:skyblue;
+    box-shadow:3px 3px #e7e7e7;
 `
 
 function FindPW () {
@@ -69,7 +71,7 @@ function FindPW () {
     
     return (
         <Find>
-            <h1>&nbsp;&nbsp;비밀번호 찾기</h1><p />
+            <p /><h1>&nbsp;비밀번호 찾기</h1><p />
             <Find_write type="text" name="ID" value={ID} placeholder="아이디" onChange={handleChange} />
             <p />
             <Find_write type="text" name="Name" value={Name} placeholder="이름" onChange={handleChange} />
