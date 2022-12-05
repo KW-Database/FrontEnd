@@ -94,6 +94,7 @@ const PaginationBox = styled.div`
 `
 
 function Board () {
+    const [Data, setData] = useState([]);
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
     const items = 5;
@@ -105,6 +106,21 @@ function Board () {
         setPage(1);
         setSearch(e.currentTarget.value);
     };
+
+    useEffect(() => {
+        axios(
+            {
+                url: `/agora/`,
+                method: 'get',
+                baseURL: 'http://localhost:8080',
+            }
+          ).then(function (response) {
+            setData(response.data);
+            //alert("성공")
+          }).catch(function (error) {
+            //alert(error);
+        });
+    }, []);
 
     let filtered_data = Board_Data.filter((val)=>{
         if(search === "") {

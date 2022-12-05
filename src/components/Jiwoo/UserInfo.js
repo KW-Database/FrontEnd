@@ -53,7 +53,7 @@ function UserInfo (props) {
             {
                 url: `/info`,
                 method: 'get',
-                data: UserID,
+                data: {id: props.ID},
                 baseURL: 'http://localhost:8080',
             }
           ).then(function (response) {
@@ -155,7 +155,7 @@ function UserInfo (props) {
                     {
                       url: `/delete`,
                       method: 'delete',
-                      data: props.UserID,
+                      data: {id: props.ID},
                       baseURL: 'http://localhost:8080',
                     }
                   ).then(function (response) {
@@ -181,7 +181,7 @@ function UserInfo (props) {
                     {
                       url: `/delete`,
                       method: 'delete',
-                      data: props.UserID,
+                      data: {id: props.ID},
                       baseURL: 'http://localhost:8080',
                     }
                   ).then(function (response) {

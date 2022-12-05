@@ -67,26 +67,8 @@ const Value = styled.div`
 //data: location.state.itemCode,
 
 function MyWallet(props){
-/*
-    const location = useLocation();
     const [Data, setData] = useState([]);
-    
-    useEffect(() => {
-        axios(
-            {
-                url: `/myWallet`,
-                method: 'get',
-                //data: location.
-                baseURL:'http://localhost:8080',
-            }
-        ).then(function (response) {
-            setData(response.data);
-            //alert("성공")
-        }).catch(function (error) {
-            //alert(error);
-        });
-    }, []);
-    */
+
     return(
         <Layer>
             <Title>내 보유자산</Title>

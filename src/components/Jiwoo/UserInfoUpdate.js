@@ -79,7 +79,6 @@ function UserInfoUpdate (props) {
                           baseURL: 'http://localhost:8080',
                         }
                       ).then(function (response) {
-                          setData(response.data);
                           //alert("성공")
                       }).catch(function (error) {
                           //alert(error);

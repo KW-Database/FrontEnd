@@ -49,10 +49,10 @@ function CompanyEnroll () {
             else if(Info === '')
                 alert("기업개요를 입력하세요.")
             else {
-                axios(
+                axios( //@postmapping("/company")
                     {                        
-                        url: `/company/write`,
-                        method: 'post',
+                        url: `/company`,
+                        method: 'post', //??
                         data: {itemCode: location.itemCode, itemName:Name, date: new Date(), info: Info},
                         baseURL: 'http://localhost:8080',
                     }

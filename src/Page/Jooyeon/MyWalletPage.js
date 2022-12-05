@@ -7,7 +7,7 @@ import MyWallet from '../../components/Jooyeon/MyWallet';
 
 
 function MyWalletPage () {
-    /*
+    
         const location = useLocation();
         const [Data, setData] = useState([]);
         useEffect(() => {
@@ -25,13 +25,13 @@ function MyWalletPage () {
                 //alert(error);
             });
         }, []);
-        */
+        
         return(
             <div className="Page">
                 <UpperLayer></UpperLayer>
                 <div className="Background">
-                    <MyWallet mywallet/>
-                    <MyStock mystock/>                    
+                    <MyWallet mywallet={Data}/>
+                    <MyStock mystock={Data}/>                    
                 </div>
             </div>
         );

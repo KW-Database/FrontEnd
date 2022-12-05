@@ -133,7 +133,7 @@ function LikeList() {
             {
                 url: '/user/likedItem',
                 method: 'get',
-                data: UserID,
+                data: {id: UserID},
                 baseURL: 'http://localhost:8080',
             }
           ).then(function (response) {

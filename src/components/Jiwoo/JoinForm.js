@@ -31,6 +31,7 @@ const Sign_up = styled.input`
 
 function JoinForm () {
     const [Data, setData]=useState([]);
+    const [Dup, setDup] = useState([]);
     const [Inputs, setInputs] = useState({
         ID: '',
         PW: '',
@@ -52,7 +53,6 @@ function JoinForm () {
         });
     };
 
-    var dup;
     const handleDup = (e) => {
         //DB에 API 보내서 중복여부확인 
         //-> 존재하면 dup=true, alert("아이디가 이미 존재합니다.")
@@ -62,11 +62,11 @@ function JoinForm () {
             {
                 url:`/signup/DupId`,
                 method: 'get',
-               //data: //id
+                data: {id: ID},
                 baseURL: 'http://localhost:8080',
             }
             ).then(function (response) {
-                setData(response.data);
+                setDup(response.data);
                 //alert("아이디가 이미 존재합니다.")
             }).catch(function (error) {
                 //alert("사용가능한 아이디입니다");
@@ -77,7 +77,7 @@ function JoinForm () {
     const handleSubmit = (e) => {
         if(ID === '')
             alert("아이디를 입력하세요.");
-        else if(dup === true)
+        else if(Dup === true)
             alert("이미 존재하는 아이디입니다. 아이디를 다시 입력하세요.")
         else if(PW === '')
             alert("비밀번호를 입력하세요.");
@@ -105,7 +105,6 @@ function JoinForm () {
                     baseURL:'http://localhost:8080',
                 }
             ).then(function (response) {
-                setData(response.data);
                 //alert("성공")
             }).catch(function (error) {
                 //alert(error);
