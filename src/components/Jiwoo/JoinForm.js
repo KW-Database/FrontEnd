@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Joinform = styled.div`
     position: absolute; width: 440px; height: 560px; left: 550px; top: 50px;
@@ -29,6 +30,7 @@ const Sign_up = styled.input`
 `
 
 function JoinForm () {
+    const [Data, setData]=useState([]);
     const [Inputs, setInputs] = useState({
         ID: '',
         PW: '',
@@ -56,6 +58,20 @@ function JoinForm () {
         //-> 존재하면 dup=true, alert("아이디가 이미 존재합니다.")
         //-> 존재안하면 dup=false, alert("사용가능한 아이디입니다.")
         //
+        axios(
+            {
+                url:`/signup/DupId`,
+                method: 'get',
+               //data: //id
+                baseURL: 'http://localhost:8080',
+            }
+            ).then(function (response) {
+                setData(response.data);
+                //alert("아이디가 이미 존재합니다.")
+            }).catch(function (error) {
+                //alert("사용가능한 아이디입니다");
+            });
+        
     }
     
     const handleSubmit = (e) => {
@@ -80,9 +96,22 @@ function JoinForm () {
         else if(Sex === '')
             alert("성별을 선택하세요.");
         else {
+            //DB에 넣는 코드 추가
+            axios(
+                {
+                    url:`/signup`,
+                    method:'post',
+                    data:{id:ID, pw:PW, name: Name, age: Age, email: Email, phoneNum: PhoneNum, sex: Sex}, //??adminauth
+                    baseURL:'http://localhost:8080',
+                }
+            ).then(function (response) {
+                setData(response.data);
+                //alert("성공")
+            }).catch(function (error) {
+                //alert(error);
+            })
             alert("회원가입이 완료되었습니다.");
             e.preventDefault();
-            //DB에 넣는 코드 추가
         }
     }
     

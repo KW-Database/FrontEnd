@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import '../../App.css';
+import axios from 'axios';
 
 const Find = styled.div`
     position:absolute; top:90px; width:600px; height:550px; 
@@ -21,6 +22,7 @@ const Find_button = styled.button`
 `
 
 function FindPW () {
+    const [Data, setData]=useState([]);//?
     const [Inputs, setInputs] = useState({
         ID: '',
         Name: '',
@@ -41,6 +43,26 @@ function FindPW () {
 
     const handleClick = (e) => {
         //ID, Name, Email, PhoneNum의 조합이 DB 안에 존재하면 해당하는 PW 출력, 아니면 에러메시지 출력
+        axios(
+            {
+                url:`/findID`,
+                method:'get',
+                data:{
+                    id:ID,
+                    username: Name,
+                    email:Email,
+                    phone_number:PhoneNum
+                }, //??adminauth
+                baseURL:'http://localhost:8080',
+            }
+        ).then(function (response) {
+            setData(response.data);
+            //alert("성공") **해당 비밀번호 출력
+        }).catch(function (error) {
+            //alert(error);
+        });
+        
+        
         alert("비밀번호 찾기");
         Navigate('/');
     }

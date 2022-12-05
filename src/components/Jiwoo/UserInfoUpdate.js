@@ -37,7 +37,6 @@ const Button = styled.button`
 
 function UserInfoUpdate (props) {
     const [Data, setData] = useState([]);
-
     const [Inputs, setInputs] = useState({
         ID: props._ID,
         Name: props._Name,

@@ -20,7 +20,7 @@ const Logout = styled.button`
     font-size:20px; color:white; background-color:skyblue;
 `
 
-const UserID = "jiwoo0629";
+const UserID = "admin";
 
 function UpperLayer() {
     //const navigate = useNavigate();
@@ -35,7 +35,7 @@ function UpperLayer() {
             </Upper_layer>
         );
     }*/
-    if(UserID === "admin") {
+    if(UserID === "jiwoo0629") {
         return( 
             <Upper_layer>
                 <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Icon icon={home} id="HomeButton" size="50" /></Link>
