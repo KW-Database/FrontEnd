@@ -49,8 +49,8 @@ function EachRecommend(props) {
     return (
         <Recommend onClick={seeRecommend}>
             <Name>{props.name}</Name>
-            <Price>{props.price}</Price>
-            <Diff dif={props.diffrate}>{Arrow()} {props.diff} ({props.diffrate}%)</Diff>    
+            <Price>{props.price.toLocaleString('en-AU')}</Price>
+            <Diff dif={props.diffrate}>{Arrow()} {props.diff.toLocaleString('en-AU')} ({props.diffrate}%)</Diff>    
         </Recommend>
     );
 }

@@ -149,9 +149,9 @@ function MyStock(props){
         return(
             <div>
                 <Company onClick={move}>
-                    <Name>{props.itemName}</Name>
-                    <Price>{props.appraisal}</Price>
-                    <Diff dif={props.totalRate}>▲ {props.appraisal - props.purchase} ({(props.totalRate).toFixed(2)}%)</Diff>  
+                    <Name>{props.itemName.toLocaleString('en-AU')}</Name>
+                    <Price>{props.appraisal.toLocaleString('en-AU')}</Price>
+                    <Diff dif={props.totalRate}>▲ {(props.appraisal - props.purchase).toLocaleString('en-AU')} ({(props.totalRate).toFixed(2)}%)</Diff>  
                     <Count>{props.itemNumber}</Count>
                 </Company>
             </div>

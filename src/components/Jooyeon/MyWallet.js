@@ -69,11 +69,11 @@ function MyWallet(props){
         <Layer>
             <Title>내 보유자산</Title>
             <WalletTable>
-                <Money>보유KRW <br /> {mywallet.cash}</Money>
-                <Asset>총 보유자산 <br /> {mywallet.totalHoldings}</Asset><p />
-                <Buy>총 매수 <Value>{mywallet.totalPurchase}</Value></Buy>
-                <Profit>평가손익 <Value>{mywallet.totalAppraisal-mywallet.totalPurchase}</Value></Profit><p />
-                <Earning>총 평가 <Value> {mywallet.totalAppraisal}</Value></Earning>
+                <Money>보유KRW <br /> {mywallet.cash.toLocaleString('en-AU')}</Money>
+                <Asset>총 보유자산 <br /> {mywallet.totalHoldings.toLocaleString('en-AU')}</Asset><p />
+                <Buy>총 매수 <Value>{mywallet.totalPurchase.toLocaleString('en-AU')}</Value></Buy>
+                <Profit>평가손익 <Value>{(mywallet.totalAppraisal-mywallet.totalPurchase).toLocaleString('en-AU')}</Value></Profit><p />
+                <Earning>총 평가 <Value> {mywallet.totalAppraisal.toLocaleString('en-AU')}</Value></Earning>
                 <EarningRatio>수익률 <Value>{(mywallet.totalRate).toFixed(2)}%</Value></EarningRatio>
             </WalletTable>
         </Layer>

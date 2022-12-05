@@ -45,8 +45,8 @@ function EachRecent(props) {
     return (
         <Recommend onClick={seeRecent}>
             <Name>{props.name}</Name>
-            <Price>{props.price}</Price>
-            <Diff dif={props.diffrate}>▲ {props.diff} ({props.diffrate}%)</Diff>   
+            <Price>{props.price.toLocaleString('en-AU')}</Price>
+            <Diff dif={props.diffrate}>▲ {props.diff.toLocaleString('en-AU')} ({props.diffrate}%)</Diff>   
             <Date>{props.date}</Date>      
         </Recommend>
     );
