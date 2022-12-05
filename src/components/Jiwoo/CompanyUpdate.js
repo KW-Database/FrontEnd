@@ -61,9 +61,14 @@ function CompanyUpdate(props) {
             else {
                 axios(
                     {                        
-                        url: `company/update`,
+                        url: `/company`,
                         method: 'post',
-                        data: {itemCode:props.itemCode, itemName:name, date: date, info: info},
+                        data: {
+                            itemCode:props.itemCode, 
+                            itemName:name, 
+                            date: date, 
+                            info: info
+                        },//??
                         baseURL: 'http://localhost:8080',
                     }
                 ).then(function (response) {

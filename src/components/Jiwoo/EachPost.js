@@ -39,6 +39,8 @@ const View = styled.div`
 
 function EachPost(props) {
     const navigate = useNavigate();
+    const [Data, setData] = useState([]);
+
     const seePost = () => {
         const view = props.View + 1;
         navigate(`/board/${props.postId}`, {
