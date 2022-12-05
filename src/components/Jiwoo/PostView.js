@@ -6,35 +6,41 @@ import styled from 'styled-components';
 const View = styled.div`
     position: absolute; width:1000px; height:480px; left:275px; top:150px; padding:50px; 
     text-align: left; background-color: white; font-size: 24px; 
+    border-radius:10px; box-shadow:5px 5px lightgray;
 `
 
 const Title = styled.input`
-    position: absolute; width:800px; height:40px; left:150px; top: 40px;
+    position: absolute; width:800px; height:40px; left:150px; top: 50px;
     display:flex; justify-content: center; background-color:white; font-size:20px;
+    border-radius:5px;
 `
 
 const Content = styled.textarea`
     position: absolute; width:800px; height:250px; left:150px; top: 140px;
     background-color:white; border: 2px solid gray;
     font-size:20px; font-family: sans-serif, "바탕";
+    border-radius:5px;
 `
 
 const Button1 = styled.button`
     position: absolute; left: 630px; top: 420px; width:100px; height:40px;    
     border:0; border-radius:20px; 
     font-size:20px; color:white; background-color:skyblue;
+    box-shadow:3px 3px #e7e7e7;
 `
 
 const Button2 = styled.button`
     position: absolute; left: 740px; top: 420px; width:100px; height:40px;    
     border:0; border-radius:20px; 
     font-size:20px; color:white; background-color:#CC0000;
+    box-shadow:3px 3px #e7e7e7;
 `
 
 const Button3 = styled.button`
-position: absolute; left: 850px; top: 420px; width:100px; height:40px;    
-border:0; border-radius:20px; 
-font-size:20px; color:white; background-color:lightgreen;
+    position: absolute; left: 850px; top: 420px; width:100px; height:40px;    
+    border:0; border-radius:20px; 
+    font-size:20px; color:white; background-color:lightgreen;
+    box-shadow:3px 3px #e7e7e7;
 `
 const UserInfo = {ID: "jiwoo0629"};
 

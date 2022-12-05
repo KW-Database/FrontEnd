@@ -4,13 +4,14 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 const User_Info = styled.div`
-    position: absolute; width: 850px; height: 550px; left: 300px; top: 45px;
+    position: absolute; width: 850px; height: 550px; left: 350px; top: 45px;
     padding-left:150px; text-align:left;
     font-size: 24px; background-color:white;
+    border-radius:10px; box-shadow:5px 5px lightgray;
 `
 
 const Title = styled.div`
-    position: absolute; width: 200px; height: 40px; left: 400px; top: 20px;
+    position: absolute; width: 200px; height: 40px; left: 350px; top: 20px;
     font-size:40px; margin-bottom:100px;
 `
 
@@ -21,17 +22,20 @@ const Info_block = styled.div`
 const Input_text = styled.input`
     position:absolute; left:150px; width:400px; height:30px; font-size:20px;
     border:1px solid black; border-radius:5px; color: black;
+    box-shadow:2px 2px lightgray;
 `
 
 const Input_Select = styled.select`
     position:absolute; left:150px; width:150px; height:30px;
     border:1px solid black; border-radius:5px; font-size:20px;
+    box-shadow:2px 2px lightgray;
 `
 
 const Button = styled.button`
-    position: absolute; width: 180px; height: 45px; left: 250px; top: 360px;
+    position: absolute; width: 180px; height: 45px; left: 210px; top: 360px;
     border:1px solid black; border-radius: 32px; 
     font-size:20px; color: white; background: gray;
+    box-shadow:3px 3px lightgray;
 `
 
 

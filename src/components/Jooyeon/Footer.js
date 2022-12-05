@@ -12,12 +12,13 @@ const Footer_ = styled.div`
 
 function footer () {
     const HandleClick = () => {
+        //axios - post로 DB에 채팅정보 담기게
         alert("채팅");
     }
 
     const onSubmitSearch = (e) => {
         if (e.key === "Enter") {
-          //키를 눌렀을 때 동작 : DB에 채팅정보 담기게
+          //axios - post DB에 채팅정보 담기게
           alert("채팅");
         }
       };

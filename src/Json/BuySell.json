@@ -1,5 +1,5 @@
 {
         "code": "037520", "name": "코스피", "cur": 48750, 
         "start": 48200, "lowest": 47800, "highest": 49400, "yesterday": 48750, 
-        "diffrate": 0, "liked": 0, "cash":1000000
+        "diffrate": 0, "liked": 0, "cash":1000000, "itemNumber":50
 }

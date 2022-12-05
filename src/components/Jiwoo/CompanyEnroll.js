@@ -4,23 +4,26 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 const Write = styled.div`
-    position: absolute; width:1000px; height:480px; left:280px; top:150px; padding:50px; 
+    position: absolute; width:1000px; height:480px; left:300px; top:150px; padding:50px; 
     text-align: left; background-color: white; font-size: 24px; 
+    border-radius:10px; box-shadow:5px 5px lightgray;
 `
 
 const Title = styled.input`
-    position: absolute; width:750px; height:40px; left:180px; top: 40px;
+    position: absolute; width:750px; height:40px; left:180px; top: 50px;
     background-color:white; font-size:20px;
+    border-radius:5px;
 `
 
 const Content = styled.textarea`
     position: absolute; width:750px; height:250px; left:180px; top: 140px;
     background-color:white; font-size:20px; border:2px solid black;
+    border-radius:5px;
 `
 
 const Submit = styled.button`
     position: absolute; width:120px; height:40px; left: 820px; top: 420px; 
-    border:0; border-radius:20px; 
+    border:0; border-radius:20px; box-shadow:3px 3px #e7e7e7;
     font-size:20px; color:white; background-color:skyblue;
 `
 

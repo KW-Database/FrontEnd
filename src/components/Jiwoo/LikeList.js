@@ -41,12 +41,6 @@ const CompanyList = styled.div`
   }
 `
 
-const PageNumber = styled.div`
-    width: 1000px; height: 40px;
-    display: flex; justify-content:center; align-items: center;
-    color: black;
-`
-
 const Category = styled.div`
   position:absolute; top:90px; left:20px;
 `
@@ -143,6 +137,7 @@ function LikeList() {
             //alert(error);
         });
     }, []);
+
 
     const handleClick = (e) => {
         if (window.confirm('관심 목록에서 삭제하시겠습니까?'))

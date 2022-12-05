@@ -77,20 +77,76 @@
             "executionPrice": 95400
         }
     ],
-    "publicDateList": [
+    "publicList": [
         {
-            "itemName": "LX세미콘",
-            "executionPrice": 95400,
-            "changeAmount": 4700,
-            "changeRate": 5.2,
-            "publicDate": "2022-11-01"
+            "itemName": "엔젯",
+            "executionPrice": 12400,
+            "changeAmount": 1100,
+            "changeRate": 9.7,
+            "publicDate": "2022-11-18"
         },
         {
-            "itemName": "케이옥션",
-            "executionPrice": 5120,
-            "changeAmount": 180,
-            "changeRate": 3.6,
-            "publicDate": "2022-11-22"
+            "itemName": "대명에너지",
+            "executionPrice": 27750,
+            "changeAmount": 2100,
+            "changeRate": 8.2,
+            "publicDate": "2022-05-16"
+        },
+        {
+            "itemName": "모아데이타",
+            "executionPrice": 3230,
+            "changeAmount": 200,
+            "changeRate": 6.6,
+            "publicDate": "2022-03-10"
+        },
+        {
+            "itemName": "핀텔",
+            "executionPrice": 8410,
+            "changeAmount": 310,
+            "changeRate": 3.8,
+            "publicDate": "2022-10-20"
+        },
+        {
+            "itemName": "알피바이오",
+            "executionPrice": 12350,
+            "changeAmount": 350,
+            "changeRate": 2.9,
+            "publicDate": "2022-09-29"
+        },
+        {
+            "itemName": "티쓰리",
+            "executionPrice": 1830,
+            "changeAmount": 50,
+            "changeRate": 2.8,
+            "publicDate": "2022-11-17"
+        },
+        {
+            "itemName": "HPSP",
+            "executionPrice": 64000,
+            "changeAmount": 1700,
+            "changeRate": 2.7,
+            "publicDate": "2022-07-15"
+        },
+        {
+            "itemName": "뉴로메카",
+            "executionPrice": 15550,
+            "changeAmount": 300,
+            "changeRate": 2,
+            "publicDate": "2022-11-04"
+        },
+        {
+            "itemName": "샤페론",
+            "executionPrice": 5980,
+            "changeAmount": 110,
+            "changeRate": 1.9,
+            "publicDate": "2022-10-19"
+        },
+        {
+            "itemName": "청담글로벌",
+            "executionPrice": 10900,
+            "changeAmount": 200,
+            "changeRate": 1.9,
+            "publicDate": "2022-06-03"
         }
     ]
 }

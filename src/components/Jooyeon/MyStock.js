@@ -1,7 +1,9 @@
-import React, { useState }from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect }from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import styled from 'styled-components';
 import SearchBar from '../Jiwoo/SearchBar';
+import Pagination from 'react-js-pagination';
 import mywallet from '../../Json/mywallet'
 
 const ListLayer = styled.div`
@@ -12,13 +14,17 @@ const List = styled.div`
     display:flex; justify-content: center;
 `
 const Search = styled.div`
-    position: absolute; width:800px; top:120px; left:120px;
+    position: absolute; width:800px; top:130px; left:120px;
     display:flex; justify-content: center;
+`
+
+const Category = styled.div`
+  position:absolute; top:210px; left:20px;
 `
 
 const StockList = styled.div`
     display: grid; flex-direction: row; width: 1000px; 
-    position: absolute; top:220px; left:20px;
+    position: absolute; top:240px; left:20px;
     border-top:2px solid gray; 
     background-color:#e7e7e7; color:black;
     grid-template-columns : repeat(1, 1fr);
@@ -28,15 +34,6 @@ const StockList = styled.div`
   @media screen and (max-width : 1040px) and (min-width : 800px){
     grid-template-columns : repeat(2, 1fr);
   }
-`
-
-const PageNumber = styled.div`
-    width: 1000px; height: 40px;
-    display: flex; justify-content:center; align-items: center;
-    color: black;
-`
-const Category = styled.div`
-  position:absolute; top:190px; left:20px;
 `
 
 const Company = styled.div`
@@ -49,7 +46,6 @@ const Company = styled.div`
   background-color: #ecf0f1;
   padding : 20px 30px;
 `
-
 
 const Name = styled.div`
     position: absolute; left:50px; width: 300px; 
@@ -77,11 +73,57 @@ const Count = styled.div`
     display:flex; justify-content:center;
 `
 
+const PaginationBox = styled.div`
+  .pagination { display: flex; justify-content: center; margin-top: 15px;}
+  ul { list-style: none; padding: 0; }
+  ul.pagination li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #e2e2e2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem; 
+  }
+  ul.pagination li:first-child{ border-radius: 5px 0 0 5px; }
+  ul.pagination li:last-child{ border-radius: 0 5px 5px 0; }
+  ul.pagination li a { text-decoration: none; color: #337ab7; font-size: 1rem; }
+  ul.pagination li.active a { color: white; }
+  ul.pagination li.active { background-color: #337ab7; }
+  ul.pagination li a:hover,
+  ul.pagination li a.active { color: blue; }
+`
+
 const UserID = "jiwoo0629";
 
 function MyStock(props){
+    const [Data, setData] = useState([]);
+    
+    useEffect(() => {
+		axios(
+            {
+                url: '/mywallet',
+                method: 'get',
+                data: UserID,
+                baseURL: 'http://localhost:8080',
+            }
+          ).then(function (response) {
+            setData(response.data);
+            //alert("성공")
+          }).catch(function (error) {
+            //alert(error);
+        });
+    }, []);
+
     const [search, setSearch] = useState("");
+    const [page, setPage] = useState(1);
+    const items = 5;
+    const handlePageChange = (page) => { 
+        setPage(page); 
+    };
     const onChange = (e) => {
+        setPage(1);
         setSearch(e.currentTarget.value);
     };
 
@@ -90,15 +132,20 @@ function MyStock(props){
         navigate(`/${UserID}/exchange`);
         //매수/매도 화면으로 이동하도록 수정
     }
-    
-    let eachStock = mywallet.ratePerCompany.filter((val)=>{
+
+    let filtered_data = mywallet.ratePerCompany.filter((val)=>{
         if(search===""){
             return val;
         }
         else if(val.itemName.toLowerCase().includes(search.toLowerCase())){
             return val;
         }
-    }).map((props)=>{
+    });
+    
+    let eachStock = filtered_data.slice(
+        items*(page-1),
+        items*(page-1) + items
+    ).map((props)=>{
         return(
             <div>
                 <Company onClick={move}>
@@ -111,8 +158,6 @@ function MyStock(props){
         )
     })
 
-    var num=1;
-
     return(
     
     <ListLayer>
@@ -123,9 +168,15 @@ function MyStock(props){
             </Category><p />
             <StockList>
                 {eachStock} <p />
-                <PageNumber>
-                    <Link to={`/${UserID}/mywallet?page=${num}`} style={{ textDecoration : 'none', color : 'black' }}>{num}</Link>
-                </PageNumber> 
+                <PaginationBox>
+                      <Pagination
+                        activePage={page}
+                        itemsCountPerPage={items}
+                        totalItemsCount={filtered_data.length}
+                        pageRangeDisplayed={5}
+                        onChange={handlePageChange}>
+                      </Pagination>
+                    </PaginationBox> 
             </StockList>
         </List>
     </ListLayer>

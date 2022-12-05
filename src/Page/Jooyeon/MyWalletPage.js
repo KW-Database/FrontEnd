@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import {useLocation} from 'react-router-dom';
-import axios from 'axios';
+import React from 'react';
 import UpperLayer from '../../components/Jiwoo/UpperLayer';
 import MyStock from '../../components/Jooyeon/MyStock';
 import MyWallet from '../../components/Jooyeon/MyWallet';
 
 
 function MyWalletPage () {
+
     
         const location = useLocation();
         const [Data, setData] = useState([]);
@@ -29,9 +28,10 @@ function MyWalletPage () {
         return(
             <div className="Page">
                 <UpperLayer></UpperLayer>
-                <div className="Background">
+                <div className="Background"
                     <MyWallet mywallet={Data}/>
                     <MyStock mystock={Data}/>                    
+
                 </div>
             </div>
         );

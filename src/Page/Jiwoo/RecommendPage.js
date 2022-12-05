@@ -12,12 +12,12 @@ const Title = styled.div`
 `
 
 const BuyLayer = styled.div`
-    position: absolute; width: 540px; height:600px; left: 250px; top: 120px;
+    position: absolute; width: 540px; height:560px; left: 250px; top: 120px;
     display:flex; justify-content: center; align-items: center; 
 `
 
 const SellLayer = styled.div`
-    position: absolute; width: 540px; height:600px; left: 810px; top: 120px;
+    position: absolute; width: 540px; height:560px; left: 810px; top: 120px;
     display:flex; justify-content: center; align-items: center; 
 `
 
@@ -40,12 +40,12 @@ const Name = styled.div`
 `
 
 const Price = styled.div`
-    position: absolute; left:200px; width: 120px; 
+    position: absolute; left:180px; width: 120px; 
     display:flex; justify-content:center;
 `
 
 const Diff = styled.div`
-    position: absolute; left:330px; width: 120px; 
+    position: absolute; left:320px; width: 120px; 
     display:flex; justify-content:center;
 `
 

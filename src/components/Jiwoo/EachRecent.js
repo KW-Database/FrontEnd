@@ -35,11 +35,12 @@ const Date = styled.div`
     display:flex; justify-content:center;
 `
 
+const UserID = "jiwoo0629";
 
 function EachRecent(props) {
     const navigate = useNavigate();
     const seeRecent = () => {
-        navigate('/:user/exchange');
+        navigate(`/${UserID}/exchange`);
     }     
     return (
         <Recommend onClick={seeRecent}>

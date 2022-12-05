@@ -16,8 +16,8 @@ const Layer=styled.div`
 const WalletTable =styled.div`
     position: absolute; width: 1040px; height: 230px; top:120px; margin:auto;
     display:flex; justify-content: center; align-items: center;
-    background-color:#daedf4; border-radius:20px;
-
+    background-color:#daedf4; 
+    border-radius:10px; box-shadow:5px 5px lightgray;
 `
 
 const Money=styled.div`
