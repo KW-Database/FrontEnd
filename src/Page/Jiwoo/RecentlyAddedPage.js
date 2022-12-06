@@ -19,7 +19,6 @@ const Layer = styled.div`
 function RecentlyAddedPage () {
     const location = useLocation();
     const Data = location.state;
-    console.log(Data);
     return(
         <div className="Page">
             <UpperLayer></UpperLayer>

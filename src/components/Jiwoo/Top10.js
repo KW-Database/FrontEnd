@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import EachRecommend from './EachRecommend';
 
@@ -54,6 +54,7 @@ function Top10_table (props) {
     const [option, setoption] = useState({
         op: '거래량'
     })
+    const [Data, setData] = useState(props.volumeRank)
 
     const DiffOption = (e) => {
         setoption({
@@ -62,18 +63,27 @@ function Top10_table (props) {
         })
     }
 
-    var Data;
-
-    if(option.op === '거래량') {
-        Data = props.volumeRank;
-    } else if(option.op === '상승') {
-        Data = props.upRank;
-    } else if(option.op === '하락') {
-        Data = props.downRank;
-    }
+    useEffect(() => {
+        if(option.op === '거래량') {
+            setData(props.volumeRank);
+        } else if(option.op === '상승') {
+           setData(props.upRank);
+        } else if(option.op === '하락') {
+            setData(props.downRank);
+        }
+    })
+    
 
     var i = 0;
-    let eachRecommend = Data.filter((val)=>{
+    let eachRecommend = Data.sort((a, b) => {
+        if(option.op === '거래량') {
+            return b.volume - a.volume;
+        } else if(option.op === '상승') {
+            return b.changeRate - a.changeRate;
+        } else if(option.op === '하락') {
+            return a.changeRate - b.changeRate;
+        }
+    }).filter((val)=>{
         if(i < 10) {
             i++;
             return val;
@@ -82,6 +92,10 @@ function Top10_table (props) {
         name={v.itemName} price={v.executionPrice} diff={v.changeAmount} diffrate={v.changeRate}
     />));
     
+        //변수명이 일치하지 않아서 그런가봐??
+        //volumneRank가 아닌건가
+        
+
     return (
         <div>
             <Button value="거래량" onClick={DiffOption}>거래량</Button>|

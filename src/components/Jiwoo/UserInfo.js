@@ -51,7 +51,7 @@ const Button3 = styled.button`
     box-shadow:3px 3px lightgray;
 `
 
-function UserInfo () {
+function UserInfo (props) {
     const [Data, setData] = useState([]);
     const { state } = useLocation();
     const UserID = state.UserID;

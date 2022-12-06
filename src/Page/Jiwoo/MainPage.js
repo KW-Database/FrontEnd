@@ -74,27 +74,22 @@ function MainPage() {
     const [data, setData] = useState([]);
     
     useEffect(() => {
-		const fetchData = async() => {
-          axios(
-            {
-                url: '/test/rank',
-                method: 'get',
-                baseURL: 'http://localhost:8080',
-            }
-          ).then(function (response) {
-            setData(response.data);
-            //alert("성공")
-          }).catch(function (error) {
-            //alert(error);
-        });
-        }	
+        axios.get('/test/rank')
+        .then(response => setData(response.data))
+        .catch(error => console.log(error))   
     }, []);
 
+    if(JSON.stringify(data)==="[]"){
+        return (
+            <div>hello</div>
+        );
+    }
+    else{
+        console.log(data.downRank[0].itemName);
     return (
         <Background>
             <UpperLayer></UpperLayer>
             <div className="Background">
-                {data}
                 <Main_Page>
                     <Company_Search>
                         <SearchCompany /> <p />
@@ -113,16 +108,18 @@ function MainPage() {
                     </Recommend_sell>
                     <Top10>
                         TOP 10
-                        <List><Top10_table volumeRank={mainpage.volumeRank} upRank={mainpage.upRank} downRank={mainpage.downRank}/></List>   
+                        <List><Top10_table volumeRank={data.volumeRank} upRank={data.upRank} downRank={data.downRank}/></List>   
                     </Top10>
                     <Recently_added>
-                        최근 상장된 주식 <Link to='/recently_added' state={mainpage.publicList} style={{ textDecoration : 'none', color : 'black' }}><SeeMore>더보기▽</SeeMore></Link> <p /> 
-                        <List><Recently_added_table publicList={mainpage.publicList} /></List>   
+                        최근 상장된 주식 <Link to='/recently_added' state={data.publicList} style={{ textDecoration : 'none', color : 'black' }}><SeeMore>더보기▽</SeeMore></Link> <p /> 
+                        <List><Recently_added_table publicList={data.publicList} /></List>   
                     </Recently_added>    
-                </Main_Page>  
-            </div>
+                </Main_Page>
+              
+        </div>
         </Background> 
     );
+    }
 }
 
 export default MainPage;

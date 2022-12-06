@@ -22,11 +22,10 @@ const RecentList = styled.div`
   }
 `
 
-function Recently_added_table (props) {
-    const Data = props.publicList;
-        
+function Recently_added_table ( {publicList} ) {
+    //const Data = props.publicList;
     var i = 0;
-    let eachRecent = Data.sort((a, b) => {
+    let eachRecent = publicList.sort((a, b) => {
         return new Date(b.publicDate) - new Date(a.publicDate)
     }).filter((val)=>{
         if(i < 10) {
