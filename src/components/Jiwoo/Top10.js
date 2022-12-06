@@ -35,21 +35,6 @@ const Top10_List = styled.div`
   }
 `
 
-/*const dummyData = [
-    {name: "기업1", endprice : 1, diff : 1, diffrate: 1, trans: 10},
-    {name: "기업2", endprice : 2, diff : 2, diffrate: 2, trans: 20},
-    {name: "기업3", endprice : 3, diff : 3, diffrate: 3, trans: 15},
-    {name: "기업4", endprice : 4, diff : 4, diffrate: 4, trans: 25},
-    {name: "기업5", endprice : 5, diff : 5, diffrate: 5, trans: 30},
-    {name: "기업6", endprice : 6, diff : 6, diffrate: 6, trans: 10},
-    {name: "기업7", endprice : 7, diff : 1, diffrate: -1, trans: 15},
-    {name: "기업8", endprice : 8, diff : 2, diffrate: -2, trans: 20},
-    {name: "기업9", endprice : 9, diff : 3, diffrate: -3, trans: 25},
-    {name: "기업10", endprice : 10, diff : 4, diffrate: -4, trans: 15},
-    {name: "기업11", endprice : 11, diff : 5, diffrate: -5, trans: 15},
-    {name: "기업12", endprice : 12, diff : 6, diffrate: -6, trans: 25}
-  ];*/
-
 function Top10_table (props) {
     const [option, setoption] = useState({
         op: '거래량'
