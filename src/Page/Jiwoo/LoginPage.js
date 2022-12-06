@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
 import '../../App.css';
@@ -8,7 +9,7 @@ const Login = styled.div`
     padding:10px 50px 10px 50px; border:5px solid gray; border-radius:15px; 
 `
 
-const User_Login = styled.input `
+const User_Login = styled.input`
     width:500px; height:40px; font-size:15px;
     border:2px solid black; border-radius:5px; 
     box-shadow:2px 2px #e7e7e7;
@@ -35,15 +36,29 @@ function LoginPage () {
     }
 
     const HandleLogin = () => {
-        //로그인
+        axios(
+            {
+                url: '/loginProcess',
+                method: 'post',
+                data: {
+                    username: ID, 
+                    password: PW
+                },
+                baseURL: 'http://localhost:8080',
+            }
+          ).then(function (response) {
+            //alert("성공")
+          }).catch(function (error) {
+            //alert(error);
+        });
     }
         return (
             <div className="Page">
                 <Login>
                     <br /><h1>로그인</h1><br />
-                    <User_Login type="text" value={ID} placeholder=" 아이디" onChange={HandleChange}></User_Login>
+                    <User_Login type="text" name="ID" value={ID} placeholder=" 아이디" onChange={HandleChange}></User_Login>
                     <p />
-                    <User_Login type="password" value={PW} placeholder=" 비밀번호" onChange={HandleChange}></User_Login>
+                    <User_Login type="password" NAME="PW" value={PW} placeholder=" 비밀번호" onChange={HandleChange}></User_Login>
                     <p />
                     <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Loginbutton onClick={HandleLogin}>로그인</Loginbutton></Link><p /><br />
                     <Link to='/findID' style={{ textDecoration : 'none', color : 'gray' }}>아이디 찾기</Link> / &nbsp;
