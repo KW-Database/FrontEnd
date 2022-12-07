@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
 import EachResult from './EachResult';
 import styled from 'styled-components';
@@ -72,28 +72,15 @@ function SearchResult() {
     const location = useLocation();
     
     useEffect(() => {
-        axios(
-            {
-                url: `/search`,
-                method: 'get',
-                baseURL: 'http://localhost:8080',
-            }
-          ).then(function (response) {
-            setData(response.data);
-            //alert("성공")
-          }).catch(function (error) {
-            //alert(error);
-        });
+        axios.get(`search`, {params:{
+            name: location.state.result
+        }})
+          .then( response => setData(response.data))
+          .catch( error => alert(error));
     }, []);
-    
-    const dummyData = [
-        {ID: 1, itemCode:"000001", name: "기업1"},
-        {ID: 2, itemCode:"000002", name: "기업2"},
-        {ID: 3, itemCode:"000003", name: "기업3"},
-        {ID: 4, itemCode:"000004", name: "기업4"},
-        {ID: 5, itemCode:"000005", name: "기업5"}
-    ]
+
     const Value = location.state.result;
+    console.log(Value);
 
     const [page, setPage] = useState(1);
     const items = 5;
@@ -101,10 +88,10 @@ function SearchResult() {
         setPage(page); 
     };
 
-    let filtered_data = dummyData.filter((val)=>{
-        if(Value === "") {
+    let filtered_data = Data.filter((val)=>{
+        if(Value === '') {
             return val;
-        } else if(val.name.toLowerCase().includes(Value.toLowerCase())) {
+        } else if(val.itemName.toLowerCase().includes(Value.toLowerCase())) {
             return val;
         }
     })
@@ -113,7 +100,7 @@ function SearchResult() {
         items*(page-1),
         items*(page-1) + items
     ).map((v) => (<EachResult key={v.ID} 
-        ID={v.ID} itemCode={v.itemCode} name={v.name}  
+        ID={v.ID} itemCode={v.itemCode} name={v.itemName}  
     />));
     
     return (

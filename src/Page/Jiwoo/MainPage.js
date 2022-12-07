@@ -81,7 +81,9 @@ function MainPage() {
 
     if(JSON.stringify(data)==="[]"){
         return (
-            <div>hello</div>
+            <Background>
+                <UpperLayer></UpperLayer>
+            </Background>
         );
     }
     else{
