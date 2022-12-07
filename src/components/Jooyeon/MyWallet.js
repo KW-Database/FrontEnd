@@ -67,17 +67,15 @@ const Value = styled.div`
 //data: location.state.itemCode,
 
 function MyWallet(props){
-    const [Data, setData] = useState([]);
-
     return(
         <Layer>
             <Title>내 보유자산</Title>
             <WalletTable>
-                <Money>보유KRW <br /> {mywallet.cash.toLocaleString('en-AU')}</Money>
-                <Asset>총 보유자산 <br /> {mywallet.totalHoldings.toLocaleString('en-AU')}</Asset><p />
-                <Buy>총 매수 <Value>{mywallet.totalPurchase.toLocaleString('en-AU')}</Value></Buy>
-                <Profit>평가손익 <Value>{(mywallet.totalAppraisal-mywallet.totalPurchase).toLocaleString('en-AU')}</Value></Profit><p />
-                <Earning>총 평가 <Value> {mywallet.totalAppraisal.toLocaleString('en-AU')}</Value></Earning>
+                <Money>보유KRW <br /> {props.Data.cash.toLocaleString('en-AU')}</Money>
+                <Asset>총 보유자산 <br /> {props.Data.totalHoldings.toLocaleString('en-AU')}</Asset><p />
+                <Buy>총 매수 <Value>{props.Data.totalPurchase.toLocaleString('en-AU')}</Value></Buy>
+                <Profit>평가손익 <Value>{(props.Data.totalAppraisal-props.Data.totalPurchase).toLocaleString('en-AU')}</Value></Profit><p />
+                <Earning>총 평가 <Value> {props.Data.totalAppraisal.toLocaleString('en-AU')}</Value></Earning>
                 <EarningRatio>수익률 <Value>{(mywallet.totalRate).toFixed(2)}%</Value></EarningRatio>
             </WalletTable>
         </Layer>

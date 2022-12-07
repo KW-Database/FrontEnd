@@ -30,20 +30,17 @@ function MyWalletPage () {
             );
         }
         else {
-            <div>
-                {Data}
-            </div>
-        }
-        /*return(
-            <div className="Page">
-                <UpperLayer></UpperLayer>
-                <div className="Background">
-                    <MyWallet /> 
-                    <MyStock />       
-
+            return(
+                <div className="Page">
+                    <UpperLayer></UpperLayer>
+                    <div className="Background">
+                        <MyWallet Data={Data}/> 
+                        <MyStock Data={Data}/>       
+    
+                    </div>
                 </div>
-            </div>
-        );*/
+            );
+        }
     
 }
 
