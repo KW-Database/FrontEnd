@@ -23,13 +23,13 @@ const Name = styled.div`
     display:flex; text-align:left; 
 `
 
-const UserID = "jiwoo0629"
+const UserID = "kiki"
 
 function EachResult(props) {
     const navigate = useNavigate();
     const move = () => {
         navigate(`/${UserID}/exchange`, {state:{
-            UserID: UserID, itemCode:props.itemCode
+            UserID: UserID, itemCode:props.itemCode, itemName:props.itemName
         }});
         //매수/매도 화면으로 이동하도록 수정
     }
@@ -37,7 +37,7 @@ function EachResult(props) {
     return (
         <Result onClick={move}>
             <ID>{props.ID}</ID>
-            <Name>{props.name}</Name>
+            <Name>{props.itemName}</Name>
         </Result>
     );
 }

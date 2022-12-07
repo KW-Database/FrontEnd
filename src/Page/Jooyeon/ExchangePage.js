@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
+import { useLocation } from 'react-router-dom'
+import axios from 'axios';
 import styled from 'styled-components';
 import UpperLayer from '../../components/Jiwoo/UpperLayer';
 import Exchange_title from '../../components/Jooyeon/ExchangeTitle';
@@ -45,21 +47,62 @@ const Chat_layer = styled.div`
 const price = 35.65;
 
 function ExchangePage () {
-    return(
-        <div className="Page">
-            <UpperLayer></UpperLayer>
-            <div className="Background">
-                <Exchange>
-                    <Title><Exchange_title /></Title>
-                    <Graph><Exchange_graph price={price}/></Graph>
-                    <Info><StockByAge /></Info>
-                </Exchange>
-                <BuySell_layer><BuySell /></BuySell_layer>
-                <Chat_layer><Chatting title="코스피" /></Chat_layer>
+    const [Data, setData] = useState([]);
+    const location = useLocation();
+    useEffect(() => {
+        const obj = {
+            id: "kiki",
+            itemCode: location.state.itemCode
+        }
+        var obj_str = JSON.stringify(obj);
+        console.log(obj_str);
+        /*var obj_par = JSON.parse(obj_str);
+        console.log(obj_str);
+        /*let map = new Map([
+            ["id", "kiki"],
+            ["itemCode", location.state.itemCode]
+        ]);*/
+        //obj.set("id", "kiki");
+        //obj.set("itemCode", location.state.itemCode);
+        //const obj = Object.fromEntries(map)
+        //console.log(obj)
+        axios({
+            url: '/exchange',
+            method: 'post',
+            data: {
+                id: "kiki",
+                itemCode: location.state.itemCode
+            }
+        })
+        .then(response => setData(response.data))
+        .catch(error => console.log(error))
+    }, []);
+
+    //{"id": "jiwoo", "itemCode": "000050"}
+
+    if(JSON.stringify(Data)==="[]"){
+        return (
+            <div>
+                <UpperLayer></UpperLayer>
             </div>
-        </div>
-    );
-        
+        );
+    }
+    else{
+        return(
+            <div className="Page">
+                <UpperLayer></UpperLayer>
+                <div className="Background">
+                    <Exchange>
+                        <Title><Exchange_title Data={Data} itemName={location.state.itemName}/></Title>
+                        <Graph><Exchange_graph Data={Data} /></Graph>
+                        <Info><StockByAge /></Info>
+                    </Exchange>
+                    <BuySell_layer><BuySell /></BuySell_layer>
+                    <Chat_layer><Chatting title="코스피" /></Chat_layer>
+                </div>
+            </div>
+        );
+    }   
 }
 
 export default ExchangePage;

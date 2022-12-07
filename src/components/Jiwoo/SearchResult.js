@@ -72,6 +72,7 @@ function SearchResult() {
     const location = useLocation();
     
     useEffect(() => {
+        console.log(location.state.result)
         axios.get(`search`, {params:{
             name: location.state.result
         }})
@@ -96,12 +97,16 @@ function SearchResult() {
         }
     })
 
+    var i=0;
     let eachResult = filtered_data.slice(
         items*(page-1),
         items*(page-1) + items
-    ).map((v) => (<EachResult key={v.ID} 
-        ID={v.ID} itemCode={v.itemCode} name={v.itemName}  
-    />));
+    ).map((v) => {
+        i=i+1;
+        return(<EachResult key={v.itemCode} 
+            ID={items*(page-1)+i} itemCode={v.itemCode} itemName={v.itemName}  
+        />);  
+    });
     
     return (
         <ListLayer>
