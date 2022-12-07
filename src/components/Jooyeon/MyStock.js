@@ -98,24 +98,7 @@ const PaginationBox = styled.div`
 const UserID = "jiwoo0629";
 
 function MyStock(props){
-    const [Data, setData] = useState([]);
-    
-    useEffect(() => {
-		axios(
-            {
-                url: '/mywallet',
-                method: 'get',
-                data: UserID,
-                baseURL: 'http://localhost:8080',
-            }
-          ).then(function (response) {
-            setData(response.data);
-            //alert("성공")
-          }).catch(function (error) {
-            //alert(error);
-        });
-    }, []);
-
+    const navigate = useNavigate();
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
     const items = 5;
@@ -127,13 +110,7 @@ function MyStock(props){
         setSearch(e.currentTarget.value);
     };
 
-    const navigate = useNavigate();
-    const move = () => {
-        navigate(`/${UserID}/exchange`);
-        //매수/매도 화면으로 이동하도록 수정
-    }
-
-    let filtered_data = mywallet.ratePerCompany.filter((val)=>{
+    let filtered_data = props.Data.ratePerCompany.filter((val)=>{
         if(search===""){
             return val;
         }
@@ -145,14 +122,21 @@ function MyStock(props){
     let eachStock = filtered_data.slice(
         items*(page-1),
         items*(page-1) + items
-    ).map((props)=>{
+    ).map((pro)=>{
+        const Move = () => { 
+            console.log(pro)           
+            navigate(`/${UserID}/exchange`, {state:{
+                UserID: UserID, itemCode:pro.itemCode, itemName:pro.itemName
+            }});
+            //매수/매도 화면으로 이동하도록 수정
+        }
         return(
             <div>
-                <Company onClick={move}>
-                    <Name>{props.itemName.toLocaleString('en-AU')}</Name>
-                    <Price>{props.appraisal.toLocaleString('en-AU')}</Price>
-                    <Diff dif={props.totalRate}>▲ {(props.appraisal - props.purchase).toLocaleString('en-AU')} ({(props.totalRate).toFixed(2)}%)</Diff>  
-                    <Count>{props.itemNumber}</Count>
+                <Company onClick={Move}>
+                    <Name>{pro.itemName.toLocaleString('en-AU')}</Name>
+                    <Price>{pro.appraisal.toLocaleString('en-AU')}</Price>
+                    <Diff dif={pro.totalRate}>▲ {(pro.appraisal - pro.purchase).toLocaleString('en-AU')} ({(pro.totalRate).toFixed(2)}%)</Diff>  
+                    <Count>{pro.itemNumber}</Count>
                 </Company>
             </div>
         )
