@@ -33,7 +33,7 @@ const Info = styled.div`
     font-size:15px;
 `
 
-function Exchange_title () {
+function Exchange_title ({Data, itemName}) {
     const [like, setlike] = useState({
         liked : price_info.liked
     });
@@ -70,13 +70,13 @@ function Exchange_title () {
     return(
         <div>
             <Likebutton liked={like.liked} onClick={HandleClick}>☆</Likebutton>
-            <Name>{price_info.name}&nbsp;<h6>{price_info.code}</h6></Name>
+            <Name>{itemName}&nbsp;<h6>{Data[Data.length-1].itemCode}</h6></Name>
             <Price>{price_info.cur.toLocaleString('en-AU')}&nbsp;<Rate color={col}>{arrow}&nbsp;{(price_info.diffrate).toFixed(2)}%</Rate></Price>
             <Info>
-                전일 &nbsp;&nbsp;&nbsp;&nbsp; {price_info.yesterday.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                시가 &nbsp;&nbsp;&nbsp;&nbsp; {price_info.start.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                고가 &nbsp;&nbsp;&nbsp;&nbsp; {price_info.highest.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                저가 &nbsp;&nbsp;&nbsp;&nbsp; {price_info.lowest.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                전일 &nbsp;&nbsp;&nbsp;&nbsp; {Data[Data.length-1].endPrice.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                시가 &nbsp;&nbsp;&nbsp;&nbsp; {Data[Data.length-1].startPrice.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                고가 &nbsp;&nbsp;&nbsp;&nbsp; {Data[Data.length-1].highestPrice.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                저가 &nbsp;&nbsp;&nbsp;&nbsp; {Data[Data.length-1].lowestPrice.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </Info>
         </div>
     );

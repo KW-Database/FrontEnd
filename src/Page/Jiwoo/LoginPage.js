@@ -58,7 +58,7 @@ function LoginPage () {
                     <br /><h1>로그인</h1><br />
                     <User_Login type="text" name="ID" value={ID} placeholder=" 아이디" onChange={HandleChange}></User_Login>
                     <p />
-                    <User_Login type="password" NAME="PW" value={PW} placeholder=" 비밀번호" onChange={HandleChange}></User_Login>
+                    <User_Login type="password" name="PW" value={PW} placeholder=" 비밀번호" onChange={HandleChange}></User_Login>
                     <p />
                     <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Loginbutton onClick={HandleLogin}>로그인</Loginbutton></Link><p /><br />
                     <Link to='/findID' style={{ textDecoration : 'none', color : 'gray' }}>아이디 찾기</Link> / &nbsp;
