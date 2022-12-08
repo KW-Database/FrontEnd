@@ -304,14 +304,14 @@ const dummyData= {
   ]  
 };
     
-const Exchange_graph = ({Data}) => {
+const Exchange_graph = ({Data, itemName}) => {
   const[date, setdate] = useState(
     new Date().setFullYear(new Date().getFullYear() - 1)
   );
   
   var series = [{
-      name: Data.itemName,
-      data: Data?.map((props) => {
+      name: itemName,
+      data: Data.dayCondition?.map((props) => {
         return [
           Date.parse(new Date(props.present)),
           props.endPrice
