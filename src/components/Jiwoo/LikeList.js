@@ -190,13 +190,21 @@ function LikeList() {
         items*(page-1),
         items*(page-1) + items
     ).map((props) => {
+        function Arrow(p) {
+            if(p > 0)
+                return '▲';
+            else if(p < 0)
+                return '▼';
+            else   
+                return '-';
+        }
         return (
             <div>
                 <LikeButton value={props.itemCode} onClick = {handleClick}>X</LikeButton>
                 <Company onClick={move}>
                     <Name>{props.itemName}</Name>
                     <Price>{props.price.toLocaleString('en-AU')}</Price>
-                    <Diff dif={props.changeRate}>▲ {props.changeAmount.toLocaleString('en-AU')} ({props.changeRate}%)</Diff>  
+                    <Diff dif={props.changeRate}>{Arrow(props.changeRate)} {props.changeAmount.toLocaleString('en-AU')} ({props.changeRate}%)</Diff>  
                     <Like>♥ {props.likedNum.toLocaleString('en-AU')}</Like>
                 </Company>
             </div>    
