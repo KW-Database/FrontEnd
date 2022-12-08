@@ -66,17 +66,18 @@ function Exchange_title ({Data, itemName}) {
         arrow = '-';
     }
 
-    
+    //data의 current 값이 필요
+    //data.diffrate는 (오늘 현재 값 - 어제 endPrice) / 어제 endPrice 로 계산    
     return(
         <div>
             <Likebutton liked={like.liked} onClick={HandleClick}>☆</Likebutton>
-            <Name>{itemName}&nbsp;<h6>{Data[Data.length-1].itemCode}</h6></Name>
+            <Name>{itemName}&nbsp;<h6>{Data.companyInfo.itemCode}</h6></Name>
             <Price>{price_info.cur.toLocaleString('en-AU')}&nbsp;<Rate color={col}>{arrow}&nbsp;{(price_info.diffrate).toFixed(2)}%</Rate></Price>
             <Info>
-                전일 &nbsp;&nbsp;&nbsp;&nbsp; {Data[Data.length-1].endPrice.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                시가 &nbsp;&nbsp;&nbsp;&nbsp; {Data[Data.length-1].startPrice.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                고가 &nbsp;&nbsp;&nbsp;&nbsp; {Data[Data.length-1].highestPrice.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                저가 &nbsp;&nbsp;&nbsp;&nbsp; {Data[Data.length-1].lowestPrice.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                전일 &nbsp;&nbsp;&nbsp;&nbsp; {Data.dayCondition[(Data.dayCondition.length)-1].endPrice.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                시가 &nbsp;&nbsp;&nbsp;&nbsp; {Data.dayCondition[(Data.dayCondition.length)-1].startPrice.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                고가 &nbsp;&nbsp;&nbsp;&nbsp; {Data.dayCondition[(Data.dayCondition.length)-1].highestPrice.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                저가 &nbsp;&nbsp;&nbsp;&nbsp; {Data.dayCondition[(Data.dayCondition.length)-1].lowestPrice.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </Info>
         </div>
     );

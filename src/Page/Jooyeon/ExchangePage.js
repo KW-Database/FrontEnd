@@ -50,12 +50,6 @@ function ExchangePage () {
     const [Data, setData] = useState([]);
     const location = useLocation();
     useEffect(() => {
-        const obj = {
-            id: "kiki",
-            itemCode: location.state.itemCode
-        }
-        var obj_str = JSON.stringify(obj);
-        console.log(obj_str);
         /*var obj_par = JSON.parse(obj_str);
         console.log(obj_str);
         /*let map = new Map([
@@ -65,15 +59,10 @@ function ExchangePage () {
         //obj.set("id", "kiki");
         //obj.set("itemCode", location.state.itemCode);
         //const obj = Object.fromEntries(map)
-        //console.log(obj)
-        axios({
-            url: '/exchange',
-            method: 'post',
-            data: {
-                id: "kiki",
-                itemCode: location.state.itemCode
-            }
-        })
+        axios.get('/exchange', {params:{
+            id: location.state.UserID,
+            itemCode: location.state.itemCode
+        }})
         .then(response => setData(response.data))
         .catch(error => console.log(error))
     }, []);
@@ -94,7 +83,7 @@ function ExchangePage () {
                 <div className="Background">
                     <Exchange>
                         <Title><Exchange_title Data={Data} itemName={location.state.itemName}/></Title>
-                        <Graph><Exchange_graph Data={Data} /></Graph>
+                        <Graph><Exchange_graph Data={Data} itemName={location.state.itemName}/></Graph>
                         <Info><StockByAge /></Info>
                     </Exchange>
                     <BuySell_layer><BuySell /></BuySell_layer>
