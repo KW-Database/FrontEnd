@@ -95,7 +95,7 @@ const PaginationBox = styled.div`
   ul.pagination li a.active { color: blue; }
 `
 
-const UserID = "jiwoo0629";
+const UserID = "kiki";
 
 function MyStock(props){
     const navigate = useNavigate();
@@ -143,7 +143,7 @@ function MyStock(props){
                 <Company onClick={Move}>
                     <Name>{pro.itemName.toLocaleString('en-AU')}</Name>
                     <Price>{(pro.appraisal/pro.itemNumber).toLocaleString('en-AU')}</Price>
-                    <Diff dif={pro.totalRate}>{Arrow(pro.totalRate)} {(pro.appraisal - pro.purchase).toLocaleString('en-AU')} ({(pro.totalRate).toFixed(2)}%)</Diff>  
+                    <Diff dif={pro.totalRate}>{Arrow(pro.totalRate)} {((pro.appraisal - pro.purchase)/pro.itemNumber).toLocaleString('en-AU')} ({(pro.totalRate).toFixed(2)}%)</Diff>  
                     <Count>{pro.itemNumber}</Count>
                 </Company>
             </div>
