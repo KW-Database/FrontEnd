@@ -87,7 +87,6 @@ function MainPage() {
         );
     }
     else{
-        console.log(data.downRank[0].itemName);
     return (
         <Background>
             <UpperLayer></UpperLayer>

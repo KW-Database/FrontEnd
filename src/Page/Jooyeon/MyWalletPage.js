@@ -7,36 +7,40 @@ import MyWallet from '../../components/Jooyeon/MyWallet';
 
 
 function MyWalletPage () {  
-        /*const location = useLocation();
+        const location = useLocation();
         const [Data, setData] = useState([]);
         useEffect(() => {
-            axios(
-                {
-                    url: `/myWallet`,
-                    method: 'get',
-                    data: location.state.itemCode,
-                    baseURL: 'http://localhost:8080',
-                }
-              ).then(function (response) {
+            console.log(location.state.UserID)
+            axios.get(`/myWallet`, {params:{
+                id: location.state.UserID
+            }}).then(function (response) {
                 setData(response.data);
                 //alert("성공")
               }).catch(function (error) {
                 //alert(error);
             });
-        }, []);*/
-        
+        }, []);
         //mywallet={Data}
         //mystock={Data} 
-        return(
-            <div className="Page">
-                <UpperLayer></UpperLayer>
+        if(JSON.stringify(Data)==="[]"){
+            return (
                 <div className="Background">
-                    <MyWallet /> 
-                    <MyStock />       
-
+                    <UpperLayer></UpperLayer>
                 </div>
-            </div>
-        );
+            );
+        }
+        else {
+            return(
+                <div className="Page">
+                    <UpperLayer></UpperLayer>
+                    <div className="Background">
+                        <MyWallet Data={Data}/> 
+                        <MyStock Data={Data}/>       
+    
+                    </div>
+                </div>
+            );
+        }
     
 }
 

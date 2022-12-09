@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 import styled from 'styled-components';
 import ReactApexChart from 'react-apexcharts';
 import dayjs from 'dayjs';
+
 
 const Graph_button = styled.div`
   position:absolute; left:0px; width:700px; height:40px;
@@ -20,15 +23,7 @@ const Time_button = styled.button`
 `
 
 const dummyData= {
-  /*
-  Name: data.name,
-  Data: data?.map((props) => {
-    return [
-      Date.parse(new Date(props.present)),
-      props.end_price,
-    ];
-  })
-  */
+  
   Name: '코스피',
   Data: [
     [Date.parse(new Date('2012-01-23')), 30.95],
@@ -309,14 +304,19 @@ const dummyData= {
   ]  
 };
     
-const Exchange_graph = (props) => {
+const Exchange_graph = ({Data, itemName}) => {
   const[date, setdate] = useState(
-    new Date('26 Feb 2013').setFullYear(new Date('26 Feb 2013').getFullYear() - 1)
+    new Date().setFullYear(new Date().getFullYear() - 1)
   );
   
   var series = [{
-      name: dummyData.Name,
-      data: dummyData.Data
+      name: itemName,
+      data: Data.dayCondition?.map((props) => {
+        return [
+          Date.parse(new Date(props.present)),
+          props.endPrice
+        ];
+      })
   }];
 
   var options = {
@@ -344,9 +344,6 @@ const Exchange_graph = (props) => {
         yAxisIndex: 0,
       }]
     },
-    dataLabels: {
-      enabled: false
-    },
     markers: {
       size: 0,
       style: 'hollow',
@@ -368,30 +365,29 @@ const Exchange_graph = (props) => {
       }
     },
     yaxis: {
-      y: props.price,
       tooltip: {
         enabled: true
       },
-      tickAmount: 8
+      tickAmount: 6,
     },
   };
 
   const HandleClick = (e) => {
     if(e.target.value === "1month") {
       setdate(
-        (new Date('26 Feb 2013').setMonth(new Date('26 Feb 2013').getMonth() - 1))
+        (new Date().setMonth(new Date().getMonth() - 1))
       )
     } else if(e.target.value === "3month") {
       setdate(
-        (new Date('26 Feb 2013').setMonth(new Date('26 Feb 2013').getMonth() - 3))
+        (new Date().setMonth(new Date().getMonth() - 3))
       )
     } else if(e.target.value === "6month") {
       setdate(
-        (new Date('26 Feb 2013').setMonth(new Date('26 Feb 2013').getMonth() - 6))
+        (new Date().setMonth(new Date().getMonth() - 6))
       )
     } else if(e.target.value === "1year") {
       setdate(
-        (new Date('26 Feb 2013').setFullYear(new Date('26 Feb 2013').getFullYear() - 1))
+        (new Date().setFullYear(new Date().getFullYear() - 1))
       )
     }
   }

@@ -21,7 +21,7 @@ const Logout = styled.button`
     box-shadow:2px 2px lightgray;
 `
 
-const UserID = "admin";
+const UserID = "kiki";
 
 function UpperLayer() {
     //const navigate = useNavigate();
@@ -36,7 +36,7 @@ function UpperLayer() {
             </Upper_layer>
         );
     }*/
-    if(UserID === "jiwoo0629") {
+    if(UserID === "admin") {
         return( 
             <Upper_layer>
                 <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Icon icon={home} id="HomeButton" size="50" /></Link>
@@ -52,10 +52,10 @@ function UpperLayer() {
             <Upper_layer>
                 <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Icon icon={home} id="HomeButton" size="50" /></Link>
                 <Title>
-                    <Link to={`/${UserID}/mywallet`} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 보유자산</h2></Link>
+                    <Link to={`/${UserID}/mywallet`} state={{UserID:UserID}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 보유자산</h2></Link>
                     <Link to={`/${UserID}/likelist`} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 관심주식</h2></Link>
                     <Link to="/board" style={{ textDecoration : 'none', color : 'gray' }}><h2>토론 게시판</h2></Link>
-                    <Link to={`/${UserID}/profile`} state={{UserID:{UserID}}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 프로필</h2></Link>
+                    <Link to={`/${UserID}/profile`} state={{UserID:UserID}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 프로필</h2></Link>
                 </Title>
                 <Link to="/login" style={{ textDecoration : 'none', color : 'gray' }}><Logout value="logout">로그아웃</Logout></Link>
             </Upper_layer>
