@@ -13,7 +13,7 @@ const Info = styled.div`
 `
 
 const Container = styled.div`
-    width:250px; height:35px;
+    width:250px; height:30px;
 `
 
 const Age = styled.div`
@@ -31,24 +31,24 @@ const Unit = styled.div`
     font-size:10px; text-align:left;
 `
 
-const dummyData = [
-    {age: "20세미만", count: 10},
-    {age: "20대", count: 10},
-    {age: "30대", count: 20},
-    {age: "40대", count: 20},
-    {age: "50대", count: 10},
-    {age: "60대", count: 10},
-    {age: "70대", count: 10},
-    {age: "80세이상", count: 10}
-];
+function StockByAge ({Data}) {
+    function diffAge (age) {
+        var _age;
+        if(age === 10)
+            _age = "미성년자";
+        else if (age === 80)
+            return age+"대 이상";
+        else
+            return age+"대";
+        return _age;
+    }
 
-function StockByAge () {
-    let eachAge = dummyData.map((v) => (
+    let eachAge = Data.map((v) => (
         <Container>
-            <Age>{v.age} :</Age><Count>{v.count.toLocaleString('en-AU')}</Count>
+            <Age>{diffAge(v.ages)} :</Age><Count>{v.itemNumber.toLocaleString('en-AU')}</Count>
         </Container>
     ));
-    
+
     return(
         <div>
             <Title>연령대별 보유주식</Title>

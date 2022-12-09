@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Price_info from '../../Json/BuySell.json';
 
@@ -45,7 +46,7 @@ const Input2 = styled.input`
     border:0; border-bottom:1px solid black; text-align:center;
 `
 
-function BuySell () {  
+function BuySell ({Data, UserID}) {  
     const [purchase, setpurchase] = useState({
         count: 0, price: 0
     })
@@ -88,6 +89,13 @@ function BuySell () {
             alert("보유한 현금보다 더 많은 양을 구매할 수 없습니다. 수량과 금액을 다시 입력하세요.")
         } else {
             alert("매수");
+            /*axios.post('/exchange/buy', {
+                id: UserID,
+                itemCode: Data.companyInfo.itemCode,
+                itemNumber : count,
+                price : price
+            }).then(response => console.log(response))
+            .catch(error => console.log(error));*/
         }
     }
 
@@ -100,6 +108,13 @@ function BuySell () {
             alert("보유한 주식보다 많은 양을 판매할 수 없습니다. 수량을 다시 입력하세요.");
         } else {
             alert("매도");
+            /*axios.post('/exchange/sell', {
+                id: UserID,
+                itemCode: Data.companyInfo.itemCode,
+                itemNumber : count,
+                price : price
+            }).then(response => console.log(response))
+            .catch(error => console.log(error));*/
         }
     }
 

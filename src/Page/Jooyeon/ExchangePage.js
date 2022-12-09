@@ -62,9 +62,11 @@ function ExchangePage () {
         axios.get('/exchange', {params:{
             id: location.state.UserID,
             itemCode: location.state.itemCode
-        }})
-        .then(response => setData(response.data))
-        .catch(error => console.log(error))
+        }}).then(response => setData(response.data))
+        .catch(error => console.log(error));
+
+        axios.get('/exchange').then(response => setData(response.data))
+        .catch(error => console.log(error));
     }, []);
 
     //{"id": "jiwoo", "itemCode": "000050"}
@@ -84,9 +86,9 @@ function ExchangePage () {
                     <Exchange>
                         <Title><Exchange_title Data={Data} itemName={location.state.itemName}/></Title>
                         <Graph><Exchange_graph Data={Data} itemName={location.state.itemName}/></Graph>
-                        <Info><StockByAge /></Info>
+                        <Info><StockByAge Data={Data.holderAge}/></Info>
                     </Exchange>
-                    <BuySell_layer><BuySell /></BuySell_layer>
+                    <BuySell_layer><BuySell Data={Data} UserID={location.state.UserID}/></BuySell_layer>
                     <Chat_layer><Chatting title="코스피" /></Chat_layer>
                 </div>
             </div>
