@@ -13,7 +13,7 @@ function ChatLog(props) {
             inline: "nearest",
             });
         }
-    }, [props]);
+    }, []);
     return (
         <main className = "main-container">
             <ToastContainer bsPrefix = "toast-main-container">

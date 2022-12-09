@@ -19,7 +19,7 @@ function Chatting (props) {
         .catch(error => console.log(error));
     }
 
-    setTimeout(function run() {
+    setTimeout(() => {
         //axios - get으로 데이터 동기화
         axios.get('/exchange/renewChat', {params: {
             itemCode: props.itemCode
@@ -27,7 +27,6 @@ function Chatting (props) {
             setChat(response.data)
         })
         .catch(error => console.log(error));
-        setTimeout(run, 30000);
       }, 1000);
 
     return(
