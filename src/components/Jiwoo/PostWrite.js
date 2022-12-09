@@ -27,6 +27,8 @@ const Submit = styled.button`
     font-size:20px; color:white; background-color:skyblue;
 `
 
+const UserInfo = {ID: "id_a"}; //
+
 function PostWrite (props) {
     const [Data, setData] = useState([]);
     const [Inputs, setInputs] = useState({
@@ -52,19 +54,20 @@ function PostWrite (props) {
             else if(content === '')
                 alert("내용을 입력하세요.");
             else {
-                axios(
-                  {
-                    url: `/write`,
-                    method: 'post',
-                    data: {postId: props.postId, title:title, content:content, id:props.ID, Date:new Date(), View:props.View },
-                    baseURL: 'http://localhost:8080',
-                  }
-                ).then(function (response) {
-                    setData(response.data);
-                    //alert("성공")
-                }).catch(function (error) {
-                    //alert(error);
-                });
+                axios.post(`/agora/write`, 
+                    {
+                       // post_id:500,
+                        id:UserInfo.ID,
+                        title:title,
+                        contents:content,
+                        postTime:new Date().toISOString().slice(0, 19),//.replace('T', ' '),
+                        hitCount:0
+                    }
+
+                )
+                .then(response=>setData(response.data),
+                alert("성공"))
+           .catch(error=>alert(error));
                 alert("게시글이 등록되었습니다.");
                 //redirect
                 e.preventDefault();

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
 
 const Update = styled.div`
     position: absolute; width:1000px; height:480px; left:275px; top:150px; padding:50px; 
@@ -29,6 +30,8 @@ const Submit = styled.button`
 `
 
 function PostUpdate(props) {
+    const location=useLocation();
+
     const [Data, setData] = useState([]);
     const [Inputs, setInputs] = useState({
         title: props._title,
@@ -53,20 +56,23 @@ function PostUpdate(props) {
             else if(content === '')
                 alert("내용을 입력하세요.");
             else {
-                axios(
-                  {
-                    url: `${props.postId}/update`,
-                    method: 'post',
-                    data: {postId: props.postId, title:title, content:content, id:props.ID, Date:new Date(), View:props.View },
-                    baseURL: 'http://localhost:8080',
-                  }
-                ).then(function (response) {
-                    setData(response.data);
-                    //alert("성공")
-                }).catch(function (error) {
-                    //alert(error);
-                });
-                alert("게시글이 수정되었습니다.");
+                  //console.log(location.state.postId);
+                 // console.log(new Date().toISOString().slice(0, 19).replace('T', ' '));
+                     
+                  axios.post(`/agora/${location.state.postId}/update`,
+                    {
+                        postId: props._postId,
+                        id:props._id,
+                        title:title,
+                        contents:content,
+                        //postTime:new Date().toISOString().slice(0, 19).replace('T', ' '),
+                        //hitCount:3
+                    }
+                ).then(response=>setData(response.data),
+                         alert("성공"))
+                    .catch(error=>alert(error));
+                    //console.log();
+     
                 //redirect
                 e.preventDefault();
             }
@@ -84,6 +90,11 @@ function PostUpdate(props) {
             </Update>
         </div>
     );
+
+    console.log(content);
+
+
+
 }
 
 export default PostUpdate;
