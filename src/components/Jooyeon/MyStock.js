@@ -63,7 +63,7 @@ const DiffTitle = styled.div`
 const Diff = styled.div`
     position: absolute; left:550px; width: 250px; 
     display:flex; justify-content:center;
-    color: ${props => (props.dif > 0) ? 'red' : 'skyblue'};
+    color: ${props => (props.dif > 0) ? 'red' : props.dif<0?'skyblue':'gray'};
 `
 
 const Count = styled.div`
@@ -132,8 +132,7 @@ function MyStock(props){
                 return '▲';
             else if(p < 0)
                 return '▼';
-            else   
-                return '-';
+
         }
         return(
             <div>
