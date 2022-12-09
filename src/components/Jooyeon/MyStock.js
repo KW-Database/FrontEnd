@@ -1,10 +1,8 @@
-import React, { useState, useEffect }from 'react';
+import React, { useState }from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import styled from 'styled-components';
 import SearchBar from '../Jiwoo/SearchBar';
 import Pagination from 'react-js-pagination';
-import mywallet from '../../Json/mywallet'
 
 const ListLayer = styled.div`
     display:flex; justify-content:center; 
@@ -123,8 +121,7 @@ function MyStock(props){
         items*(page-1),
         items*(page-1) + items
     ).map((pro)=>{
-        const Move = () => { 
-            console.log(pro)           
+        const Move = () => {            
             navigate(`/${UserID}/exchange`, {state:{
                 UserID: UserID, itemCode:pro.itemCode, itemName:pro.itemName
             }});
@@ -143,7 +140,7 @@ function MyStock(props){
                 <Company onClick={Move}>
                     <Name>{pro.itemName.toLocaleString('en-AU')}</Name>
                     <Price>{(pro.appraisal/pro.itemNumber).toLocaleString('en-AU')}</Price>
-                    <Diff dif={pro.totalRate}>{Arrow(pro.totalRate)} {((pro.appraisal - pro.purchase)/pro.itemNumber).toLocaleString('en-AU')} ({(pro.totalRate).toFixed(2)}%)</Diff>  
+                    <Diff dif={pro.totalRate}>{Arrow(pro.totalRate)} {((pro.appraisal - pro.purchase)/pro.itemNumber).toFixed(2).toLocaleString('en-AU')} ({(pro.totalRate).toFixed(2)}%)</Diff>  
                     <Count>{pro.itemNumber}</Count>
                 </Company>
             </div>

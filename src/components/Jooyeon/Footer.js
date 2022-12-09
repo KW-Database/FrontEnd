@@ -13,13 +13,23 @@ const Footer_ = styled.div`
 function footer () {
     const HandleClick = () => {
         //axios - post로 DB에 채팅정보 담기게
-        alert("채팅");
+        /*axios.post('/exchange/chat', {params: {
+            itemCode: props.itemCode
+        }}).then(response => {
+            setChat(response.data)
+        })
+        .catch(error => console.log(error));*/
     }
 
     const onSubmitSearch = (e) => {
         if (e.key === "Enter") {
           //axios - post DB에 채팅정보 담기게
-          alert("채팅");
+          /*axios.get('/exchange/chat', {params: {
+            itemCode: props.itemCode
+        }}).then(response => {
+            setChat(response.data)
+        })
+        .catch(error => console.log(error));*/
         }
       };
     return(

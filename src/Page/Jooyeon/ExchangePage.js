@@ -8,9 +8,16 @@ import Exchange_graph from '../../components/Jooyeon/Exchange';
 import BuySell from '../../components/Jooyeon/BuySell';
 import Chatting from '../../components/Jooyeon/Chatting';
 import StockByAge from '../../components/Jooyeon/StockByAge';
+import CompanyInfo from '../../components/Jooyeon/Company_info';
+import Share_holder from '../../components/Jooyeon/Shareholder';
+
+const Background = styled.div`
+    position:absolute; top:20px; width:1560px; height:960px; 
+    background-color:#e7e7e7; 
+`
 
 const Exchange = styled.div`    
-    position: absolute; width:1000px; height:400px; left:50px; top:20px; 
+    position: absolute; width:1000px; height:400px; left:50px; top:90px; 
     display:flex; justify-content: center; background-color:white;
     border-radius:5px;  box-shadow:3px 3px lightgray;
 `
@@ -33,45 +40,61 @@ const Info = styled.div`
 `
 
 const BuySell_layer = styled.div`    
-    position: absolute; width:1000px; height:210px; left:50px; top:430px; 
+    position: absolute; width:1000px; height:210px; left:50px; top:500px; 
     display:flex; justify-content: center; background-color:white;
     border-radius:5px; box-shadow:3px 3px lightgray;
 `
 
+const Company_layer = styled.div`    
+    position: absolute; width:1000px; height:210px; left:50px; top:720px; 
+    display:flex; justify-content: center; background-color:white;
+    border-radius:5px; box-shadow:3px 3px lightgray;
+`
+
+const Company_info = styled.div`
+    position:absolute; left:0px; top:5px; 
+    width:500px; height:200px;
+    border-right:1px solid black;
+`
+
+const Shareholder = styled.div`
+    position:absolute; left:500px; top:5px;
+    width:500px; height:200px;
+`
+
 const Chat_layer = styled.div`
-    position: absolute; width:400px; height:610px; left:1100px; top:20px; 
+    position: fixed; width:400px; height:610px; left:1080px; top:100px; 
     display:flex; justify-content: center; background-color:white; 
     border-radius:5px; box-shadow:3px 3px lightgray;
 `
 
-const price = 35.65;
-
 function ExchangePage () {
     const [Data, setData] = useState([]);
+    const [Chat, setChat] = useState([]);
     const location = useLocation();
     useEffect(() => {
-        /*var obj_par = JSON.parse(obj_str);
-        console.log(obj_str);
-        /*let map = new Map([
-            ["id", "kiki"],
-            ["itemCode", location.state.itemCode]
-        ]);*/
-        //obj.set("id", "kiki");
-        //obj.set("itemCode", location.state.itemCode);
-        //const obj = Object.fromEntries(map)
         axios.get('/exchange', {params:{
             id: location.state.UserID,
             itemCode: location.state.itemCode
         }}).then(response => setData(response.data))
         .catch(error => console.log(error));
 
-        axios.get('/exchange').then(response => setData(response.data))
+        axios.get('/exchange/renewChat',{params: {
+            itemCode: location.state.itemCode
+        }}).then(response => setChat(response.data))
         .catch(error => console.log(error));
-    }, []);
+    }, [Data]);
 
-    //{"id": "jiwoo", "itemCode": "000050"}
+    setTimeout(function run() {
+        //axios - get으로 데이터 동기화
+        axios.get('/exchange/renewChat',{params: {
+            itemCode: location.state.itemCode
+        }}).then(response => setChat(response.data))
+        .catch(error => console.log(error));
+        setTimeout(run, 5000);
+      }, 5000);
 
-    if(JSON.stringify(Data)==="[]"){
+    if(JSON.stringify(Data)==="[]" || JSON.stringify(Data)==="[]"){
         return (
             <div>
                 <UpperLayer></UpperLayer>
@@ -82,15 +105,19 @@ function ExchangePage () {
         return(
             <div className="Page">
                 <UpperLayer></UpperLayer>
-                <div className="Background">
+                <Background>
                     <Exchange>
                         <Title><Exchange_title Data={Data} itemName={location.state.itemName}/></Title>
                         <Graph><Exchange_graph Data={Data} itemName={location.state.itemName}/></Graph>
                         <Info><StockByAge Data={Data.holderAge}/></Info>
                     </Exchange>
                     <BuySell_layer><BuySell Data={Data} UserID={location.state.UserID}/></BuySell_layer>
-                    <Chat_layer><Chatting title="코스피" /></Chat_layer>
-                </div>
+                    <Company_layer>
+                        <Company_info><CompanyInfo Data={Data.companyInfo.companySummary} /></Company_info>
+                        <Shareholder><Share_holder /></Shareholder>
+                    </Company_layer>
+                    <Chat_layer><Chatting UserID={location.state.UserID} itemCode={location.state.itemCode} title={location.state.itemName} Chat={Chat} /></Chat_layer>
+                </Background>
             </div>
         );
     }   
