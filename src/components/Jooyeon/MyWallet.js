@@ -76,7 +76,7 @@ function MyWallet(props){
                 <Buy>총 매수 <Value>{props.Data.totalPurchase.toLocaleString('en-AU')}</Value></Buy>
                 <Profit>평가손익 <Value>{(props.Data.totalAppraisal-props.Data.totalPurchase).toLocaleString('en-AU')}</Value></Profit><p />
                 <Earning>총 평가 <Value> {props.Data.totalAppraisal.toLocaleString('en-AU')}</Value></Earning>
-                <EarningRatio>수익률 <Value>{(mywallet.totalRate).toFixed(2)}%</Value></EarningRatio>
+                <EarningRatio>수익률 <Value>{(props.Data.totalRate).toFixed(2)}%</Value></EarningRatio>
             </WalletTable>
         </Layer>
         
