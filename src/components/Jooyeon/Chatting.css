@@ -1,5 +1,5 @@
 .title_layer {
-    width:400px; background-color: rgb(171, 227, 249);
+    width:400px; background-color: rgb(171, 227, 249); border-bottom:3px solid gray;
     border-radius:5px;
 }
   
@@ -22,7 +22,7 @@
 
 .my-message{
     position:relative; left:5%; width:50%;
-    margin-right: 5%;
+    margin-right: 7%;
     margin-left: auto;
     text-align: right;
 }

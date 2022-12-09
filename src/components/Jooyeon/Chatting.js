@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './Chatting.css';
 import { Icon } from 'react-icons-kit';
 import { refresh } from 'react-icons-kit/fa/refresh'
@@ -6,33 +7,28 @@ import { Navbar } from 'react-bootstrap';
 import Footer from './Footer';
 import ChatLog from './ChatLog';
 
-const UserID = "jiwoo0629";
-
 function Chatting (props) {
-    const [message, setMessage] = useState([
-        {contents:"hi", id:"gwon99", posttime:"2022-12-03 14:47:03"},
-        {contents:"hi", id:"jiwoo0629", posttime:"2022-12-03 14:47:30"},
-        {contents:"who r u", id:"gwon99", posttime:"2022-12-03 14:48:03"},
-        {contents:"I'm Jiwoo", id:"jiwoo0629", posttime:"2022-12-03 14:48:30"},
-        {contents:"Oh, I'm Jiwon", id:"gwon99", posttime:"2022-12-03 14:49:25"},
-        {contents:"hi", id:"kiki-daehakseng", posttime:"2022-12-03 14:49:57"},
-        {contents:"bye", id:"leeli99", posttime:"2022-12-03 14:49:15"},
-        {contents:"Okay", id:"jiwoo0629", posttime:"2022-12-03 14:50:27"}
-    ])
-
-    const getMessage = (contents, id, time) =>{
-      setMessage((current) => [...current,({contents:contents, id:id, time:time})])
-    }
-
+    const [Chat, setChat] = useState(props.Chat);
     function DataRefresh () {
         //axios - get으로 데이터 동기화
-        alert("동기화");
+        axios.get('/exchange/renewChat', {params: {
+            itemCode: props.itemCode
+        }}).then(response => {
+            setChat(response.data)
+        })
+        .catch(error => console.log(error));
     }
 
     setTimeout(function run() {
         //axios - get으로 데이터 동기화
-        setTimeout(run, 5000);
-      }, 5000);
+        axios.get('/exchange/renewChat', {params: {
+            itemCode: props.itemCode
+        }}).then(response => {
+            setChat(response.data)
+        })
+        .catch(error => console.log(error));
+        setTimeout(run, 30000);
+      }, 1000);
 
     return(
         <div>
@@ -42,8 +38,8 @@ function Chatting (props) {
                 </Navbar.Brand>
                 <Icon icon={refresh} className="refreshButton" size="30" onClick={DataRefresh} />
             </Navbar>
-            <ChatLog UserID = {UserID} message = {message} />
-            <Footer setMessage = {getMessage}/>
+            <ChatLog UserID = {props.UserID} message = {Chat} />
+            <Footer />
         </div>
     );
 }

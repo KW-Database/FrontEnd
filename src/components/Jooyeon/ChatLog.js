@@ -25,7 +25,7 @@ function ChatLog(props) {
                             <Toast bg = 'info' className = "my-message">
                               <Toast.Body>{item.contents}</Toast.Body>
                             </Toast> 
-                            <div className = "my_sendtime">{item.posttime}</div>
+                            <div className = "my_sendtime">{item.postTime}</div>
                           </div> 
                       )
                       : (
@@ -34,7 +34,7 @@ function ChatLog(props) {
                             <Toast bg = 'light' className = "other-message">
                                 <Toast.Body>{item.contents}</Toast.Body>
                             </Toast>
-                            <div className = "other_sendtime">{item.posttime}</div>
+                            <div className = "other_sendtime">{item.posTtime}</div>
                           </div> 
                       )
                   ))  
