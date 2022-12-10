@@ -56,7 +56,7 @@ function UpperLayer() {
                         <Link to={`/${Id}/mywallet`} state={{UserID:Id}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 보유자산</h2></Link>
                         <Link to={`/${Id}/likelist`} state={{UserID:Id}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 관심주식</h2></Link>
                         <Link to="/board" state={{UserID:Id}} style={{ textDecoration : 'none', color : 'gray' }}><h2>토론 게시판</h2></Link>
-                        <Link to={`/${Id}/profile`} state={{UserID:Id}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 프로필</h2></Link>
+                        <Link to={`/${Id}/profile`} state={{id:Id, UserID:Id}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 프로필</h2></Link>
                     </Title>
                     <Logout id="btn-login" className="btn btn-primary" >로그아웃</Logout>
                     </Upper_layer>
