@@ -5,7 +5,7 @@ import EachPost from './EachPost';
 import styled from 'styled-components';
 import SearchBar from './SearchBar';
 import Pagination from 'react-js-pagination';
-import Board_Data from '../../Json/Board.json';
+//import Board_Data from '../../Json/Board.json';
 
 const Board_block = styled.div`
     position: absolute; left:280px; width:1040px;
@@ -30,7 +30,7 @@ const Post = styled.button`
     box-shadow:3px 3px lightgray;
 `
 
-const List = styled.div`
+const MainList = styled.div`
     position: absolute; width:1040px; top: 240px; 
     display:flex; justify-content: center; background-color:#e7e7e7;
 `
@@ -95,12 +95,13 @@ const PaginationBox = styled.div`
   ul.pagination li a.active { color: blue; }
 `
 
-function Board () {
-    const [Data, setData] = useState([]);
+function Board ({List}) {
+    //const [list, setList] = useState([]);
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
     const items = 5;
-    
+   
+
     const handlePageChange = (page) => { 
         setPage(page); 
     };
@@ -109,25 +110,11 @@ function Board () {
         setSearch(e.currentTarget.value);
     };
 
-    useEffect(() => {
-        axios(
-            {
-                url: `/agora/`,
-                method: 'get',
-                baseURL: 'http://localhost:8080',
-            }
-          ).then(function (response) {
-            setData(response.data);
-            //alert("성공")
-          }).catch(function (error) {
-            //alert(error);
-        });
-    }, []);
 
-    let filtered_data = Board_Data.filter((val)=>{
+    let filtered_data = List.filter((val)=>{ //Board_Data
         if(search === "") {
             return val;
-        } else if(val.Title.toLowerCase().includes(search.toLowerCase())) {
+        } else if(val.title.toLowerCase().includes(search.toLowerCase())) {
             return val;
         }
     })
@@ -135,16 +122,18 @@ function Board () {
     let eachPost = filtered_data.slice(
         items*(page-1),
         items*(page-1) + items
-    ).map((v) => (<EachPost key={v.postId}
-        postId={v.postId} Title={v.Title} Content={v.Content} ID={v.ID} Date={v.Date} View={v.View} 
+        
+    ).reverse().map((v) => (<EachPost key={v.postId}
+        postId={v.postId} Title={v.title} Content={v.contents} ID={v.id} Date={v.postTime.replace('T', ' ')} View={v.hitCount} 
     />));
+
     
     return(
         <Board_block>
             <Title>토론 게시판</Title>
             <Search><SearchBar search={search} onChange={onChange} /></Search>
             <Link to="/board/write" style={{ textDecoration : 'none', color : 'black' }}><Post value="Post">글 작성</Post></Link>
-            <List>
+            <MainList>
                 <글ID>번호</글ID><_Title>제목</_Title><ID>아이디</ID><Date>날짜</Date><View>조회수</View><p />
                 <BoardList>
                     {eachPost}<p />
@@ -158,7 +147,7 @@ function Board () {
                       </Pagination>
                     </PaginationBox>       
                 </BoardList>
-            </List>
+            </MainList>
         </Board_block>
     );
 }

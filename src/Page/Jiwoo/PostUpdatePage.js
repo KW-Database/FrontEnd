@@ -13,13 +13,14 @@ const Title = styled.div`
 
 function PostUpdatePage () {
     const location = useLocation();
-       
+    //console.log(location.state.Title);
     return(
         <div className="Page">
             <UpperLayer></UpperLayer>
             <div className="Background">
                 <Title>게시글 수정</Title>
-                <PostUpdate _title={location.state.Title} _content={location.state.Content} />
+                <PostUpdate _title={location.state.Title} _content={location.state.Content} 
+                            _id={location.state.ID} _postId={location.state.postId}/>
             </div>
         </div>
     );
