@@ -36,20 +36,13 @@ function LoginPage () {
     }
 
     const HandleLogin = () => {
-        axios(
-            {
-                url: '/loginProcess',
-                method: 'post',
-                data: {
+        axios.post('/user/login', {
                     username: ID, 
                     password: PW
-                },
-                baseURL: 'http://localhost:8080',
-            }
-          ).then(function (response) {
-            //alert("성공")
-          }).catch(function (error) {
-            //alert(error);
+        }).then( response => {
+            console.log(response)
+        }).catch( error => {
+            console.log(error)
         });
     }
         return (

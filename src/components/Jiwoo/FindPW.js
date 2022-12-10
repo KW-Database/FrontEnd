@@ -45,28 +45,19 @@ function FindPW () {
 
     const handleClick = (e) => {
         //ID, Name, Email, PhoneNum의 조합이 DB 안에 존재하면 해당하는 PW 출력, 아니면 에러메시지 출력
-        axios(
-            {
-                url:`/findPW`,
-                method:'get',
-                data:{
-                    id:ID,
-                    username: Name,
-                    email:Email,
-                    phone_number:PhoneNum
-                }, //??adminauth
-                baseURL:'http://localhost:8080',
+        axios.get('/user/findPW', {params: {
+                id: ID,
+                username: Name,
+                email: Email,
+                phone_number: PhoneNum.toString()
             }
-        ).then(function (response) {
+        }).then( response => {
+            console.log(response);
             setData(response.data);
-            //alert("성공") **해당 비밀번호 출력
-        }).catch(function (error) {
-            //alert(error);
-        });
-        
-        
-        alert("비밀번호 찾기");
-        Navigate('/');
+            alert("찾으시는 비밀번호는 " + response.data + " 입니다." );
+        }).catch( error =>
+            console.log(error)
+        );    
     }
     
     return (
