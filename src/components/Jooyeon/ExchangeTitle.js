@@ -9,12 +9,14 @@ const Likebutton = styled.button`
     background-color:${props => (props.liked === 1) ? 'lightgreen' : 'white'}; 
     border:0; border-radius:5px;
     font-size:20px; font-weight:700;
+    font-family: 'Pretendard-Regular';
 `
 
 const Name = styled.div`
     position:absolute; top:15px; left:50px; width:250px; 
     display:flex; align-items: center; 
     font-size:20px; font-weight:600; text-align: left; 
+    font-family: 'Pretendard-Regular';
 `
 
 const Price = styled.div`
@@ -22,6 +24,7 @@ const Price = styled.div`
     display:flex; align-items: center; 
     font-size:25px; font-weight:600; text-align: left; 
     border-right:1px solid gray;
+    font-family: 'Pretendard-Regular';
 `
 
 const Rate = styled.div`
@@ -32,6 +35,7 @@ const Info = styled.div`
     position:absolute; top:15px; left:500px; width:600px; height:50px;
     display:flex; align-items: center;
     font-size:15px;
+    font-family: 'Pretendard-Regular';
 `
 
 function Exchange_title ({Data, Like, UserID, itemName}) {

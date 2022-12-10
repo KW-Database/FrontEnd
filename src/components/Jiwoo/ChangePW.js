@@ -9,6 +9,7 @@ const Change = styled.div`
     position:absolute; top:90px; width:600px; height:550px; 
     padding:10px 50px 10px 50px; border:5px solid gray; border-radius:15px; 
     justify-content:center; align-items:center; 
+    font-family: 'Pretendard-Regular';
 `
 
 const Change_write = styled.input`

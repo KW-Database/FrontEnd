@@ -10,6 +10,7 @@ const User_Info = styled.div`
     padding-left:150px; text-align:left; 
     font-size: 24px; background-color:white;
     border-radius:10px; box-shadow:5px 5px lightgray;
+    
 `
 
 const Title = styled.div`
@@ -19,6 +20,7 @@ const Title = styled.div`
 
 const Info_block = styled.div`
     position: absolute; top: 100px;
+    font-family: 'Pretendard-Regular';
 `
 
 const Input_text = styled.input`

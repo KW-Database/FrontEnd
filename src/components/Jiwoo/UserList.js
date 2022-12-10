@@ -16,6 +16,7 @@ const Title = styled.div`
 
 const ListLayer = styled.div`
     position: absolute; left:300px; width:1000px;
+    font-family: 'Pretendard-Regular';
 `
 
 const List = styled.div`

@@ -9,6 +9,7 @@ const Footer_ = styled.div`
     position:absolute; width:100%; height:60px; top:540px;
     display: flex; justify-content: center; align-items:center; 
     border:1px; padding-left:10px;
+    font-family: 'Pretendard-Regular';
 `
 
 function Footer (props) {

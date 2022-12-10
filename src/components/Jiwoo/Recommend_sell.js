@@ -5,6 +5,7 @@ import EachRecommend from './EachRecommend';
 const List = styled.div`
     display:flex; justify-content: center; 
     font-size:15px;
+    font-family: 'Pretendard-Regular';
 `
 
 const RecommendList = styled.div`

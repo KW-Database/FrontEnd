@@ -11,6 +11,7 @@ const Title = styled.div`
     display:flex; justify-content: center; align-items: center; 
     border-bottom: 1px solid black;
     font-weight: 500; font-size: 40px; 
+    font-family: 'Pretendard-Regular';
 `
 
 const ListLayer = styled.div`

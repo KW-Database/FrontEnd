@@ -6,6 +6,7 @@ import Pagination from 'react-js-pagination';
 
 const ListLayer = styled.div`
     display:flex; justify-content:center; 
+    font-family: 'Pretendard-Regular';
 `
 const List = styled.div`
     position: absolute; width:1040px; top: 250px;

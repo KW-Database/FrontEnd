@@ -8,6 +8,7 @@ import { home } from 'react-icons-kit/icomoon/home';
 const Upper_layer = styled.div`
     position: fixed; z-index:1; width: 1540px; height: 70px; left: 0px; top: 0px;
     display: flex; align-items: center; background-color:white;
+    font-family: 'Ycomputer-Regular';
 `
 
 const Title = styled.div`

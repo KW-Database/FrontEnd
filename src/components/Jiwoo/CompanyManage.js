@@ -9,6 +9,7 @@ import company from '../../Json/Companylist.json';
 
 const Board_block = styled.div`
     position: absolute; left:280px; width:1040px;
+    font-family: 'Pretendard-Regular';
 `
 
 const Title = styled.div`
