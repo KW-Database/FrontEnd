@@ -138,7 +138,7 @@ function JoinForm () {
                 <option value="F">여</option>
             </Join_select>
             <p />
-            <Sign_up type="submit" value="SIGN UP" id="sign-up" onClick={handleSubmit} />
+            <Sign_up type="submit" value="회원가입" id="sign-up" onClick={handleSubmit} />
             <p />
             <br />
             Already have an Account? <Link to='/login'>Sign In</Link>    
