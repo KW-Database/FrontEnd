@@ -17,7 +17,7 @@ const Title = styled.div`
 const Logout = styled.button`
     position: absolute; left: 1400px; top: 15px; width:100px; height:40px;    
     border:0; border-radius:20px; 
-    font-size:20px; color:white; background-color:skyblue;
+    font-size:18px; color:white; background-color:skyblue;
     box-shadow:2px 2px lightgray;
 `
 
@@ -49,16 +49,18 @@ function UpperLayer() {
         );
     } else {
         return (
-            <Upper_layer>
-                <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Icon icon={home} id="HomeButton" size="50" /></Link>
-                <Title>
-                    <Link to={`/${UserID}/mywallet`} state={{UserID:UserID}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 보유자산</h2></Link>
-                    <Link to={`/${UserID}/likelist`} state={{UserID:UserID}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 관심주식</h2></Link>
-                    <Link to="/board" style={{ textDecoration : 'none', color : 'gray' }}><h2>토론 게시판</h2></Link>
-                    <Link to={`/${UserID}/profile`} state={{UserID:UserID}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 프로필</h2></Link>
-                </Title>
-                <Link to="/login" style={{ textDecoration : 'none', color : 'gray' }}><Logout value="logout">로그아웃</Logout></Link>
-            </Upper_layer>
+                <form action="/logout" method="post">
+                    <Upper_layer>
+                    <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Icon icon={home} id="HomeButton" size="50" /></Link>
+                    <Title>
+                        <Link to={`/${UserID}/mywallet`} state={{UserID:UserID}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 보유자산</h2></Link>
+                        <Link to={`/${UserID}/likelist`} state={{UserID:UserID}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 관심주식</h2></Link>
+                        <Link to="/board" style={{ textDecoration : 'none', color : 'gray' }}><h2>토론 게시판</h2></Link>
+                        <Link to={`/${UserID}/profile`} state={{UserID:UserID}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 프로필</h2></Link>
+                    </Title>
+                    <Logout id="btn-login" className="btn btn-primary" >로그아웃</Logout>
+                    </Upper_layer>
+                </form>
         ); 
     }
 }
