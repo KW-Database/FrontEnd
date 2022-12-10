@@ -71,22 +71,22 @@ function PostView () {
             });
         };
     
-        if(location.state.User === "admin") {
+        if(location.state.User === location.state.ID) {
+            //console.log(Data.id);
+             return(
+                 <div>
+                     <Button1 onClick={goUpdate}>글 수정</Button1>
+                     <Button2 onClick={handleDelete}>글 삭제</Button2>
+                     <Link to='/board' state={{UserID:location.state.User}} style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
+                 </div>
+                  
+             );
+         } else if(location.state.User === "admin") {
             return(
                 <div>
                     <Button2 onClick={handleDelete}>글 삭제</Button2>
                     <Link to='/board' state={{UserID:location.state.User}} style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
                 </div>
-            );
-        } else if(location.state.User === location.state.ID) {
-           //console.log(Data.id);
-            return(
-                <div>
-                    <Button1 onClick={goUpdate}>글 수정</Button1>
-                    <Button2 onClick={handleDelete}>글 삭제</Button2>
-                    <Link to='/board' state={{UserID:location.state.User}} style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
-                </div>
-                 
             );
         } else {
             return(
