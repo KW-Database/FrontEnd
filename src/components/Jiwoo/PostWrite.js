@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-import { redirect } from 'react-router-dom';
+import { Navigate, redirect } from 'react-router-dom';
 
 const Write = styled.div`
     position: absolute; width:1000px; height:480px; left:275px; top:150px; padding:50px; 
@@ -27,9 +28,10 @@ const Submit = styled.button`
     font-size:20px; color:white; background-color:skyblue;
 `
 
-const UserInfo = {ID: "id_a"}; //
+const UserInfo = {ID: "kiki"}; //
 
 function PostWrite (props) {
+    const navigate = useNavigate();
     const [Data, setData] = useState([]);
     const [Inputs, setInputs] = useState({
         title: '',
@@ -54,20 +56,17 @@ function PostWrite (props) {
             else if(content === '')
                 alert("내용을 입력하세요.");
             else {
-                axios.post(`/agora/write`, 
-                    {
-                       // post_id:500,
-                        id:UserInfo.ID,
-                        title:title,
-                        contents:content,
+                axios.post(`/agora/write`, {
+                        id: UserInfo.ID,
+                        title: title,
+                        contents: content,
                         postTime:new Date().toISOString().slice(0, 19),//.replace('T', ' '),
                         hitCount:0
-                    }
-
-                )
-                .then(response=>setData(response.data),
-                alert("성공"))
-           .catch(error=>alert(error));
+                }).then(response=> {
+                    console.log(response.data)
+                    navigate('/board');
+                })
+                .catch(error=>console.log(error));
                 alert("게시글이 등록되었습니다.");
                 //redirect
                 e.preventDefault();

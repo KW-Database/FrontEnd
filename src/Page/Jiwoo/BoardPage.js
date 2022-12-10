@@ -7,6 +7,8 @@ const Board_Page = styled.div`
     display:flex; justify-content:center;
 `
 
+
+
 function BoardPage(){
 //class BoardPage extends Component {
     const [list, setData] = useState([]);

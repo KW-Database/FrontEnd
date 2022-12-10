@@ -83,7 +83,7 @@ function ExchangePage () {
             itemCode: location.state.itemCode
         }}).then(response => setChat(response.data))
         .catch(error => console.log(error));
-    }, [Data]);
+    }, []);
 
     setTimeout(function run() {
         //axios - get으로 데이터 동기화

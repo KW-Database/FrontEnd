@@ -119,13 +119,16 @@ function Board ({List}) {
         }
     })
 
+    var i=0;
     let eachPost = filtered_data.slice(
         items*(page-1),
-        items*(page-1) + items
-        
-    ).reverse().map((v) => (<EachPost key={v.postId}
-        postId={v.postId} Title={v.title} Content={v.contents} ID={v.id} Date={v.postTime.replace('T', ' ')} View={v.hitCount} 
-    />));
+        items*(page-1) + items    
+    ).reverse().map((v) => {
+        i=i+1;
+        return(<EachPost key={v.postId}
+            num={items*(page-1)+i} postId={v.postId} Title={v.title} Content={v.contents} ID={v.id} Date={v.postTime.replace('T', ' ')} View={v.hitCount} 
+        />)
+    });
 
     
     return(
