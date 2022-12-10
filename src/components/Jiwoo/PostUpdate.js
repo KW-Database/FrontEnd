@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 const Update = styled.div`
     position: absolute; width:1000px; height:480px; left:275px; top:150px; padding:50px; 
@@ -31,6 +32,7 @@ const Submit = styled.button`
 
 function PostUpdate(props) {
     const location=useLocation();
+    const navigate = useNavigate();
 
     const [Data, setData] = useState([]);
     const [Inputs, setInputs] = useState({
@@ -66,13 +68,22 @@ function PostUpdate(props) {
                         title:title,
                         contents:content,
                         //postTime:new Date().toISOString().slice(0, 19).replace('T', ' '),
-                        //hitCount:3
+                        hitCount: props._view
                     }
-                ).then(response=>setData(response.data),
-                         alert("성공"))
-                    .catch(error=>alert(error));
-                    //console.log();
-     
+                ).then(response=>{ 
+                    console.log(response.data) 
+                    navigate(`/board/${props._postId}`, {
+                        state: {
+                            postId : props._postId,
+                            title : title,
+                            content : content,
+                            ID : props._id,
+                            Date : new Date().toISOString().slice(0, 19).replace('T', ' '),
+                            View : props._view
+                        },
+                    });
+                })
+                .catch(error=>alert(error));     
                 //redirect
                 e.preventDefault();
             }

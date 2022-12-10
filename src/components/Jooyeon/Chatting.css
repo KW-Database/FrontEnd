@@ -12,10 +12,12 @@
 }
 
 .input-form {
+    position:relative; top:5px; 
     width:70%; height:90%; 
 }
 
 .send-icon {
+    position:relative; top:5px;
     width:40px; height:40px; 
     margin-left:10px; margin-right:10px;
 }
