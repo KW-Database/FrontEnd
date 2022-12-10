@@ -72,7 +72,6 @@ function SearchResult() {
     const location = useLocation();
     
     useEffect(() => {
-        console.log(location.state.result)
         axios.get(`search`, {params:{
             name: location.state.result
         }})
@@ -81,7 +80,6 @@ function SearchResult() {
     }, []);
 
     const Value = location.state.result;
-    console.log(Value);
 
     const [page, setPage] = useState(1);
     const items = 5;
@@ -104,7 +102,7 @@ function SearchResult() {
     ).map((v) => {
         i=i+1;
         return(<EachResult key={v.itemCode} 
-            ID={items*(page-1)+i} itemCode={v.itemCode} itemName={v.itemName}  
+            User={location.state.User} ID={items*(page-1)+i} itemCode={v.itemCode} itemName={v.itemName}  
         />);  
     });
     

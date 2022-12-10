@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import { Alert } from 'bootstrap';
+import React from 'react';
+import {useLocation} from 'react-router-dom';
 import styled from 'styled-components';
 import UpperLayer from '../../components/Jiwoo/UpperLayer';
 import UserInfo from '../../components/Jiwoo/UserInfo';
@@ -8,17 +10,16 @@ const Background = styled.div`
     background-color:#daedf4;
 `
 
-class UserInfoPage extends Component {
-    render() {
-        return(
-            <div className="Page">
-                <UpperLayer></UpperLayer>
-                <Background>
-                    <UserInfo />
-                </Background>
-            </div>
-        );
-    }
+function UserInfoPage () {
+    const location = useLocation();
+    return(
+        <div className="Page">
+            <UpperLayer></UpperLayer>
+            <Background>
+                <UserInfo id={location.state.id} UserID={location.state.UserID} />
+            </Background>
+        </div>
+    );        
 }
 
 export default UserInfoPage;

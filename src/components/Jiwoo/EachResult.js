@@ -23,13 +23,11 @@ const Name = styled.div`
     display:flex; text-align:left; 
 `
 
-const UserID = "kiki"
-
 function EachResult(props) {
     const navigate = useNavigate();
     const move = () => {
-        navigate(`/${UserID}/exchange`, {state:{
-            UserID: UserID, itemCode:props.itemCode, itemName:props.itemName
+        navigate(`/${props.User}/exchange`, {state:{
+            UserID: props.User, itemCode:props.itemCode, itemName:props.itemName
         }});
         //매수/매도 화면으로 이동하도록 수정
     }

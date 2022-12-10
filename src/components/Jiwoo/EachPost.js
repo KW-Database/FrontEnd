@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import axios from 'axios';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -41,21 +42,27 @@ function EachPost(props) {
     const navigate = useNavigate();
 
     const seePost = () => {
-        const view = props.View + 1;
+        axios.post(`/agora/${props.postId}`
+        ).then(response=>{ 
+            console.log(response.data)
+        })
+        .catch(error=>alert(error));  
+
         navigate(`/board/${props.postId}`, {
             state: {
+                User : props.User,
                 postId : props.postId,
                 title : props.Title,
                 content : props.Content,
                 ID : props.ID,
                 Date : props.Date,
-                View : view
+                View : props.View+1
             },
         });
     } 
     return (
         <Post onClick={seePost}>
-            <글ID>{props.postId}</글ID>  
+            <글ID>{props.num}</글ID>  
             <Title>{props.Title}</Title>  
             <ID>{props.ID}</ID>
             <Date>{props.Date}</Date>

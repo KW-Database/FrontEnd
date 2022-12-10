@@ -42,11 +42,11 @@ const Button3 = styled.button`
     font-size:20px; color:white; background-color:lightgreen;
     box-shadow:3px 3px #e7e7e7;
 `
-const UserInfo = {ID: "id_a"};
 
-function PostView (props) { 
+function PostView () { 
     const [Data, setData] = useState([]);
     const location = useLocation();
+    const navigate = useNavigate();
    // console.log(location.state.postId);
     
     useEffect(() => {  //{postId} 연결
@@ -57,41 +57,40 @@ function PostView (props) {
 
 
     function DiffFunc(location) {
-      
-
-        const navigate = useNavigate();
         const goUpdate = () => {
             // 두번재 인자의 state 속성에 원하는 파라미터를 넣어준다. (id, job을 넣어봤다)
             navigate(`/board/${location.state.postId}/update`, {
               state: {
+                User:location.state.User,
                 postId:location.state.postId,
                 ID:location.state.ID,
                 Title: location.state.title,
-                Content: location.state.content
+                Content: location.state.content,
+                View: location.state.View
               }
             });
         };
     
-        if(UserInfo.ID === "admin") {
+        if(location.state.User === location.state.ID) {
+            //console.log(Data.id);
+             return(
+                 <div>
+                     <Button1 onClick={goUpdate}>글 수정</Button1>
+                     <Button2 onClick={handleDelete}>글 삭제</Button2>
+                     <Link to='/board' state={{UserID:location.state.User}} style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
+                 </div>
+                  
+             );
+         } else if(location.state.User === "admin") {
             return(
                 <div>
                     <Button2 onClick={handleDelete}>글 삭제</Button2>
-                    <Link to='/board' style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
+                    <Link to='/board' state={{UserID:location.state.User}} style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
                 </div>
-            );
-        } else if(UserInfo.ID === location.state.ID) {
-           //console.log(Data.id);
-            return(
-                <div>
-                    <Button1 onClick={goUpdate}>글 수정</Button1>
-                    <Button2 onClick={handleDelete}>글 삭제</Button2>
-                    <Link to='/board' style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
-                </div>
-                 
             );
         } else {
             return(
-                <Link to='/board' style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
+                <Link to='/board' state={{UserID:location.state.User}} style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
             );
         }
     }
@@ -100,13 +99,16 @@ function PostView (props) {
 
         if (window.confirm('글을 삭제하시겠습니까?'))
             {
-            
                 axios.delete(`/agora/${location.state.postId}/delete`, { //"/{postId}/delete" 연결
                     data:{
                         postId: location.state.postId
                     }
+                }).then(response=>{
+                    console.log(response)
+                    navigate(`/board`, {state:{
+                        UserID: location.state.User
+                    }})
                 })
-              
                 alert("게시글이 삭제되었습니다.")
                 e.preventDefault();
             } else {

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import mywallet from '../../Json/mywallet'
 
 const Title=styled.div`
     position: absolute; width: 560px; height: 80px; top: 20px;

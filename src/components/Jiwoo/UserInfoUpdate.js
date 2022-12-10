@@ -40,7 +40,7 @@ const Button = styled.button`
 
 
 function UserInfoUpdate (props) {
-    const [Data, setData] = useState([]);
+    const navigate = useNavigate();
     const [Inputs, setInputs] = useState({
         ID: props._ID,
         Name: props._Name,
@@ -72,33 +72,27 @@ function UserInfoUpdate (props) {
                     alert("나이를 입력하세요.");
                 else if(Email === '')
                     alert("이메일을 입력하세요.");
-                else if(PhoneNum === '' || PhoneNum.length !== 13 || (PhoneNum[3] !== '-' && PhoneNum[8] !== '-'))
+                else if(PhoneNum === '' || PhoneNum.length !== 11)
                     alert("올바른 형식의 전화번호를 입력하세요.");
                 else {
-                    axios(
-                        {
-                          url: `/update`,
-                          method: 'post',
-                          data: {id: ID, pw: props.PW, name: Name, age: Age, email: Email, phoneNum: PhoneNum, sex: Sex, adminAuth: props.adminAuth},
-                          baseURL: 'http://localhost:8080',
-                        }
-                      ).then(function (response) {
-                          //alert("성공")
-                      }).catch(function (error) {
-                          //alert(error);
+                    axios.post('/profile/update', {
+                        id: ID, pw: props._PW, nickname: Name, age: Age, email: Email, phoneNumber: PhoneNum, sex: Sex, adminAuth: props._adminAuth
+                    }).then( response => {
+                        console.log(response);
+                        navigate(`/${ID}/profile`, {state: {
+                                UserID: ID,
+                                id: ID
+                            }
+                        });
+                      }).catch( error => {
+                        console.log(error)
                       });
                       alert("정보가 수정되었습니다.");
-                      //redirect
                       e.preventDefault();
                 }                
-            }
-            else
-            {
+            } else {
             // They clicked no
             }
-
-            e.preventDefault();
-            //DB에 적용하는 과정
         }
     
 

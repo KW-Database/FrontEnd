@@ -45,33 +45,27 @@ function FindPW () {
 
     const handleClick = (e) => {
         //ID, Name, Email, PhoneNum의 조합이 DB 안에 존재하면 해당하는 PW 출력, 아니면 에러메시지 출력
-        axios(
-            {
-                url:`/findPW`,
-                method:'get',
-                data:{
-                    id:ID,
-                    username: Name,
-                    email:Email,
-                    phone_number:PhoneNum
-                }, //??adminauth
-                baseURL:'http://localhost:8080',
+        axios.get('/user/findPW', {params: {
+                id: ID,
+                nickname: Name,
+                email: Email,
+                phone_number: PhoneNum.toString()
             }
-        ).then(function (response) {
+        }).then( response => {
+            console.log(response);
             setData(response.data);
-            alert("성공") //해당 비밀번호 출력
-            
-        }).catch(function (error) {
-            alert(error);
-        });
-        
-        //if exists ????
-        Navigate('/changePW', 
-           { state:{ID: ID}})   //changepw 
-        
-        alert("비밀번호 찾기");
-        Navigate('/');
-    } 
+            alert("찾으시는 비밀번호는 " + response.data + " 입니다." );
+        }).catch( error =>
+            console.log(error)
+        );    
+    }
+     //if exists ????
+     Navigate('/changePW', 
+     { state:{ID: ID}})   //changepw 
+  
+  alert("비밀번호 찾기");
+  Navigate('/');
+} 
     
     return (
         <Find>
@@ -82,7 +76,7 @@ function FindPW () {
             <p />
             <Find_write type="text" name="Email" value={Email} placeholder="이메일" onChange={handleChange} />
             <p />
-            <Find_write type="text" name="PhoneNum" value={PhoneNum} placeholder="전화번호 ( ex) 010-xxxx-xxxx )" onChange={handleChange} />
+            <Find_write type="text" name="PhoneNum" value={PhoneNum} placeholder="전화번호 ( ex) 010xxxxxxxx )" onChange={handleChange} />
             <p />
             <Find_button value="find-button" onClick={handleClick} >비밀번호 찾기</Find_button><p />
             아이디가 기억나지 않는다면? <Link to='/findID'>아이디 찾기</Link><p />

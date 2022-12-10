@@ -16,8 +16,8 @@ function UserInfoUpdatePage () {
         <div className="Page">
             <UpperLayer></UpperLayer>
             <Background>
-                <UserInfoUpdate _ID={Data.state.ID} _Name={Data.state.Name} _Age={Data.state.Age}
-                                _Email={Data.state.Email} _PhoneNum={Data.state.PhoneNum} _Sex={Data.state.Sex} />
+                <UserInfoUpdate _ID={Data.state.ID} _PW={Data.state.PW} _Name={Data.state.Name} _Age={Data.state.Age} _Email={Data.state.Email}
+                                _PhoneNum={Data.state.PhoneNum} _Sex={Data.state.Sex} _adminAuth={Data.state.AdminAuth} />
             </Background>
         </div>
     );

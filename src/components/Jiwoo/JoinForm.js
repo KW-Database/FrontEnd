@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Joinform = styled.div`
@@ -30,8 +31,9 @@ const Sign_up = styled.input`
 `
 
 function JoinForm () {
+    const navigate = useNavigate();
     const [Data, setData]=useState([]);
-    const [Dup, setDup] = useState([]);
+    const [Dup, setDup] = useState(false);
     const [Inputs, setInputs] = useState({
         ID: '',
         PW: '',
@@ -58,20 +60,21 @@ function JoinForm () {
         //-> 존재하면 dup=true, alert("아이디가 이미 존재합니다.")
         //-> 존재안하면 dup=false, alert("사용가능한 아이디입니다.")
         //
-        axios(
-            {
-                url:`/signup/DupId`,
-                method: 'get',
-                data: {id: ID},
-                baseURL: 'http://localhost:8080',
-            }
-            ).then(function (response) {
-                setDup(response.data);
-                //alert("아이디가 이미 존재합니다.")
-            }).catch(function (error) {
-                //alert("사용가능한 아이디입니다");
+        axios.get('/user/signup/DupId', {params: 
+                {id: ID}
+            }).then( response => {
+                console.log(response.data)
+                if(response.data === 'OK') {
+                    setDup(false);
+                    alert("사용 가능한 아이디입니다.");
+                } else {
+                    setDup(true);
+                    alert("아이디가 이미 존재합니다.")
+                }
+            }).catch( error => {
+                console.log(error);
             });
-        
+            
     }
     
     const handleSubmit = (e) => {
@@ -91,25 +94,24 @@ function JoinForm () {
             alert("나이를 입력하세요.");
         else if(Email === '')
             alert("이메일을 입력하세요.");
-        else if(PhoneNum === '' || PhoneNum.length !== 13 || (PhoneNum[3] !== '-' && PhoneNum[8] !== '-'))
+        else if(PhoneNum === '' || PhoneNum.length !== 11)
             alert("올바른 형식의 전화번호를 입력하세요.");
         else if(Sex === '')
             alert("성별을 선택하세요.");
         else {
             //DB에 넣는 코드 추가
-            axios(
-                {
-                    url:`/signup`,
-                    method:'post',
-                    data:{id:ID, pw:PW, name: Name, age: Age, email: Email, phoneNum: PhoneNum, sex: Sex}, //??adminauth
-                    baseURL:'http://localhost:8080',
-                }
-            ).then(function (response) {
-                //alert("성공")
-            }).catch(function (error) {
-                //alert(error);
+            axios.post('/user/signup', {
+
+                id:ID, pw:PW, nickname: Name, age: Age, email: Email, phoneNumber: PhoneNum, sex: Sex, adminAuth:"0"
+
+            }).then( response => {
+                console.log(response);
+                alert("회원가입이 완료되었습니다.");
+                navigate('/login');
+            }).catch(error => {
+                console.log(error);
             })
-            alert("회원가입이 완료되었습니다.");
+            
             e.preventDefault();
         }
     }
@@ -130,7 +132,7 @@ function JoinForm () {
             <p />
             <Join_write type="text" name="Email" value={Email} placeholder="이메일" onChange={handleChange} />
             <p />
-            <Join_write type="text" name="PhoneNum" value={PhoneNum} placeholder="전화번호 ( ex) 010-xxxx-xxxx )" onChange={handleChange} />
+            <Join_write type="text" name="PhoneNum" value={PhoneNum} placeholder="전화번호 ( ex) 010xxxxxxxx )" onChange={handleChange} />
             <p />
             <Join_select name="Sex" value={Sex}  onChange={handleChange}>
                 <option value="">성별</option>
@@ -138,7 +140,7 @@ function JoinForm () {
                 <option value="F">여</option>
             </Join_select>
             <p />
-            <Sign_up type="submit" value="SIGN UP" id="sign-up" onClick={handleSubmit} />
+            <Sign_up type="submit" value="회원가입" id="sign-up" onClick={handleSubmit} />
             <p />
             <br />
             Already have an Account? <Link to='/login'>Sign In</Link>    

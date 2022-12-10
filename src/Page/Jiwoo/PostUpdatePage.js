@@ -19,8 +19,8 @@ function PostUpdatePage () {
             <UpperLayer></UpperLayer>
             <div className="Background">
                 <Title>게시글 수정</Title>
-                <PostUpdate _title={location.state.Title} _content={location.state.Content} 
-                            _id={location.state.ID} _postId={location.state.postId}/>
+                <PostUpdate User={location.state.User} _title={location.state.Title} _content={location.state.Content} 
+                            _id={location.state.ID} _postId={location.state.postId} _view={location.state.View}/>
             </div>
         </div>
     );
