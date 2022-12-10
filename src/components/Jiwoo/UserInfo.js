@@ -53,13 +53,10 @@ const Button3 = styled.button`
 
 function UserInfo (props) {
     const [Data, setData] = useState([]);
-    const UserID = props.UserID;
-
     const navigate = useNavigate();
-
     useEffect(() => {
         axios.get('/profile/info', {params: 
-            {id: props.UserID}
+            {id: props.id}
         }).then( response => {
             setData(response.data);
             console.log(response)
@@ -68,22 +65,10 @@ function UserInfo (props) {
         });
     }, []);
 
-    /*var Info;
-    if(UserID === "admin") {
-        var i;
-        for(i=0; i<userlist.length;i++) {
-            if(state.id === userlist[i].id)
-                break;
-        }
-        Info = state;
-    } else {
-        Info = userinfo;
-    }*/
-
     const Inputs = {
         ID: Data.id,
         PW: Data.pw,
-        Name: Data.username,
+        Name: Data.nickname,
         Age: Data.age,
         Email: Data.email,
         PhoneNum: Data.phoneNumber,
@@ -98,7 +83,7 @@ function UserInfo (props) {
             printSex = "남";
         else
             printSex = "여";
-        if(UserID === "admin") {
+        if(props.UserID === "admin") {
             return(
                 <Info_block>
                     아이디
@@ -151,18 +136,19 @@ function UserInfo (props) {
     }
 
     function handleDelete (e) {
-        if(UserID === "admin") {
+        if(props.UserID === "admin") {
             if (window.confirm('회원 정보를 삭제하시겠습니까?'))
             {
                 // They clicked Yes
                 axios.delete('/profile/delete', {params:{
-                    id:props.UserID
+                    id:props.id
                 }}).then(response => {
                       console.log(response.data);
-                      //alert("성공")
+                      navigate('/admin', {state: {
+                        UserID: props.UserID
+                      }});
                 }).catch(error => {
                       console.log(error);
-                      navigate('/login');
                 });
                 alert('회원 정보가 삭제되었습니다.')
                 e.preventDefault();
@@ -180,10 +166,9 @@ function UserInfo (props) {
                     id:props.UserID
                 }}).then(response => {
                       console.log(response.data);
-                      //alert("성공")
+                      navigate('/login');
                 }).catch(error => {
                       console.log(error);
-                      navigate('/login');
                 });
                 alert('회원탈퇴가 완료되었습니다.')
                 e.preventDefault();
@@ -211,9 +196,9 @@ function UserInfo (props) {
             });
         };
     
-        if(UserID === "admin") {
+        if(props.UserID === "admin") {
             return(
-                <Button3 onClick={handleDelete}>삭제</Button3>
+                <Button3 onClick={handleDelete}>회원정보 삭제</Button3>
             );
         } else {
             return(

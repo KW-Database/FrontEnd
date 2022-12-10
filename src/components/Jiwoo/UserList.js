@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import EachUser from './EachUser';
 import styled from 'styled-components';
@@ -77,11 +78,20 @@ const PaginationBox = styled.div`
   ul.pagination li a.active { color: blue; }
 `
 
-function UserList() {
+function UserList({UserID}) {
+    const [Data, setData] = useState([]);
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
     const items = 5;
     
+    useEffect(()=>{
+        axios.get('/admin/user')
+        .then(response => {
+            console.log(response)
+            setData(response.data)
+        }).catch(error => console.log(error));
+    }, [])
+
     const handlePageChange = (page) => { 
         setPage(page); 
     };
@@ -90,10 +100,10 @@ function UserList() {
         setSearch(e.currentTarget.value);
     };
 
-    let filtered_data = userlist.filter((val)=>{
+    let filtered_data = Data.filter((val)=>{
         if(search === "") {
             return val;
-        } else if(val.name.toLowerCase().includes(search.toLowerCase()) || val.id.toLowerCase().includes(search.toLowerCase())) {
+        } else if(val.nickname.toLowerCase().includes(search.toLowerCase()) || val.id.toLowerCase().includes(search.toLowerCase())) {
             return val;
         }
     });
@@ -102,7 +112,7 @@ function UserList() {
         items*(page-1),
         items*(page-1) + items
     ).map((v) => (<EachUser key={v.id}
-        id={v.id} pw={v.pw} name={v.name} age={v.age} email={v.email} phoneNumber={v.phoneNumber} sex={v.sex} UserID="admin"
+        id={v.id} pw={v.pw} name={v.nickname} age={v.age} email={v.email} phoneNumber={v.phoneNumber} sex={v.sex} UserID={UserID}
     />));
     
     return (

@@ -26,8 +26,6 @@ function LoginPage () {
         password: ''
     })
 
-    const {username, password} = Input;
-
     const HandleChange = (e) => {
         const { value, name } = e.target;
         setInput({

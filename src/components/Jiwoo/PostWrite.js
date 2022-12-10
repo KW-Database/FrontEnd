@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import { Navigate, redirect } from 'react-router-dom';
@@ -30,9 +30,9 @@ const Submit = styled.button`
 
 const UserInfo = {ID: "kiki"}; //
 
-function PostWrite (props) {
+function PostWrite () {
     const navigate = useNavigate();
-    const [Data, setData] = useState([]);
+    const location = useLocation();
     const [Inputs, setInputs] = useState({
         title: '',
         content: ''
@@ -57,14 +57,16 @@ function PostWrite (props) {
                 alert("내용을 입력하세요.");
             else {
                 axios.post(`/agora/write`, {
-                        id: UserInfo.ID,
+                        id: location.state.UserID,
                         title: title,
                         contents: content,
                         postTime:new Date().toISOString().slice(0, 19),//.replace('T', ' '),
                         hitCount:0
                 }).then(response=> {
                     console.log(response.data)
-                    navigate('/board');
+                    navigate('/board', {state:{
+                        UserID: location.state.UserID
+                    }});
                 })
                 .catch(error=>console.log(error));
                 alert("게시글이 등록되었습니다.");

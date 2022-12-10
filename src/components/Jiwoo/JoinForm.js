@@ -33,7 +33,7 @@ const Sign_up = styled.input`
 function JoinForm () {
     const navigate = useNavigate();
     const [Data, setData]=useState([]);
-    const [Dup, setDup] = useState('');
+    const [Dup, setDup] = useState(false);
     const [Inputs, setInputs] = useState({
         ID: '',
         PW: '',
@@ -101,7 +101,7 @@ function JoinForm () {
         else {
             //DB에 넣는 코드 추가
             axios.post('/user/signup', {
-                id:ID, pw:PW, username: Name, age: Age, email: Email, phoneNumber: PhoneNum, sex: Sex, adminAuth:"USER"
+                id:ID, pw:PW, nickname: Name, age: Age, email: Email, phoneNumber: PhoneNum, sex: Sex, adminAuth:"0"
             }).then( response => {
                 console.log(response);
                 alert("회원가입이 완료되었습니다.");

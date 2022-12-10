@@ -101,7 +101,7 @@ function ChatLog(props) {
                             <Toast bg = 'light' className = "other-message">
                                 <Toast.Body>{item.contents}</Toast.Body>
                             </Toast>
-                            <div className = "other_sendtime">{item.posTtime.replace('T', ' ')}</div>
+                            <div className = "other_sendtime">{item.postTime.replace('T', ' ')}</div>
                           </div> 
                       )
                   ))  

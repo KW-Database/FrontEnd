@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import styled from 'styled-components';
 import { Icon } from 'react-icons-kit';
 import { home } from 'react-icons-kit/icomoon/home';
@@ -21,31 +22,30 @@ const Logout = styled.button`
     box-shadow:2px 2px lightgray;
 `
 
-const UserID = "kiki";
-
 function UpperLayer() {
-    //const navigate = useNavigate();
-    /*if(UserID === "") {
-        return(
-            <Upper_layer>
-                <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Icon icon={home} id="HomeButton" size="50" /></Link>
-                <Title>
-                    <Link to="/board" style={{ textDecoration : 'none', color : 'gray' }}><h2>토론 게시판</h2></Link>
-                </Title>
-                <Link to="/login" style={{ textDecoration : 'none', color : 'gray' }}><Logout value="logout">로그인</Logout></Link>
-            </Upper_layer>
-        );
-    }*/
-    if(UserID === "admin") {
+    const [Id, setId] = useState("");
+
+    useEffect(()=> {
+        axios.get('/profile/username')
+        .then(response => {
+            setId(response.data)
+        })
+        .catch(error => console.log(error))
+    }, [])
+
+    if(Id === "admin") {
         return( 
-            <Upper_layer>
+            <form action="/logout" method="post">
+                <Upper_layer>
                 <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Icon icon={home} id="HomeButton" size="50" /></Link>
                 <Title>
-                    <Link to="/manage" style={{ textDecoration : 'none', color : 'gray' }}><h2>주식회사 관리</h2></Link>
-                    <Link to="/board" style={{ textDecoration : 'none', color : 'gray' }}><h2>토론 게시판</h2></Link>
+                    <Link to="/admin" state={{UserID:Id}} style={{ textDecoration : 'none', color : 'gray' }}><h2>사용자 관리</h2></Link>
+                    <Link to="/manage" state={{UserID:Id}} style={{ textDecoration : 'none', color : 'gray' }}><h2>주식회사 관리</h2></Link>
+                    <Link to="/board" state={{UserID:Id}} style={{ textDecoration : 'none', color : 'gray' }}><h2>토론 게시판</h2></Link>
                 </Title>
-                <Link to="/login" style={{ textDecoration : 'none', color : 'gray' }}><Logout value="logout">로그아웃</Logout></Link>
+                <Logout id="btn-login" className="btn btn-primary" >로그아웃</Logout>
             </Upper_layer>
+            </form> 
         );
     } else {
         return (
@@ -53,10 +53,10 @@ function UpperLayer() {
                     <Upper_layer>
                     <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Icon icon={home} id="HomeButton" size="50" /></Link>
                     <Title>
-                        <Link to={`/${UserID}/mywallet`} state={{UserID:UserID}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 보유자산</h2></Link>
-                        <Link to={`/${UserID}/likelist`} state={{UserID:UserID}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 관심주식</h2></Link>
-                        <Link to="/board" style={{ textDecoration : 'none', color : 'gray' }}><h2>토론 게시판</h2></Link>
-                        <Link to={`/${UserID}/profile`} state={{UserID:UserID}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 프로필</h2></Link>
+                        <Link to={`/${Id}/mywallet`} state={{UserID:Id}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 보유자산</h2></Link>
+                        <Link to={`/${Id}/likelist`} state={{UserID:Id}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 관심주식</h2></Link>
+                        <Link to="/board" state={{UserID:Id}} style={{ textDecoration : 'none', color : 'gray' }}><h2>토론 게시판</h2></Link>
+                        <Link to={`/${Id}/profile`} state={{UserID:Id}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 프로필</h2></Link>
                     </Title>
                     <Logout id="btn-login" className="btn btn-primary" >로그아웃</Logout>
                     </Upper_layer>

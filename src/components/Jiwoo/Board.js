@@ -95,7 +95,7 @@ const PaginationBox = styled.div`
   ul.pagination li a.active { color: blue; }
 `
 
-function Board ({List}) {
+function Board ({List, UserID}) {
     //const [list, setList] = useState([]);
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
@@ -126,7 +126,7 @@ function Board ({List}) {
     ).reverse().map((v) => {
         i=i+1;
         return(<EachPost key={v.postId}
-            num={items*(page-1)+i} postId={v.postId} Title={v.title} Content={v.contents} ID={v.id} Date={v.postTime.replace('T', ' ')} View={v.hitCount} 
+            User={UserID} num={items*(page-1)+i} postId={v.postId} Title={v.title} Content={v.contents} ID={v.id} Date={v.postTime.replace('T', ' ')} View={v.hitCount} 
         />)
     });
 
@@ -135,7 +135,7 @@ function Board ({List}) {
         <Board_block>
             <Title>토론 게시판</Title>
             <Search><SearchBar search={search} onChange={onChange} /></Search>
-            <Link to="/board/write" style={{ textDecoration : 'none', color : 'black' }}><Post value="Post">글 작성</Post></Link>
+            <Link to="/board/write" state={{UserID:UserID}} style={{ textDecoration : 'none', color : 'black' }}><Post value="Post">글 작성</Post></Link>
             <MainList>
                 <글ID>번호</글ID><_Title>제목</_Title><ID>아이디</ID><Date>날짜</Date><View>조회수</View><p />
                 <BoardList>

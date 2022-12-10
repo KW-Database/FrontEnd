@@ -74,6 +74,7 @@ function PostUpdate(props) {
                     console.log(response.data) 
                     navigate(`/board/${props._postId}`, {
                         state: {
+                            User: props.User,
                             postId : props._postId,
                             title : title,
                             content : content,
