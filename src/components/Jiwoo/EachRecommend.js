@@ -12,6 +12,7 @@ const Recommend = styled.div`
   border : 0;
   padding : 20px 30px;
   margin-bottom: 2px;
+  font-family: 'Pretendard-Regular';
 `;
 
 const Name = styled.div`

@@ -14,6 +14,7 @@ const User = styled.div`
   border-bottom:2px solid white;
   padding : 20px 30px;
   margin-bottom: 2px;
+  font-family: 'Pretendard-Regular';
 `;
 
 const Name = styled.div`

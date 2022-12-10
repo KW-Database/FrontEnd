@@ -7,6 +7,7 @@ import axios from 'axios';
 const Joinform = styled.div`
     position: absolute; width: 440px; height: 560px; left: 550px; top: 50px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    font-family: 'Pretendard-Regular';
 `
 
 const Join_write = styled.input`

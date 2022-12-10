@@ -20,6 +20,7 @@ const Title = styled.div`
 
 const Info_block = styled.div`
     position: absolute; top: 100px;
+    font-family: 'Pretendard-Regular';
 `
 
 const Input_text = styled.input`

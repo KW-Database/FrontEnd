@@ -5,6 +5,7 @@ import EachRecommend from './EachRecommend';
 const List = styled.div`
     display:flex; justify-content: center; 
     background-color:white; font-size:15px;
+    font-family: 'Pretendard-Regular';
 `
 
 const Button = styled.button`
@@ -19,6 +20,7 @@ background-color:white;
 cursor: pointer;
 padding-left: 1rem;
 padding-right: 1rem;
+font-family: 'Pretendard-Regular';
 `
 
 const Top10_List = styled.div`
@@ -33,6 +35,7 @@ const Top10_List = styled.div`
   @media screen and (max-width : 1350px) and (min-width : 800px){
     grid-template-columns : repeat(2, 1fr);
   }
+  font-family: 'Pretendard-Regular';
 `
 
 function Top10_table (props) {

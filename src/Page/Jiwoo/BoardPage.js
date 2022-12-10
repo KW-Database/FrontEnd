@@ -7,6 +7,7 @@ import axios from 'axios';
 
 const Board_Page = styled.div`
     display:flex; justify-content:center;
+    font-family: 'Pretendard-Regular';
 `
 
 function BoardPage(){

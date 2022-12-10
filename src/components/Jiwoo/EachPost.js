@@ -12,6 +12,7 @@ const Post = styled.div`
   border-bottom : 2px solid white;
   background-color: #ecf0f1;
   padding : 20px 30px;
+  font-family: 'Pretendard-Regular';
 `
 
 const 글ID = styled.div`

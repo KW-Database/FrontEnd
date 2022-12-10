@@ -8,6 +8,7 @@ import EachRecent2 from './EachRecent2';
 const Search = styled.div`
     position: absolute; width:800px; top:0px; left:100px;
     display:flex; justify-content: center;
+    font-family: 'Pretendard-Regular';
 `
 
 const List = styled.div`
