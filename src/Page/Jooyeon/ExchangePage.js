@@ -70,6 +70,7 @@ const Chat_layer = styled.div`
 
 function ExchangePage () {
     const [Data, setData] = useState([]);
+    const [Like, setLike] = useState([]);
     const [Chat, setChat] = useState([]);
     const location = useLocation();
     useEffect(() => {
@@ -78,6 +79,16 @@ function ExchangePage () {
             itemCode: location.state.itemCode
         }}).then(response => setData(response.data))
         .catch(error => console.log(error));
+
+        axios.get('/user/likedItem', {params: {
+                id: location.state.UserID
+            }
+        }).then(response => {
+            setLike(response.data);
+            console.log(response);
+        }).catch(error => {
+            console.log(error)
+        });
 
         axios.get('/exchange/renewChat',{params: {
             itemCode: location.state.itemCode
@@ -94,6 +105,16 @@ function ExchangePage () {
         setTimeout(run, 5000);
       }, 5000);
 
+    const count = () => {
+        var num=0;
+        var i;
+        for(i=0;i<Like.length;i++) {
+            if(Like[i].itemCode === location.state.itemCode)
+                num=1;
+        }
+        return num;
+    }
+
     if(JSON.stringify(Data)==="[]" || JSON.stringify(Data)==="[]"){
         return (
             <div>
@@ -107,7 +128,7 @@ function ExchangePage () {
                 <UpperLayer></UpperLayer>
                 <Background>
                     <Exchange>
-                        <Title><Exchange_title Data={Data} itemName={location.state.itemName}/></Title>
+                        <Title><Exchange_title Data={Data} Like={count()} UserID={location.state.UserID} itemName={location.state.itemName}/></Title>
                         <Graph><Exchange_graph Data={Data} itemName={location.state.itemName}/></Graph>
                         <Info><StockByAge Data={Data.holderAge}/></Info>
                     </Exchange>
