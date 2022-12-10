@@ -76,11 +76,12 @@ function UserInfoUpdate (props) {
                     alert("올바른 형식의 전화번호를 입력하세요.");
                 else {
                     axios.post('/profile/update', {
-                        id: ID, pw: props._PW, username: Name, age: Age, email: Email, phoneNumber: PhoneNum, sex: Sex, adminAuth: props._adminAuth
+                        id: ID, pw: props._PW, nickname: Name, age: Age, email: Email, phoneNumber: PhoneNum, sex: Sex, adminAuth: props._adminAuth
                     }).then( response => {
                         console.log(response);
                         navigate(`/${ID}/profile`, {state: {
-                                UserID: ID
+                                UserID: ID,
+                                id: ID
                             }
                         });
                       }).catch( error => {
