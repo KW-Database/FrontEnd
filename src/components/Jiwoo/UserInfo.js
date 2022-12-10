@@ -55,6 +55,8 @@ function UserInfo (props) {
     const [Data, setData] = useState([]);
     const UserID = props.UserID;
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         axios.get('/profile/info', {params: 
             {id: props.UserID}
@@ -153,23 +155,17 @@ function UserInfo (props) {
             if (window.confirm('회원 정보를 삭제하시겠습니까?'))
             {
                 // They clicked Yes
-                axios(
-                    {
-                      url: `/delete`,
-                      method: 'delete',
-                      data: {id: props.UserID},
-
-                      baseURL: 'http://localhost:8080',
-                    }
-                  ).then(function (response) {
-                      setData(response.data);
+                axios.delete('/profile/delete', {params:{
+                    id:props.UserID
+                }}).then(response => {
+                      console.log(response.data);
                       //alert("성공")
-                  }).catch(function (error) {
-                      //alert(error);
-                  });
-                  alert('회원 정보가 삭제되었습니다.')
-                  //redirect
-                  e.preventDefault();
+                }).catch(error => {
+                      console.log(error);
+                      navigate('/login');
+                });
+                alert('회원 정보가 삭제되었습니다.')
+                e.preventDefault();
             }
             else
             {
@@ -180,23 +176,17 @@ function UserInfo (props) {
             if (window.confirm('회원탈퇴 하시겠습니까?'))
             {
                 // They clicked Yes
-                axios(
-                    {
-                      url: `/delete`,
-                      method: 'delete',
-
-                      data: {id: props.UserID},
-                      baseURL: 'http://localhost:8080',
-                    }
-                  ).then(function (response) {
-                      setData(response.data);
+                axios.delete('/profile/delete', {params:{
+                    id:props.UserID
+                }}).then(response => {
+                      console.log(response.data);
                       //alert("성공")
-                  }).catch(function (error) {
-                      //alert(error);
-                  });
-                  alert('회원탈퇴 되었습니다.')
-                  //redirect
-                  e.preventDefault();
+                }).catch(error => {
+                      console.log(error);
+                      navigate('/login');
+                });
+                alert('회원탈퇴가 완료되었습니다.')
+                e.preventDefault();
             }
             else
             {
@@ -206,9 +196,7 @@ function UserInfo (props) {
     }
     
     function DiffButton(e) {
-        const navigate = useNavigate();
         const goUpdate = () => {
-            
             navigate(`/${e.ID}/update`, {
               state: {
                 ID: e.ID,
@@ -218,7 +206,7 @@ function UserInfo (props) {
                 Email: e.Email,
                 PhoneNum: e.PhoneNum,
                 Sex: e.Sex,
-                AdminAuth: userinfo.adminAuth
+                AdminAuth: Data.adminAuth
               }
             });
         };

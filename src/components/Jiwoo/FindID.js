@@ -72,7 +72,7 @@ function FindID () {
             <p />
             <Find_write type="text" name="Email" value={Email} placeholder="이메일" onChange={handleChange} />
             <p />
-            <Find_write type="text" name="PhoneNum" value={PhoneNum} placeholder="전화번호 ( ex) 010-xxxx-xxxx )" onChange={handleChange} />
+            <Find_write type="text" name="PhoneNum" value={PhoneNum} placeholder="전화번호 ( ex) 010xxxxxxxx )" onChange={handleChange} />
             <p />
             <Find_button value="find-button" onClick={handleClick} >아이디 찾기</Find_button><p /><br />
             <Link to='/login'>로그인</Link>하시겠습니까?

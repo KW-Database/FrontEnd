@@ -91,7 +91,7 @@ function JoinForm () {
             alert("나이를 입력하세요.");
         else if(Email === '')
             alert("이메일을 입력하세요.");
-        else if(PhoneNum === '' || PhoneNum.length !== 13 || (PhoneNum[3] !== '-' && PhoneNum[8] !== '-'))
+        else if(PhoneNum === '' || PhoneNum.length !== 13)
             alert("올바른 형식의 전화번호를 입력하세요.");
         else if(Sex === '')
             alert("성별을 선택하세요.");
@@ -130,7 +130,7 @@ function JoinForm () {
             <p />
             <Join_write type="text" name="Email" value={Email} placeholder="이메일" onChange={handleChange} />
             <p />
-            <Join_write type="text" name="PhoneNum" value={PhoneNum} placeholder="전화번호 ( ex) 010-xxxx-xxxx )" onChange={handleChange} />
+            <Join_write type="text" name="PhoneNum" value={PhoneNum} placeholder="전화번호 ( ex) 010xxxxxxxx )" onChange={handleChange} />
             <p />
             <Join_select name="Sex" value={Sex}  onChange={handleChange}>
                 <option value="">성별</option>
