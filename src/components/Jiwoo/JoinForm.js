@@ -101,7 +101,9 @@ function JoinForm () {
         else {
             //DB에 넣는 코드 추가
             axios.post('/user/signup', {
+
                 id:ID, pw:PW, nickname: Name, age: Age, email: Email, phoneNumber: PhoneNum, sex: Sex, adminAuth:"0"
+
             }).then( response => {
                 console.log(response);
                 alert("회원가입이 완료되었습니다.");

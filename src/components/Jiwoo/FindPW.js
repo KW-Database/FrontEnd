@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
@@ -31,7 +32,7 @@ function FindPW () {
         Email: '',
         PhoneNum: ''
     });
-    const Navigate = useNavigate();
+    const navigate = useNavigate();
 
     const { ID, Name, Email, PhoneNum } = Inputs;
 
@@ -54,11 +55,17 @@ function FindPW () {
         }).then( response => {
             console.log(response);
             setData(response.data);
-            alert("찾으시는 비밀번호는 " + response.data + " 입니다." );
+            if(response.data !== null) {
+                 //if exists ????
+                navigate('/changePW',
+                    { state:{ID: ID}})   //changepw 
+                 }
+           // alert("찾으시는 비밀번호는 " + response.data + " 입니다." );
         }).catch( error =>
             console.log(error)
         );    
     }
+    
     
     return (
         <Find>
@@ -73,6 +80,7 @@ function FindPW () {
             <p />
             <Find_button value="find-button" onClick={handleClick} >비밀번호 찾기</Find_button><p />
             아이디가 기억나지 않는다면? <Link to='/findID'>아이디 찾기</Link><p />
+
             <Link to='/login'>로그인</Link>하시겠습니까?
         </Find>    
     );
