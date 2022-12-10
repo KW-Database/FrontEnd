@@ -19,6 +19,7 @@ const Button = styled.button`
 
 const SelectData = styled.div`
   display:flex; justify-content:center; 
+  font-family: 'Pretendard-Regular';
 `
 
 const dummyData= [{

@@ -10,6 +10,7 @@ const Title=styled.div`
 
 const Layer=styled.div`
     display:flex; justify-content:center;
+    font-family: 'Pretendard-Regular';
 `
 
 const WalletTable =styled.div`

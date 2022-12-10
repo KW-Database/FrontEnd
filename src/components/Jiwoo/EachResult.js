@@ -11,6 +11,7 @@ const Result = styled.div`
   border-bottom : 2px solid white;
   background: #ecf0f1;
   padding : 20px 30px;
+  font-family: 'Pretendard-Regular';
 `
 
 const ID = styled.div`

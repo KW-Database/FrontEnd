@@ -5,6 +5,7 @@ const Title = styled.div`
     position:absolute; left:280px; top:5px; width:140px;
     font-size:20px; font-weight:600;
     border-bottom:1px solid gray;
+    font-family: 'Pretendard-Regular';
 `
 
 const Content = styled.div`
@@ -21,6 +22,7 @@ const Content = styled.div`
         background-color: #888888;
       &::-webkit-scrollbar-track {
         background-color: white;
+        font-family: 'Pretendard-Regular';
 `
 
 function CompanyInfo ({Data}) {

@@ -5,11 +5,13 @@ const Title = styled.div`
     position:absolute; left:20px; top:15px; width:250px;
     font-size:20px; font-weight:600;
     border-bottom:1px solid gray;
+    font-family: 'Pretendard-Regular';
 `
 
 const Info = styled.div`
     position:absolute; left:20px; top:50px; width:250px; height:280px;
     font-size:15px; text-align:left;
+    font-family: 'Pretendard-Regular';
 `
 
 const Container = styled.div`
@@ -29,6 +31,7 @@ const Count = styled.div`
 const Unit = styled.div`
     position:relative; left:240px; top:320px;
     font-size:10px; text-align:left;
+    font-family: 'Pretendard-Regular';
 `
 
 function StockByAge ({Data}) {

@@ -8,11 +8,13 @@ import dayjs from 'dayjs';
 
 const Graph_button = styled.div`
   position:absolute; left:0px; width:700px; height:40px;
+  font-family: 'Pretendard-Regular';
 `
 
 const Graph = styled.div`
   position:absolute; left: 0px; top:40px; height:300px;
   display:flex; justify-content: center;
+  font-family: 'Pretendard-Regular';
 `
 
 const Time_button = styled.button`
@@ -20,6 +22,7 @@ const Time_button = styled.button`
   width:70px; height:30px; margin-right:60px; 
   border:0; border-bottom:2px solid gray; 
   font-size:15px; background-color:white;
+  font-family: 'Pretendard-Regular';
 `
     
 const Exchange_graph = ({Data, itemName}) => {

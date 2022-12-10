@@ -8,11 +8,13 @@ const InputLayer = styled.div`
     position: absolute; width:450px; height:150px; left:50px; top:20px;
     align-items: center; text-align:left; 
     font-size:20px; background-color:white;
+    font-family: 'Pretendard-Regular';
 `
 
 const Input = styled.input`
     width:200px; height:30px; font-size:20px; margin-left:10px; margin-top:5px;
     border:0; border-bottom:1px solid black; text-align:center;
+    font-family: 'Pretendard-Regular';
 `
 
 const BuyButton = styled.button`
@@ -20,6 +22,7 @@ const BuyButton = styled.button`
     display:flex; justify-content:center; background-color:skyblue;
     font-size:15px; font-weight:600;
     border:0; border-radius:20px; box-shadow:2px 2px lightgray;
+    font-family: 'Pretendard-Regular';
 `
 
 const SellButton = styled.button`
@@ -27,6 +30,7 @@ const SellButton = styled.button`
     display:flex; justify-content:center; background-color:red;
     font-size:15px; font-weight:600;
     border:0; border-radius:20px; box-shadow:2px 2px lightgray;
+    font-family: 'Pretendard-Regular';
 `
 
 const OptionButton = styled.button`
@@ -34,17 +38,20 @@ const OptionButton = styled.button`
     width:70px; height:30px; font-size:15px; margin-left:10px; margin-top:5px;
     border:0; border-radius:5px; text-align:center; background-color:lightgreen;
     box-shadow:2px 2px lightgray;
+    font-family: 'Pretendard-Regular';
 `
 
 const BuyInfoLayer = styled.div`
     position: absolute; width:220px; height:150px; left:700px; top:20px;
     align-items: center; text-align:left; 
     font-size:15px; background-color:white;
+    font-family: 'Pretendard-Regular';
 `
 
 const Input2 = styled.input`
     width:100px; height:30px; font-size:15px; margin-left:10px; margin-top:5px;
     border:0; border-bottom:1px solid black; text-align:center;
+    font-family: 'Pretendard-Regular';
 `
 
 function BuySell ({Data, UserID}) {  

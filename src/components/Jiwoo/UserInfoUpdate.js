@@ -8,11 +8,13 @@ const User_Info = styled.div`
     padding-left:150px; text-align:left;
     font-size: 24px; background-color:white;
     border-radius:10px; box-shadow:5px 5px lightgray;
+    font-family: 'Pretendard-Regular';
 `
 
 const Title = styled.div`
     position: absolute; width: 200px; height: 40px; left: 350px; top: 20px;
     font-size:40px; margin-bottom:100px;
+    font-family: 'Pretendard-Regular';
 `
 
 const Info_block = styled.div`

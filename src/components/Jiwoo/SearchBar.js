@@ -7,6 +7,7 @@ const Search = styled.div`
   display:flex;
   align-items: center;
   position: relative;
+  font-family: 'Pretendard-Regular';
 `;
 
 const Icon = styled.span`

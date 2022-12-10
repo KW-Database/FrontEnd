@@ -6,6 +6,7 @@ const List = styled.div`
     display:flex; justify-content: center;
     position:relative; top:15px;
     background-color:white; font-size:15px;
+    font-family: 'Pretendard-Regular';
 `
 
 const RecentList = styled.div`
