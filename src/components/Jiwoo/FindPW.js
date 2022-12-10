@@ -78,7 +78,7 @@ function FindPW () {
             <p />
             <Find_write type="text" name="Email" value={Email} placeholder="이메일" onChange={handleChange} />
             <p />
-            <Find_write type="text" name="PhoneNum" value={PhoneNum} placeholder="전화번호 ( ex) 010-xxxx-xxxx )" onChange={handleChange} />
+            <Find_write type="text" name="PhoneNum" value={PhoneNum} placeholder="전화번호 ( ex) 010xxxxxxxx )" onChange={handleChange} />
             <p />
             <Find_button value="find-button" onClick={handleClick} >비밀번호 찾기</Find_button><p />
             아이디가 기억나지 않는다면? <Link to='/findID'>아이디 찾기</Link><p />
