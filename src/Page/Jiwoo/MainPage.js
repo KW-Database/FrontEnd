@@ -90,6 +90,18 @@ function MainPage() {
         return (
             <Background>
                 <UpperLayer UserID={Id}></UpperLayer>
+                <div className="Background">
+                <Main_Page>
+                    <Company_Search>
+                        <SearchCompany User={Id}/> <p />
+                    </Company_Search>
+                    <Title>오늘의 증시</Title>
+                    <Recommend_buy>추천 매수 <p /></Recommend_buy>
+                    <Recommend_sell>추천 매도 <p /></Recommend_sell>
+                    <Top10>TOP 10<p /></Top10>
+                    <Recently_added>최근 상장된 주식<p /></Recently_added>
+                </Main_Page>
+                </div>
             </Background>
         );
     }

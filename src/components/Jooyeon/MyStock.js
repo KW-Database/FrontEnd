@@ -94,8 +94,6 @@ const PaginationBox = styled.div`
   ul.pagination li a.active { color: blue; }
 `
 
-const UserID = "kiki";
-
 function MyStock(props){
     const navigate = useNavigate();
     const [search, setSearch] = useState("");
@@ -123,8 +121,8 @@ function MyStock(props){
         items*(page-1) + items
     ).map((pro)=>{
         const Move = () => {            
-            navigate(`/${UserID}/exchange`, {state:{
-                UserID: UserID, itemCode:pro.itemCode, itemName:pro.itemName
+            navigate(`/${props.UserID}/exchange`, {state:{
+                UserID: props.UserID, itemCode:pro.itemCode, itemName:pro.itemName
             }});
             //매수/매도 화면으로 이동하도록 수정
         }

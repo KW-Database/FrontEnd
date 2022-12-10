@@ -24,23 +24,23 @@ function MyWalletPage () {
         if(JSON.stringify(Data)==="[]"){
             return (
                 <div className="Background">
-                    <UpperLayer></UpperLayer>
+                    <UpperLayer UserID={location.state.UserID} />
                 </div>
             );
         }
         else {
             return(
                 <div className="Page">
-                    <UpperLayer></UpperLayer>
+                    <UpperLayer UserID={location.state.UserID} />
                     <div className="Background">
                         <MyWallet Data={Data}/> 
-                        <MyStock Data={Data}/>       
-    
+                        <MyStock UserID={location.state.UserID} Data={Data}/>       
+ 
                     </div>
                 </div>
             );
         }
-    
 }
+
 
 export default MyWalletPage;

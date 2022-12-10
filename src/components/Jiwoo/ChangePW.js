@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import EachPost from './EachPost';
 import styled from 'styled-components';
-import SearchBar from './SearchBar';
+
 
 const Change = styled.div`
-    position:absolute; top:90px; width:600px; height:550px; 
+    position:absolute; top:200px; width:600px; height:350px; 
     padding:10px 50px 10px 50px; border:5px solid gray; border-radius:15px; 
     justify-content:center; align-items:center; 
     font-family: 'Pretendard-Regular';
@@ -69,7 +68,7 @@ function ChangePW({_ID}){
         <Change>
             <p /><h1>&nbsp;새 비밀번호 입력하기</h1><p />
             <Change_write  type="password" name="PW" value={PW} placeholder="새 비밀번호 입력" onChange={handleChange} />
-            <Change_write  type="password" name="confirmPW" value={confirmPW} placeholder="새 비밀번호 확인" onChange={handleChange} />
+            <Change_write  type="password" name="confirmPW" value={confirmPW} placeholder="새 비밀번호 확인" onChange={handleChange} /><p /><br />
             <Change_button value="change-button" onClick={handleSubmit} >비밀번호 등록</Change_button>
         </Change>
     )

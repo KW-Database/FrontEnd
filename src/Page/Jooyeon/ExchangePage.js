@@ -109,14 +109,27 @@ function ExchangePage () {
     if(JSON.stringify(Data)==="[]" || JSON.stringify(Data)==="[]"){
         return (
             <div>
-                <UpperLayer></UpperLayer>
+                <UpperLayer UserID={location.state.UserID} />
+                <Background>
+                    <Exchange>
+                        <Title></Title>
+                        <Graph></Graph>
+                        <Info></Info>
+                    </Exchange>
+                    <BuySell_layer></BuySell_layer>
+                    <Company_layer>
+                        <Company_info></Company_info>
+                        <Shareholder></Shareholder>
+                    </Company_layer>
+                    <Chat_layer></Chat_layer>
+                </Background>
             </div>
         );
     }
     else{
         return(
             <div className="Page">
-                <UpperLayer></UpperLayer>
+                <UpperLayer UserID={location.state.UserID}/>
                 <Background>
                     <Exchange>
                         <Title><Exchange_title Data={Data} Like={count()} UserID={location.state.UserID} itemName={location.state.itemName}/></Title>

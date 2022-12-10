@@ -8,6 +8,7 @@ const Write = styled.div`
     position: absolute; width:1000px; height:480px; left:275px; top:150px; padding:50px; 
     text-align: left; background-color: white; font-size: 24px; 
     border-radius:10px; box-shadow:5px 5px lightgray;
+    font-family: 'Pretendard-Regular';
 `
 
 const Title = styled.input`
