@@ -1,3 +1,4 @@
+import { Alert } from 'bootstrap';
 import React from 'react';
 import {useLocation} from 'react-router-dom';
 import styled from 'styled-components';
@@ -15,7 +16,7 @@ function UserInfoPage () {
         <div className="Page">
             <UpperLayer></UpperLayer>
             <Background>
-                <UserInfo UserID={location.state.UserID} />
+                <UserInfo id={location.state.id} UserID={location.state.UserID} />
             </Background>
         </div>
     );        

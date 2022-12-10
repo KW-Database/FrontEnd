@@ -24,7 +24,7 @@ const Input = styled.input`
   font-size : 15px;
 `;
 
-function SearchCompany() {
+function SearchCompany({User}) {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const onChange = (e) => {
@@ -35,7 +35,8 @@ function SearchCompany() {
       //키를 눌렀을 때 동작할 코드
       navigate('/search', { 
         state: { 
-          result: e.currentTarget.value
+          result: e.currentTarget.value,
+          User: User
         }
       });
     }

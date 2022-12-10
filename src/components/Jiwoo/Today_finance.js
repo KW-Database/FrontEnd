@@ -23,7 +23,7 @@ const SelectData = styled.div`
 
 const dummyData= [{
     /*
-      data?.map((props) => {
+      Data?.map((props) => {
         return {
           Name: props.Name,
           Data: props.Data?.map((props) => {
@@ -775,127 +775,99 @@ const dummyData= [{
     }
   ]}];
   
-const Today_finance_graph = () => {
+function Today_finance_graph ({Data}) {
+    const date = new Date().setFullYear(new Date().getFullYear() - 1);
+
     const [selectData, setselectData] = useState({
-        Name: dummyData[0].name,
-        Data: dummyData[0].data
+        Name: "코스피",
+        Data: Data.daySise_KOSPI
     });
 
     const HandleChange = (e) => { 
         var i;
         if(e.target.value === "코스피") {
-            for(i=0; i<dummyData.length; i++) {
-                if(dummyData[i].name === "코스피") {
-                    setselectData( {
-                        ...selectData,
-                        Name: dummyData[i].name,
-                        Data: dummyData[i].data
-                    })
-                };
-            }
+            setselectData( {
+              ...selectData,
+              Name: "코스피",
+              Data: Data.daySise_KOSPI
+          })
         } else if(e.target.value === "코스닥") {
-            for(i=0; i<dummyData.length; i++) {
-                if(dummyData[i].name === "코스닥") {
-                    setselectData( {
-                        ...selectData,
-                        Name: dummyData[i].name,
-                        Data: dummyData[i].data
-                    })
-                };
-            }
+            setselectData( {
+              ...selectData,
+              Name: "코스닥",
+              Data: Data.daySise_KOSDAQ
+          })
         } else if(e.target.value === "코스피200") {
-            for(i=0; i<dummyData.length; i++) {
-                if(dummyData[i].name === "코스피200") {
-                    setselectData( {
-                        ...selectData,
-                        Name: dummyData[i].name,
-                        Data: dummyData[i].data
-                    })
-                };
-            }
+            setselectData( {
+              ...selectData,
+              Name: "코스피200",
+              Data: Data.daySise_KOSPI200
+          })
         }
     }
     
-    useEffect(() => {
-    });
-
     var series = [{
         name: selectData.Name,
-        data: selectData.Data,
+        data: selectData.Data?.map((props) => {
+          return [
+                new Date(Date.parse(new Date(props.present))),
+                props.endPrice
+              ];
+            })
     }];
 
     var options = {
-        hart: {
-          height: 300,
-          type: 'candlestick',
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          curve: 'straight'
-        },
-        annotations: {
-          xaxis: [
-            {
-              borderColor: '#00E396',
-              label: {
-                borderColor: '#00E396',
-                style: {
-                  fontSize: '12px',
-                  color: '#fff',
-                  background: '#00E396'
-                },
-                orientation: 'horizontal',
-                offsetY: 7,
-              }
-            }
-          ]
-        },
-        xaxis: {
-          type: 'category',
-          labels: {
-            formatter: function(val) {
-              return dayjs(val).format('MMM DD HH:mm')
-            }
-          }
-        },
-        yaxis: {
-          tooltip: {
-            enabled: true
-          }
-        },
-        fill: {
-          opacity: 0.5
-        },
-        tooltip: {
-          fixed: {
-            enabled: false,
-            position: 'topRight'
-          }
-        },
-        grid: {
-          yaxis: {
-            lines: {
-              offsetX: -30
-            }
-          },
-          padding: {
-            left: 20
-          }
-        },
-        labels: {
-            show: false
-        },
-        plotOptions: {
-          area: {
-            colors: {
-              upward: '#3C90EB',
-              downward: '#8e8da4'
-            }
-          }
+      chart: {
+        id: 'area-datetime',
+        type: 'area',
+        height: 300,
+        zoom: {
+          autoScaleYaxis: true
         }
-      };
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        curve: 'smooth',
+        width: 2,
+      },
+      annotations: {
+        yaxis: [{
+          borderColor: '#000',
+        }],
+        xaxis: [{
+          borderColor: '#999',
+          yAxisIndex: 0,
+        }]
+      },
+      markers: {
+        size: 0,
+        style: 'hollow',
+      },
+      tooltip: {
+        x: {
+          format: 'dd MMM yyyy'
+        },
+      },
+      xaxis: {
+        type: 'datetime',
+        min: date,
+        tickAmount: 6,
+        datetimeFormatter: {
+          year: 'yyyy',
+          month: 'MMM \'yy',
+          day: 'dd MMM',
+          hour: 'HH:mm'
+      }
+      },
+      yaxis: {
+        tooltip: {
+          enabled: true
+        },
+        tickAmount: 6,
+      },
+    };
 
     return (
         <div>
@@ -904,7 +876,7 @@ const Today_finance_graph = () => {
               <Button value="코스닥" onClick={HandleChange}>코스닥</Button>|
               <Button value="코스피200" onClick={HandleChange}>코스피200</Button>
             </SelectData>
-            <ReactApexChart options={options} series={series} type="candlestick" height={300} />
+            <ReactApexChart options={options} series={series} type="area" height={300} />
                   
         </div>
     );

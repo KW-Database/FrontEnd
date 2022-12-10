@@ -10,7 +10,6 @@ function MyWalletPage () {
         const location = useLocation();
         const [Data, setData] = useState([]);
         useEffect(() => {
-            console.log(location.state.UserID)
             axios.get(`/myWallet`, {params:{
                 id: location.state.UserID
             }}).then(function (response) {

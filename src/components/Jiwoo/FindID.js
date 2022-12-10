@@ -44,7 +44,7 @@ function FindID () {
     const handleClick = (e) => {
         //Name, Email, PhoneNum의 조합이 DB 안에 존재하면 해당하는 ID 출력, 아니면 에러메시지 출력
         axios.get('/user/findID', {params: {
-                username: Name,
+                nickname: Name,
                 email: Email,
                 phone_number: PhoneNum.toString()
             }

@@ -50,6 +50,7 @@ function EachPost(props) {
 
         navigate(`/board/${props.postId}`, {
             state: {
+                User : props.User,
                 postId : props.postId,
                 title : props.Title,
                 content : props.Content,

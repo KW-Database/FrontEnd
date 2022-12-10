@@ -102,7 +102,7 @@ function SearchResult() {
     ).map((v) => {
         i=i+1;
         return(<EachResult key={v.itemCode} 
-            ID={items*(page-1)+i} itemCode={v.itemCode} itemName={v.itemName}  
+            User={location.state.User} ID={items*(page-1)+i} itemCode={v.itemCode} itemName={v.itemName}  
         />);  
     });
     

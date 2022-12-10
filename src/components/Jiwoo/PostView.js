@@ -42,7 +42,6 @@ const Button3 = styled.button`
     font-size:20px; color:white; background-color:lightgreen;
     box-shadow:3px 3px #e7e7e7;
 `
-const UserInfo = {ID: "kiki"};
 
 function PostView () { 
     const [Data, setData] = useState([]);
@@ -62,6 +61,7 @@ function PostView () {
             // 두번재 인자의 state 속성에 원하는 파라미터를 넣어준다. (id, job을 넣어봤다)
             navigate(`/board/${location.state.postId}/update`, {
               state: {
+                User:location.state.User,
                 postId:location.state.postId,
                 ID:location.state.ID,
                 Title: location.state.title,
@@ -71,26 +71,26 @@ function PostView () {
             });
         };
     
-        if(UserInfo.ID === "admin") {
+        if(location.state.User === location.state.ID) {
+            //console.log(Data.id);
+             return(
+                 <div>
+                     <Button1 onClick={goUpdate}>글 수정</Button1>
+                     <Button2 onClick={handleDelete}>글 삭제</Button2>
+                     <Link to='/board' state={{UserID:location.state.User}} style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
+                 </div>
+                  
+             );
+         } else if(location.state.User === "admin") {
             return(
                 <div>
                     <Button2 onClick={handleDelete}>글 삭제</Button2>
-                    <Link to='/board' style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
+                    <Link to='/board' state={{UserID:location.state.User}} style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
                 </div>
-            );
-        } else if(UserInfo.ID === location.state.ID) {
-           //console.log(Data.id);
-            return(
-                <div>
-                    <Button1 onClick={goUpdate}>글 수정</Button1>
-                    <Button2 onClick={handleDelete}>글 삭제</Button2>
-                    <Link to='/board' style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
-                </div>
-                 
             );
         } else {
             return(
-                <Link to='/board' style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
+                <Link to='/board' state={{UserID:location.state.User}} style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
             );
         }
     }
@@ -105,7 +105,9 @@ function PostView () {
                     }
                 }).then(response=>{
                     console.log(response)
-                    navigate(`/board`)
+                    navigate(`/board`, {state:{
+                        UserID: location.state.User
+                    }})
                 })
                 alert("게시글이 삭제되었습니다.")
                 e.preventDefault();
