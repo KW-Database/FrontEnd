@@ -30,7 +30,8 @@ function EachUser(props) {
     const navigate = useNavigate();
     const move = () => {
         navigate(`/${props.id}/profile`, {state:{
-            id:props.id, pw:props.pw, name:props.name, age:props.age, email:props.email, phoneNumber:props.phoneNumber, sex:props.sex, UserID:props.UserID
+            UserID: props.UserID,
+            id: props.id
         }});
     }
 

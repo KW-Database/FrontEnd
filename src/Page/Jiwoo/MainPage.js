@@ -72,32 +72,39 @@ const SeeMore = styled.div`
 
 function MainPage() {
     const [data, setData] = useState([]);
+    const [Id, setId] = useState("");
     
     useEffect(() => {
+        axios.get('/profile/username')
+        .then(response => {
+            setId(response.data)
+        })
+        .catch(error => console.log(error))
+
         axios.get('/home')
         .then(response => setData(response.data))
-        .catch(error => console.log(error))   
+        .catch(error => console.log(error));
     }, []);
 
     if(JSON.stringify(data)==="[]"){
         return (
             <Background>
-                <UpperLayer></UpperLayer>
+                <UpperLayer UserID={Id}></UpperLayer>
             </Background>
         );
     }
     else{
     return (
         <Background>
-            <UpperLayer></UpperLayer>
+            <UpperLayer User={Id}></UpperLayer>
             <div className="Background">
                 <Main_Page>
                     <Company_Search>
-                        <SearchCompany /> <p />
+                        <SearchCompany User={Id}/> <p />
                     </Company_Search>
                     <Title>오늘의 증시</Title>
                     <Today_finance>
-                        <Today_finance_graph /> <p />
+                        <Today_finance_graph Data={data}/> <p />
                     </Today_finance>
                     <Recommend_buy>
                         추천 매수 <Link to='/recommend' style={{ textDecoration : 'none', color : 'black' }}><SeeMore>더보기▽</SeeMore></Link> <p />
