@@ -34,7 +34,9 @@ const Diff = styled.div`
 function EachRecommend(props) {
     const navigate = useNavigate();
     const seeRecommend = () => {
-        navigate('/:user/exchange');
+        navigate(`/${props.UserID}/exchange`, {state:{
+            UserID: props.UserID, itemCode:props.itemCode, itemName:props.name}
+        });
     } 
     
     function Arrow() {

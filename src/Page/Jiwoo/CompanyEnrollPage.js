@@ -1,4 +1,5 @@
 import React from 'react';
+import {useLocation} from 'react-router-dom';
 import styled from 'styled-components';
 import UpperLayer from '../../components/Jiwoo/UpperLayer';
 import CompanyEnroll from '../../components/Jiwoo/CompanyEnroll';
@@ -11,12 +12,13 @@ const Title = styled.div`
 `
 
 function CompanyEnrollPage () {
+    const location = useLocation();
     return(
         <div className="Page">
             <UpperLayer />
             <div className="Background">
                 <Title>회사 등록</Title>
-                <CompanyEnroll />
+                <CompanyEnroll UserID={location.state.UserID}/>
             </div>
         </div>
     );  

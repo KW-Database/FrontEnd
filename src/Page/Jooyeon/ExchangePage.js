@@ -53,13 +53,13 @@ const Company_layer = styled.div`
 
 const Company_info = styled.div`
     position:absolute; left:0px; top:5px; 
-    width:500px; height:200px;
+    width:700px; height:200px;
     border-right:1px solid black;
 `
 
 const Shareholder = styled.div`
-    position:absolute; left:500px; top:5px;
-    width:500px; height:200px;
+    position:absolute; left:700px; top:5px;
+    width:300px; height:200px;
 `
 
 const Chat_layer = styled.div`
@@ -96,15 +96,6 @@ function ExchangePage () {
         .catch(error => console.log(error));
     }, []);
 
-    setTimeout(function run() {
-        //axios - get으로 데이터 동기화
-        axios.get('/exchange/renewChat',{params: {
-            itemCode: location.state.itemCode
-        }}).then(response => setChat(response.data))
-        .catch(error => console.log(error));
-        setTimeout(run, 5000);
-      }, 5000);
-
     const count = () => {
         var num=0;
         var i;
@@ -135,7 +126,7 @@ function ExchangePage () {
                     <BuySell_layer><BuySell Data={Data} UserID={location.state.UserID}/></BuySell_layer>
                     <Company_layer>
                         <Company_info><CompanyInfo Data={Data.companyInfo.companySummary} /></Company_info>
-                        <Shareholder><Share_holder /></Shareholder>
+                        <Shareholder><Share_holder Data={Data.shareHolder}/></Shareholder>
                     </Company_layer>
                     <Chat_layer><Chatting UserID={location.state.UserID} itemCode={location.state.itemCode} title={location.state.itemName} Chat={Chat} /></Chat_layer>
                 </Background>

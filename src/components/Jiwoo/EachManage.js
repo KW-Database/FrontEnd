@@ -28,16 +28,17 @@ function EachManage(props) {
     const seeManage = () => {
         navigate(`/manage/${props.ID}`, {
             state: {
-                ID: props.ID,
+                itemCode: props.itemCode,
                 Name: props.Name,
                 Date: props.Date,
-                Info: props.Info
+                Info: props.Info,
+                UserID: props.UserID
             }
         });
     } 
     return (
         <Manage onClick={seeManage}>
-            <ID>{props.ID}</ID>
+            <ID>{props.num}</ID>
             <Name>{props.Name}</Name>   
         </Manage>
     );

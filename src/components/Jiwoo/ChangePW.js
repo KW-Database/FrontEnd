@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import EachPost from './EachPost';
 import styled from 'styled-components';
@@ -25,6 +25,7 @@ const Change_button = styled.button`
 
 
 function ChangePW({_ID}){
+    const navigate = useNavigate();
     const [Inputs, setInputs]=useState({
         PW: '',
         confirmPW:''
@@ -54,9 +55,12 @@ function ChangePW({_ID}){
                 pw: PW
     
             })
-            .then(response=>console.log(response))
+            .then(response=>{
+                console.log(response)
+                alert("비밀번호가 변경되었습니다.")
+                navigate('/login');
+            })
             .catch(error=>console.log(error))
-            console.log(_ID)
         }
     }
 
