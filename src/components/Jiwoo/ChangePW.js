@@ -1,0 +1,74 @@
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import EachPost from './EachPost';
+import styled from 'styled-components';
+import SearchBar from './SearchBar';
+
+const Change = styled.div`
+    position:absolute; top:90px; width:600px; height:550px; 
+    padding:10px 50px 10px 50px; border:5px solid gray; border-radius:15px; 
+    justify-content:center; align-items:center; 
+`
+
+const Change_write = styled.input`
+    width:450px; height:40px; font-size:15px; margin:10px;
+    border:1px solid black; border-radius:5px;
+    box-shadow:2px 2px #e7e7e7;
+`
+
+const Change_button = styled.button`
+    width: 300px; height: 40px; font-size: 15px; 
+    border:0; border-radius:10px; background-color:skyblue;
+    box-shadow:3px 3px #e7e7e7;
+`
+
+
+function ChangePW(props){
+    const [Data, setData] = useState([]);
+    
+    const [Inputs, setInputs]=useState({
+        PW: '',
+        confirmPW:''
+    })
+
+    const{PW, confirmPW}=Inputs;
+
+    const handleChange = (e) => {
+        const { value, name } = e.target;
+        setInputs({
+            ...Inputs,
+            [name]: value
+        });
+    };
+
+    const handleSubmit=(e)=>{
+        if(confirmPW==='')
+            alert("비밀번호를 입력하세요.");
+        else if(confirmPW === '')
+            alert("비밀번호를 다시 입력하세요.");
+        else if(confirmPW !== PW)
+            alert("입력한 비밀번호가 서로 일치하지 않습니다.")
+        else{
+            axios.post(`/changePW`, 
+            {
+                id:props._ID, //??
+                pw: PW
+    
+            })
+            .then(response=>setData(response.data))
+            .catch(error=>console.log(error))
+        }
+    }
+
+    return(
+        <Change>
+            <p /><h1>&nbsp;새 비밀번호 입력하기</h1><p />
+            <Change_write  type="password" name="PW" value={PW} placeholder="새 비밀번호 입력" onChange={handleChange} />
+            <Change_write  type="password" name="confirmPW" value={confirmPW} placeholder="새 비밀번호 확인" onChange={handleChange} />
+            <Change_button value="change-button" onClick={handleSubmit} >비밀번호 등록</Change_button>
+        </Change>
+    )
+}
+
+export default ChangePW;

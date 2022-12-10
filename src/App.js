@@ -23,6 +23,7 @@ import RecommendPage from './Page/Jiwoo/RecommendPage';
 import RecentlyAddedPage from './Page/Jiwoo/RecentlyAddedPage';
 import MyWalletPage from './Page/Jooyeon/MyWalletPage';
 import ExchangePage from'./Page/Jooyeon/ExchangePage';
+import ChangePWPage from './Page/Jiwoo/ChangePWPage';
 import {useSelector} from 'react-redux';
 
 /*
@@ -63,6 +64,7 @@ function App() {
             <Route path='/recently_added' element={<RecentlyAddedPage />}></Route>
             <Route path='/:user/mywallet' element={<MyWalletPage />}></Route>
             <Route path='/:user/exchange' element={<ExchangePage/>}></Route>
+            <Route path='/changePW' element={<ChangePWPage/>}></Route>
           </Routes>
         </BrowserRouter>
       </div>
