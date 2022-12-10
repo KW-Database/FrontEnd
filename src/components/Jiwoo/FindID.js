@@ -43,18 +43,26 @@ function FindID () {
 
     const handleClick = (e) => {
         //Name, Email, PhoneNum의 조합이 DB 안에 존재하면 해당하는 ID 출력, 아니면 에러메시지 출력
-        axios.get('/user/findID', {params: {
+        if(Name === '')
+            alert("이름을 입력하세요.");
+        else if(Email === '')
+            alert("이메일을 입력하세요.")
+        else if(PhoneNum === '')
+            alert("전화번호를 입력하세요.");
+        else {
+            axios.get('/user/findID', {params: {
                 nickname: Name,
                 email: Email,
                 phone_number: PhoneNum.toString()
-            }
-        }).then( response => {
-            console.log(response);
-            setData(response.data);
-            alert("찾으시는 아이디는 " + response.data + " 입니다." );
-        }).catch( error =>
-            console.log(error)
-        );
+                }
+            }).then( response => {
+                console.log(response);
+                setData(response.data);
+                alert("찾으시는 아이디는 " + response.data + " 입니다." );
+            }).catch( error =>
+                console.log(error)
+            );
+        }
     }
     
     return (
