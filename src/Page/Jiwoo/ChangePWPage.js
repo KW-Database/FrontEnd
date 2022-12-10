@@ -1,14 +1,16 @@
 import React, { Component , useState, useEffect} from 'react';
+import { useLocation } from 'react-router-dom';
 import ChangePW from "../../components/Jiwoo/ChangePW"
 
-class ChangePWPage extends Component {
-    render() {
-        return (
-            <div className="Page">
-                <ChangePW  />   
-            </div>
-        );
-    }
+function ChangePWPage () {
+    const location=useLocation();
+
+    return (
+        <div className="Page">
+            <ChangePW _ID={location.state.ID} />   
+        </div>
+    );
+
 }
 
 export default ChangePWPage;

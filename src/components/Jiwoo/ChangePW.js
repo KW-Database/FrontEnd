@@ -24,9 +24,7 @@ const Change_button = styled.button`
 `
 
 
-function ChangePW(props){
-    const [Data, setData] = useState([]);
-    
+function ChangePW({_ID}){
     const [Inputs, setInputs]=useState({
         PW: '',
         confirmPW:''
@@ -41,7 +39,7 @@ function ChangePW(props){
             [name]: value
         });
     };
-
+    // console.log(props_ID)
     const handleSubmit=(e)=>{
         if(confirmPW==='')
             alert("비밀번호를 입력하세요.");
@@ -50,14 +48,15 @@ function ChangePW(props){
         else if(confirmPW !== PW)
             alert("입력한 비밀번호가 서로 일치하지 않습니다.")
         else{
-            axios.post(`/changePW`, 
+            axios.post(`/user/changePW`, 
             {
-                id:props._ID, //??
+                id: _ID, //??
                 pw: PW
     
             })
-            .then(response=>setData(response.data))
+            .then(response=>console.log(response))
             .catch(error=>console.log(error))
+            console.log(_ID)
         }
     }
 
