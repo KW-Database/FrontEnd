@@ -53,26 +53,20 @@ const Button3 = styled.button`
 
 function UserInfo (props) {
     const [Data, setData] = useState([]);
-    const { state } = useLocation();
-    const UserID = state.UserID;
+    const UserID = props.UserID;
 
     useEffect(() => {
-        axios(
-            {
-                url: `/info`,
-                method: 'get',
-                data: {id: props.ID},
-                baseURL: 'http://localhost:8080',
-            }
-          ).then(function (response) {
+        axios.get('/profile/info', {params: 
+            {id: props.UserID}
+        }).then( response => {
             setData(response.data);
-            //alert("성공")
-          }).catch(function (error) {
-            //alert(error);
+            console.log(response)
+        }).catch( error => {
+            console.log(error)
         });
     }, []);
 
-    var Info;
+    /*var Info;
     if(UserID === "admin") {
         var i;
         for(i=0; i<userlist.length;i++) {
@@ -82,16 +76,16 @@ function UserInfo (props) {
         Info = state;
     } else {
         Info = userinfo;
-    }
+    }*/
 
     const Inputs = {
-        ID: Info.id,
-        PW: Info.pw,
-        Name: Info.name,
-        Age: Info.age,
-        Email: Info.email,
-        PhoneNum: Info.phoneNumber,
-        Sex: Info.sex
+        ID: Data.id,
+        PW: Data.pw,
+        Name: Data.username,
+        Age: Data.age,
+        Email: Data.email,
+        PhoneNum: Data.phoneNumber,
+        Sex: Data.sex
     };
     
     const { ID, PW, Name, Age, Email, PhoneNum, Sex } = Inputs;
@@ -163,7 +157,7 @@ function UserInfo (props) {
                     {
                       url: `/delete`,
                       method: 'delete',
-                      data: {id: props.ID},
+                      data: {id: props.UserID},
 
                       baseURL: 'http://localhost:8080',
                     }
@@ -191,7 +185,7 @@ function UserInfo (props) {
                       url: `/delete`,
                       method: 'delete',
 
-                      data: {id: props.ID},
+                      data: {id: props.UserID},
                       baseURL: 'http://localhost:8080',
                     }
                   ).then(function (response) {

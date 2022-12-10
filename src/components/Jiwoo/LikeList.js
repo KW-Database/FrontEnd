@@ -111,54 +111,47 @@ const PaginationBox = styled.div`
   ul.pagination li a.active { color: blue; }
 `
 
-const UserID = "jiwoo0629"
-
-function LikeList() {
+function LikeList({UserID}) {
     const navigate = useNavigate();
-    const move = () => {
-        navigate(`/${UserID}/exchange`);
-        //매수/매도 화면으로 이동하도록 수정
-    }
 
     const [Data, setData] = useState([]);
     
     useEffect(() => {
-		axios(
-            {
-                url: '/user/likedItem',
-                method: 'get',
-                data: {id: UserID},
-                baseURL: 'http://localhost:8080',
+		axios.get('/user/likedItem', {params: {
+                id: UserID
             }
-          ).then(function (response) {
+        }).then(response => {
             setData(response.data);
-            //alert("성공")
-          }).catch(function (error) {
-            //alert(error);
+            console.log(response);
+          }).catch(error => {
+            console.log(error)
         });
     }, []);
-
 
     const handleClick = (e) => {
         if (window.confirm('관심 목록에서 삭제하시겠습니까?'))
         {
             // They clicked Yes
-            axios(
-                {
-                    url: '/user/likedItem',
-                    method: 'delete',
-                    data: {
-                        id: UserID, 
-                        itemCode: e.target.value
-                    },
-                    baseURL: 'http://localhost:8080',
+            axios.delete('/user/likedItem', {
+                params:{
+                    id: UserID,
+                    itemCode: e.target.value
                 }
-              ).then(function (response) {
-                //alert("성공")
-              }).catch(function (error) {
-                //alert(error);
+            }).then(response => {
+                console.log(response);
+              }).catch(error => {
+                console.log(error)
             });
             alert('삭제되었습니다.')
+            axios.get('/user/likedItem', {params: {
+                    id: UserID
+                }
+            }).then(response => {
+                setData(response.data);
+                console.log(response);
+            }).catch(error => {
+                console.log(error)
+            });
         }
         else
         {
@@ -178,7 +171,7 @@ function LikeList() {
         setSearch(e.currentTarget.value);
     };
 
-    let filtered_data = likelist.filter((val)=>{
+    let filtered_data = Data.filter((val)=>{
         if(search === "") {
             return val;
         } else if(val.itemName.toLowerCase().includes(search.toLowerCase())) {
@@ -198,13 +191,20 @@ function LikeList() {
             else   
                 return '-';
         }
+        
+        const move = () => {
+            navigate(`/${UserID}/exchange`, {state:{
+                UserID: UserID, itemCode:props.itemCode, itemName:props.itemName
+            }});
+            //매수/매도 화면으로 이동하도록 수정
+        }
         return (
             <div>
                 <LikeButton value={props.itemCode} onClick = {handleClick}>X</LikeButton>
                 <Company onClick={move}>
                     <Name>{props.itemName}</Name>
                     <Price>{props.price.toLocaleString('en-AU')}</Price>
-                    <Diff dif={props.changeRate}>{Arrow(props.changeRate)} {props.changeAmount.toLocaleString('en-AU')} ({props.changeRate}%)</Diff>  
+                    <Diff dif={props.changeRate}>{Arrow(props.changeRate)} {props.changeAmount.toLocaleString('en-AU')} ({props.changeRate.toFixed(2)}%)</Diff>  
                     <Like>♥ {props.likedNum.toLocaleString('en-AU')}</Like>
                 </Company>
             </div>    
