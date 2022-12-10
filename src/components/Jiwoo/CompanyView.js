@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -47,65 +47,35 @@ const Button3 = styled.button`
 `
 
 function CompanyView () { 
-    const [Data, setData] = useState([]);
+    const navigate = useNavigate();
     const location = useLocation();
-
-    useEffect(() => {
-        axios(
+    
+    function HandleManage() {
+        function handleDelete (e) {
+            if (window.confirm('기업정보를 삭제하시겠습니까?'))
             {
-                url: `/company`,
-                method: 'get',
-                baseURL: 'http://localhost:8080',
-            }
-          ).then(function (response) {
-            setData(response.data);
-            //alert("성공")
-          }).catch(function (error) {
-            //alert(error);
-        });
-    }, []);
-    
-    function handleDelete (e) {
-        if (window.confirm('기업정보를 삭제하시겠습니까?'))
-        {
-            axios(
-                {                        
-                    url: `/company`,
-                    method: 'delete',
-                    data: {code: location.state.itemCode},//?
-                    baseURL: 'http://localhost:8080',
+                axios.delete('/admin/company', {params:{
+                    code: location.state.itemCode
                 }
-            ).then(function (response) {
-                //alert("성공")
-            }).catch(function (error) {
-                //alert(error);
-            });
-            alert("기업정보가 삭제되었습니다.")
-            //redirect
-            e.preventDefault();
-        } else {
-            // They clicked no
-        }  
-    }
-    
-    function HandleManage(location) {
-        const navigate = useNavigate();
-        const goUpdate = () => {
-            // 두번재 인자의 state 속성에 원하는 파라미터를 넣어준다. (id, job을 넣어봤다)
-            navigate(`/manage/${location.state.ID}/update`, {
-              state: {
-                Name: location.state.Name,
-                Date: location.state.Date,
-                Info: location.state.Info
-              }
-            });
-        };
+                }).then( response => {
+                    console.log(response)
+                    alert("기업정보가 삭제되었습니다.")
+                    navigate('/manage', {state:{
+                        UserID:location.state.UserID
+                    }})
+                }).catch(error => {
+                    console.log(error);
+                });
+                e.preventDefault();
+            } else {
+                // They clicked no
+            }  
+        }
         
         return(
             <div>
-                <Button1 onClick={goUpdate}>수정</Button1>
                 <Button2 onClick={handleDelete}>삭제</Button2>
-                <Link to='/manage' style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
+                <Link to='/manage' state={{UserID:location.state.UserID}} style={{ textDecoration : 'none' }}><Button3>뒤로가기</Button3></Link>
             </div>     
         );
     }
@@ -115,7 +85,7 @@ function CompanyView () {
                 &nbsp;&nbsp; 기업명 : <Title type="text" value={location.state.Name} disabled /> <p />
                 상장날짜 : <Date type="text" value={location.state.Date} disabled /> <p />
                 기업개요 : <Content value={location.state.Info} disabled />
-                {HandleManage(location)}
+                {HandleManage()}
             </View>
         </div>
     );

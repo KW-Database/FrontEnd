@@ -780,7 +780,7 @@ function Today_finance_graph ({Data}) {
 
     const [selectData, setselectData] = useState({
         Name: "코스피",
-        Data: Data.daySise_KOSPI
+        Data: Data.daysise_KOSPI
     });
 
     const HandleChange = (e) => { 
@@ -789,19 +789,19 @@ function Today_finance_graph ({Data}) {
             setselectData( {
               ...selectData,
               Name: "코스피",
-              Data: Data.daySise_KOSPI
+              Data: Data.daysise_KOSPI
           })
         } else if(e.target.value === "코스닥") {
             setselectData( {
               ...selectData,
               Name: "코스닥",
-              Data: Data.daySise_KOSDAQ
+              Data: Data.daysise_KOSDAQ
           })
         } else if(e.target.value === "코스피200") {
             setselectData( {
               ...selectData,
               Name: "코스피200",
-              Data: Data.daySise_KOSPI200
+              Data: Data.daysise_KOSPI200
           })
         }
     }

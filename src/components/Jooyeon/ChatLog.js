@@ -2,9 +2,10 @@ import React, {useState, useRef, useLayoutEffect} from 'react';
 import axios from 'axios';
 import './Chatting.css';
 import styled from 'styled-components';
-import {Toast, ToastContainer} from 'react-bootstrap';
+import {Toast, ToastContainer, Navbar, Form} from 'react-bootstrap';
 import sendImage from '../icon/send-icon.jpg';
-import { Form } from 'react-bootstrap';
+import { Icon } from 'react-icons-kit';
+import { refresh } from 'react-icons-kit/fa/refresh'
 
 const Footer_ = styled.div`
     position:absolute; width:100%; height:60px; top:540px;
@@ -18,6 +19,27 @@ function ChatLog(props) {
     const [content, setContent] = useState({
         con: ""
     });
+
+    const DataRefresh = () => {
+        //axios - get으로 데이터 동기화
+        axios.get('/exchange/renewChat', {params: {
+            itemCode: props.itemCode
+        }}).then(response => {
+            console.log(response);
+            setChat(response.data)
+        })
+        .catch(error => console.log(error));
+    }
+
+    /*setTimeout(function run () {
+        //axios - get으로 데이터 동기화
+        axios.get('/exchange/renewChat', {params: {
+            itemCode: props.itemCode
+        }}).then(response => {
+            setChat(response.data)
+        })
+        setTimeout(run, 5000);
+      }, 1000);*/
 
     const HandleChange = (e) => {
         const {value, name} = e.target;
@@ -83,9 +105,18 @@ function ChatLog(props) {
 
     return (
         <main className = "main-container">
+            <Navbar className="title_layer">
+                <Navbar.Brand className="title">
+                    <h3>{props.title}</h3>
+                </Navbar.Brand>
+                <Icon icon={refresh} className="refreshButton" size="30" onClick={DataRefresh} />
+            </Navbar>
             <ToastContainer bsPrefix = "toast-main-container">
               {
-                  chat.map((item) => (
+                  chat.sort((a,b)=> {
+                    return new Date(a.postTime) - new Date(b.postTime)
+                  })
+                  .map((item) => (
                       props.UserID === item.id ? (
                           <div>
                             <div className="my_send">나</div>

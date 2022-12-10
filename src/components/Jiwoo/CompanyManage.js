@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import EachManage from './EachManage';
 import styled from 'styled-components';
 import SearchBar from './SearchBar';
@@ -80,7 +81,8 @@ const PaginationBox = styled.div`
   ul.pagination li a.active { color: blue; }
 `
 
-function CompanyManage () {
+function CompanyManage ({UserID}) {
+    const [Data, setData] = useState([]);
     const [search, setSearch] = useState("");
     const [page, setPage] = useState(1);
     const items = 5;
@@ -92,27 +94,39 @@ function CompanyManage () {
         setPage(1);
         setSearch(e.currentTarget.value);
     };
+
+    useEffect(()=>{
+        axios.get('/admin/company')
+        .then(response => {
+            console.log(response)
+            setData(response.data)
+        }).catch(error => console.log(error));
+    }, [])
     
-    let filtered_data = company.filter((val)=>{
+    let filtered_data = Data.filter((val)=>{
         if(search === "") {
             return val;
-        } else if(val.Name.toLowerCase().includes(search.toLowerCase())) {
+        } else if(val.companyName.toLowerCase().includes(search.toLowerCase())) {
             return val;
         }
     });
 
+    var i=0;
     let eachManage = filtered_data.slice(
         items*(page-1),
         items*(page-1) + items
-    ).map((v) => (<EachManage key={v.ID}
-        ID={v.ID} Name={v.Name} Date={v.Date} Info={v.Info}  
-    />));
+    ).map((v) => {
+        i=i+1;
+        return(<EachManage key={v.itemCode}
+            num={items*(page-1)+i} itemCode={v.itemCode} Name={v.companyName} Date={v.publicDate} Info={v.companySummary} UserID={UserID}
+        />)
+    });
     
     return(
         <Board_block>
             <Title>주식회사 목록</Title>
             <Search><SearchBar search={search} onChange={onChange} /></Search>
-            <Link to="/manage/enroll" style={{ textDecoration : 'none' }}><Post value="Post">등록</Post></Link>
+            <Link to="/manage/enroll" state={{UserID: UserID}} style={{ textDecoration : 'none' }}><Post value="Post">등록</Post></Link>
             <List>
                 <ID>번호</ID><Name>기업명</Name>
                 <CompanyList>

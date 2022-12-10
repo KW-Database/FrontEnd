@@ -107,12 +107,12 @@ function MainPage() {
                         <Today_finance_graph Data={data}/> <p />
                     </Today_finance>
                     <Recommend_buy>
-                        추천 매수 <Link to='/recommend' style={{ textDecoration : 'none', color : 'black' }}><SeeMore>더보기▽</SeeMore></Link> <p />
-                        <List><Recommend_buy_table /></List>   
+                        추천 매수 <p />
+                        <List><Recommend_buy_table UserID={Id} Data={data.goldenCross} /></List>   
                     </Recommend_buy>
                     <Recommend_sell>
-                        추천 매도 <Link to='/recommend' style={{ textDecoration : 'none', color : 'black' }}><SeeMore>더보기▽</SeeMore></Link> <p />
-                        <List><Recommend_sell_table /></List>  
+                        추천 매도 <p />
+                        <List><Recommend_sell_table UserID={Id} Data={data.deadCross}/></List>  
                     </Recommend_sell>
                     <Top10>
                         TOP 10

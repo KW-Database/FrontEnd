@@ -36,16 +36,16 @@ const dummyData = [
     {name: "기업12", endprice : 12, diff : 6, diffrate: -6, trans: 25}
   ];
 
-function Recommend_buy_table () {
+function Recommend_buy_table ({UserID, Data}) {
 
     var i = 0;
-    let eachRecommend = dummyData.filter((val)=>{
+    let eachRecommend = Data.filter((val)=>{
         if(i < 10) {
             i++;
             return val;
         }
-    }).map((v) => (<EachRecommend key={v.name}
-        name={v.name} price={v.endprice} diff={v.diff} diffrate={v.diffrate}
+    }).map((v) => (<EachRecommend key={v.itemCode}
+        name={v.itemName} price={v.executionPrice} diff={v.changeAmount} diffrate={v.changeRate} itemCode={v.itemCode} UserID={UserID}
     />));
     
     return (
