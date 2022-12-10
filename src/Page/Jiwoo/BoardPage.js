@@ -23,7 +23,7 @@ function BoardPage(){
     if(JSON.stringify(list)==="[]"){
         return (
             <div className="Background">
-                <UpperLayer></UpperLayer>
+                <UpperLayer UserID={location.state.ID} />
             </div>
         );
     }
