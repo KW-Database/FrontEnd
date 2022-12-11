@@ -39,7 +39,10 @@ const Date = styled.div`
 function EachRecent(props) {
     const navigate = useNavigate();
     const seeRecent = () => {
-        navigate(`/${props.UserID}/exchange`);
+        navigate(`/${props.UserID}/exchange`, {state: {
+            UserID:props.UserID, itemCode:props.itemCode, itemName:props.name
+        }
+        });
     }     
     return (
         <Recommend onClick={seeRecent}>
