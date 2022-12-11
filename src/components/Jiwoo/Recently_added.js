@@ -34,7 +34,7 @@ function Recently_added_table (props) {
             return val;
         }
     }).map((v) => (<EachRecent key={v.itemName}
-        name={v.itemName} price={v.executionPrice} diff={v.changeAmount} diffrate={v.changeRate} date={v.publicDate} UserID={props.UserID}
+        itemCode={v.itemCode} name={v.itemName} price={v.executionPrice} diff={v.changeAmount} diffrate={v.changeRate} date={v.publicDate} UserID={props.UserID}
     />));
     
     return (
