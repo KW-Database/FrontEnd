@@ -29,8 +29,6 @@ const Submit = styled.button`
     font-size:20px; color:white; background-color:skyblue;
 `
 
-const UserInfo = {ID: "kiki"}; //
-
 function PostWrite () {
     const navigate = useNavigate();
     const location = useLocation();

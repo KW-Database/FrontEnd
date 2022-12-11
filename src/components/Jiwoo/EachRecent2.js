@@ -26,8 +26,8 @@ const Price = styled.div`
 `
 
 const Diff = styled.div`
-    position: absolute; left:630px; width: 200px; 
-    display:flex; justify-content:center;
+    position: absolute; left:680px; width: 150px; 
+    display:flex; align-items:center; text-align:left;
     color: ${props => (props.dif > 0) ? 'red' : 'skyblue'}
 `
 
@@ -40,7 +40,7 @@ const Date = styled.div`
 function EachRecent2(props) {
     const navigate = useNavigate();
     const seeRecent2 = () => {
-        navigate('/:user/exchange');
+        navigate(`/${props.UserID}/exchange`);
     }
     return (
         <Recommend onClick={seeRecent2}>

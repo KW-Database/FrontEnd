@@ -16,18 +16,18 @@ const Recommend = styled.div`
 `;
 
 const Name = styled.div`
-    position: absolute; left:50px; width: 150px; 
-    display:flex; justify-content:left;
+    position: absolute; left:20px; width: 150px; 
+    display:flex; align-items:center; text-align:left;
 `
 
 const Price = styled.div`
-    position: absolute; left:180px; width: 120px; 
-    display:flex; justify-content:center;
+    position: absolute; left:200px; width: 120px; 
+    display:flex; align-items:center; text-align:left;
 `
 
 const Diff = styled.div`
     position: absolute; left:320px; width: 120px; 
-    display:flex; justify-content:center;
+    display:flex; align-items:center; text-align:left;
     color: ${props => (props.dif > 0) ? 'red' : 'skyblue'}
 `
 
