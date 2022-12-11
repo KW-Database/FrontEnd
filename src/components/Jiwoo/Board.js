@@ -5,6 +5,7 @@ import EachPost from './EachPost';
 import styled from 'styled-components';
 import SearchBar from './SearchBar';
 import Pagination from 'react-js-pagination';
+import { batch } from 'react-redux';
 //import Board_Data from '../../Json/Board.json';
 
 const Board_block = styled.div`
@@ -121,10 +122,10 @@ function Board ({List, UserID}) {
     })
 
     var i=0;
-    let eachPost = filtered_data.slice(
+    let eachPost = filtered_data.reverse().slice(
         items*(page-1),
         items*(page-1) + items    
-    ).reverse().map((v) => {
+    ).map((v) => {
         i=i+1;
         return(<EachPost key={v.postId}
             User={UserID} num={items*(page-1)+i} postId={v.postId} Title={v.title} Content={v.contents} ID={v.id} Date={v.postTime.replace('T', ' ')} View={v.hitCount} 

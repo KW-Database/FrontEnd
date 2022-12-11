@@ -13,10 +13,19 @@ const Likebutton = styled.button`
 `
 
 const Name = styled.div`
-    position:absolute; top:15px; left:50px; width:250px; 
+    position:absolute; top:15px; left:50px; width:120px; height: 30px;
     display:flex; align-items: center; 
-    font-size:20px; font-weight:600; text-align: left; 
+    font-size:16px; font-weight:600; text-align: left; 
     font-family: 'Pretendard-Regular';
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+`
+
+const Code = styled.div`
+    position:absolute; top:20px; left:190px; width:90px; height: 30px;
+    display:flex; align-items: center; 
+    font-size:16px; font-weight:600; text-align: left; 
+    font-family: 'Pretendard-Regular';
+    overflow: hidden;
 `
 
 const Price = styled.div`
@@ -92,7 +101,8 @@ function Exchange_title ({Data, Like, UserID, itemName}) {
     return(
         <div>
             <Likebutton liked={like} onClick={HandleClick}>☆</Likebutton>
-            <Name>{itemName}&nbsp;&nbsp;&nbsp;&nbsp;<h6>{Data.companyInfo.itemCode}</h6></Name>
+            <Name>{itemName}</Name>
+            <Code><h6>{Data.companyInfo.itemCode}</h6></Code>
             <Price>{Data.curPrice.toLocaleString('en-AU')}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Rate color={col}>{arrow}&nbsp;{diffrate.toFixed(2)}%</Rate></Price>
             <Info>
                 전일 &nbsp;&nbsp; {Data.dayCondition[(Data.dayCondition.length)-1].endPrice.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;

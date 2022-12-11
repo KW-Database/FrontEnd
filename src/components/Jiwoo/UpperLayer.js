@@ -38,7 +38,7 @@ function UpperLayer() {
         return( 
             <form action="/logout" method="post">
                 <Upper_layer>
-                <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Icon icon={home} id="HomeButton" size="50" /></Link>
+                <Link to="/home" style={{ textDecoration : 'none', color : 'gray' }}><Icon icon={home} id="HomeButton" size="50" /></Link>
                 <Title>
                     <Link to="/admin" state={{UserID:Id}} style={{ textDecoration : 'none', color : 'gray' }}><h2>사용자 관리</h2></Link>
                     <Link to="/manage" state={{UserID:Id}} style={{ textDecoration : 'none', color : 'gray' }}><h2>주식회사 관리</h2></Link>
@@ -52,7 +52,7 @@ function UpperLayer() {
         return (
                 <form action="/logout" method="post">
                     <Upper_layer>
-                    <Link to="/" style={{ textDecoration : 'none', color : 'gray' }}><Icon icon={home} id="HomeButton" size="50" /></Link>
+                    <Link to="/home" style={{ textDecoration : 'none', color : 'gray' }}><Icon icon={home} id="HomeButton" size="50" /></Link>
                     <Title>
                         <Link to={`/${Id}/mywallet`} state={{UserID:Id}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 보유자산</h2></Link>
                         <Link to={`/${Id}/likelist`} state={{UserID:Id}} style={{ textDecoration : 'none', color : 'gray' }}><h2>내 관심주식</h2></Link>

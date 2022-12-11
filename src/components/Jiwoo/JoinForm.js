@@ -108,7 +108,7 @@ function JoinForm () {
             }).then( response => {
                 console.log(response);
                 alert("회원가입이 완료되었습니다.");
-                navigate('/login');
+                navigate('/');
             }).catch(error => {
                 console.log(error);
             })
@@ -144,7 +144,7 @@ function JoinForm () {
             <Sign_up type="submit" value="회원가입" id="sign-up" onClick={handleSubmit} />
             <p />
             <br />
-            Already have an Account? <Link to='/login'>Sign In</Link>    
+            Already have an Account? <Link to='/'>Sign In</Link>    
         </Joinform> 
     );
 }
