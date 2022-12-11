@@ -123,7 +123,7 @@ function UserInfoUpdate (props) {
             <Input_text name="PhoneNum" value={PhoneNum} onChange={handleChange} />
             <p />
             성별
-            <Input_Select defaultValue={printSex} onChange={handleChange}>
+            <Input_Select name="Sex" value={Sex} onChange={handleChange}>
                 <option value="M">남</option>
                 <option value="F">여</option>
             </Input_Select>
