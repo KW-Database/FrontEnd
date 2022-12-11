@@ -1,4 +1,5 @@
 import React from 'react';
+import {useLocation} from 'react-router-dom';
 import styled from 'styled-components';
 import EachRecent from './EachRecent';
 
@@ -23,10 +24,9 @@ const RecentList = styled.div`
   }
 `
 
-function Recently_added_table ( {publicList} ) {
-    //const Data = props.publicList;
+function Recently_added_table (props) {
     var i = 0;
-    let eachRecent = publicList.sort((a, b) => {
+    let eachRecent = props.publicList.sort((a, b) => {
         return new Date(b.publicDate) - new Date(a.publicDate)
     }).filter((val)=>{
         if(i < 10) {
@@ -34,7 +34,7 @@ function Recently_added_table ( {publicList} ) {
             return val;
         }
     }).map((v) => (<EachRecent key={v.itemName}
-        name={v.itemName} price={v.executionPrice} diff={v.changeAmount} diffrate={v.changeRate} date={v.publicDate}
+        name={v.itemName} price={v.executionPrice} diff={v.changeAmount} diffrate={v.changeRate} date={v.publicDate} UserID={props.UserID}
     />));
     
     return (

@@ -131,8 +131,8 @@ function MainPage() {
                         <List><Top10_table volumeRank={data.volumeRank} upRank={data.upRank} downRank={data.downRank}/></List>   
                     </Top10>
                     <Recently_added>
-                        최근 상장된 주식 <Link to='/recently_added' state={data.publicList} style={{ textDecoration : 'none', color : 'black' }}><SeeMore>더보기▽</SeeMore></Link> <p /> 
-                        <List><Recently_added_table publicList={data.publicList} /></List>   
+                        최근 상장된 주식 <Link to='/recently_added' state={{UserID: Id, publicList: data.publicList}} style={{ textDecoration : 'none', color : 'black' }}><SeeMore>더보기▽</SeeMore></Link> <p /> 
+                        <List><Recently_added_table UserID={Id} publicList={data.publicList} /></List>   
                     </Recently_added>    
                 </Main_Page>
               

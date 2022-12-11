@@ -32,7 +32,7 @@ const Rate = styled.div`
 `
 
 const Info = styled.div`
-    position:absolute; top:15px; left:500px; width:600px; height:50px;
+    position:absolute; top:5px; left:500px; width:600px; height:50px;
     display:flex; align-items: center;
     font-size:15px;
     font-family: 'Pretendard-Regular';
@@ -92,8 +92,8 @@ function Exchange_title ({Data, Like, UserID, itemName}) {
     return(
         <div>
             <Likebutton liked={like} onClick={HandleClick}>☆</Likebutton>
-            <Name>{itemName}&nbsp;<h6>{Data.companyInfo.itemCode}</h6></Name>
-            <Price>{Data.curPrice.toLocaleString('en-AU')}&nbsp;<Rate color={col}>{arrow}&nbsp;{diffrate.toFixed(2)}%</Rate></Price>
+            <Name>{itemName}&nbsp;&nbsp;&nbsp;&nbsp;<h6>{Data.companyInfo.itemCode}</h6></Name>
+            <Price>{Data.curPrice.toLocaleString('en-AU')}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<Rate color={col}>{arrow}&nbsp;{diffrate.toFixed(2)}%</Rate></Price>
             <Info>
                 전일 &nbsp;&nbsp; {Data.dayCondition[(Data.dayCondition.length)-1].endPrice.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;
                 시가 &nbsp;&nbsp; {Data.dayCondition[(Data.dayCondition.length)-1].startPrice.toLocaleString('en-AU')} &nbsp;&nbsp;&nbsp;&nbsp;

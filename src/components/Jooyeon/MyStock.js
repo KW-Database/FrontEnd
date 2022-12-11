@@ -62,8 +62,8 @@ const DiffTitle = styled.div`
 `
 
 const Diff = styled.div`
-    position: absolute; left:550px; width: 250px; 
-    display:flex; justify-content:center;
+    position: absolute; left:640px; width: 160px; 
+    display:flex; align-items:center; text-align:left;
     color: ${props => (props.dif > 0) ? 'red' : props.dif<0?'skyblue':'gray'};
 `
 

@@ -18,13 +18,12 @@ const Layer = styled.div`
 
 function RecentlyAddedPage () {
     const location = useLocation();
-    const Data = location.state;
     return(
         <div className="Page">
             <UpperLayer></UpperLayer>
             <div className="Background">
                 <Title>최근에 상장된 주식</Title>
-                <Layer><Recently_added_table2 publicList= {Data} /></Layer>
+                <Layer><Recently_added_table2 UserID={location.state.UserID} publicList= {location.state.publicList} /></Layer>
             </div>
         </div>
     );  

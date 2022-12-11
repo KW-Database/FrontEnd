@@ -16,18 +16,18 @@ const Recommend = styled.div`
 `;
 
 const Name = styled.div`
-    position: relative; left:10px; width: 130px; 
-    display:flex; justify-content:left;
+    position: relative; left:-5px; width: 120px; 
+    display:flex; align-items:center; text-align:left;
 `
 
 const Price = styled.div`
-    position: absolute; left:140px; width: 80px; 
-    display:flex; justify-content:center;
+    position: absolute; left:150px; width: 80px; 
+    display:flex; align-items:center; text-align:left;
 `
 
 const Diff = styled.div`
-    position: absolute; left:220px; width: 130px; 
-    display:flex; justify-content:center;
+    position: absolute; left:230px; width: 130px; 
+    display:flex; align-items:center; text-align:left;
     color: ${props => (props.dif > 0) ? 'red' : 'skyblue'}
 `
 
@@ -36,12 +36,10 @@ const Date = styled.div`
     display:flex; justify-content:center;
 `
 
-const UserID = "jiwoo0629";
-
 function EachRecent(props) {
     const navigate = useNavigate();
     const seeRecent = () => {
-        navigate(`/${UserID}/exchange`);
+        navigate(`/${props.UserID}/exchange`);
     }     
     return (
         <Recommend onClick={seeRecent}>
