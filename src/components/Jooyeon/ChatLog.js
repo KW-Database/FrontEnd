@@ -52,7 +52,7 @@ function ChatLog(props) {
     const HandleClick = () => {
         //axios - post로 DB에 채팅정보 담기게
         axios.post('/exchange/chat', {
-            itemCode: props.message[0].itemCode,
+            itemCode: props.itemCode,
             id: props.UserID,
             contents: content.con
         }).then(response => {
@@ -65,7 +65,7 @@ function ChatLog(props) {
         });
 
         axios.get('/exchange/renewChat', {params: {
-            itemCode: props.message[0].itemCode
+            itemCode: props.itemCode
         }}).then(response => {
             setChat(response.data)
         })
@@ -74,7 +74,7 @@ function ChatLog(props) {
         if (e.key === "Enter") {
           //axios - post DB에 채팅정보 담기게
           axios.post('/exchange/chat', {
-            itemCode: props.message[0].itemCode,
+            itemCode: props.itemCode,
             id: props.UserID,
             contents: content.con
         }).then(response => {
@@ -87,7 +87,7 @@ function ChatLog(props) {
         });
         
         axios.get('/exchange/renewChat', {params: {
-            itemCode: props.message[0].itemCode
+            itemCode: props.itemCode
         }}).then(response => {
             setChat(response.data)
         })
