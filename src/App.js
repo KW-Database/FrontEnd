@@ -42,11 +42,11 @@ function App() {
       <div className="App">
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<MainPage />}></Route>
-            <Route path='/login' element={<LoginPage />}></Route>
+            <Route path='/' element={<LoginPage />}></Route>
             <Route path='/join' element={<JoinPage />}></Route>
             <Route path='/findID' element={<FindIDPage />}></Route>
             <Route path='/findPW' element={<FindPWPage />}></Route>
+            <Route path='/home' element={<MainPage />}></Route>
             <Route path='/search' element={<SearchResultPage />}></Route>
             <Route path='/:user/profile' element={<UserInfoPage />}></Route>
             <Route path='/:user/update' element={<UserInfoUpdatePage />}></Route>

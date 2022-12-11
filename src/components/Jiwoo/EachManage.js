@@ -27,7 +27,7 @@ const Name = styled.div`
 function EachManage(props) {
     const navigate = useNavigate();
     const seeManage = () => {
-        navigate(`/manage/${props.ID}`, {
+        navigate(`/manage/${props.itemCode}`, {
             state: {
                 itemCode: props.itemCode,
                 Name: props.Name,

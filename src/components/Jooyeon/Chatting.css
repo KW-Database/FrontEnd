@@ -1,10 +1,12 @@
 .title_layer {
     width:400px; background-color: rgb(171, 227, 249); border-bottom:3px solid gray;
-    border-radius:5px;
+    border-radius:5px; height: 60px;
 }
   
 .title {
-  width:100%; text-align:center; 
+  width:200px; text-align:center; 
+  position:absolute; left:100px; 
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 
 .refreshButton {

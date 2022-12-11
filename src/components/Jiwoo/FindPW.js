@@ -91,7 +91,7 @@ function FindPW () {
             <Find_button value="find-button" onClick={handleClick} >비밀번호 찾기</Find_button><p />
             아이디가 기억나지 않는다면? <Link to='/findID'>아이디 찾기</Link><p />
 
-            <Link to='/login'>로그인</Link>하시겠습니까?
+            <Link to='/'>로그인</Link>하시겠습니까?
         </Find>    
     );
 }

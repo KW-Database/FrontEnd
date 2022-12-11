@@ -58,7 +58,7 @@ function ChangePW({_ID}){
             .then(response=>{
                 console.log(response)
                 alert("비밀번호가 변경되었습니다.")
-                navigate('/login');
+                navigate('/');
             })
             .catch(error=>console.log(error))
         }

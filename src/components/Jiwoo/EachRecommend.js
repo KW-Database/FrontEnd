@@ -18,6 +18,7 @@ const Recommend = styled.div`
 const Name = styled.div`
     position: absolute; left:20px; width: 150px; 
     display:flex; align-items:center; text-align:left;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 `
 
 const Price = styled.div`
