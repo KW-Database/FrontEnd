@@ -77,7 +77,7 @@ function Top10_table (props) {
             return val;
         }
     }).map((v) => (<EachRecommend key={v.itemName}
-        name={v.itemName} price={v.executionPrice} diff={v.changeAmount} diffrate={v.changeRate}
+        name={v.itemName} price={v.executionPrice} diff={v.changeAmount} diffrate={v.changeRate} UserID={props.UserID}
     />));
     
         //변수명이 일치하지 않아서 그런가봐??
