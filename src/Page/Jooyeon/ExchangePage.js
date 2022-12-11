@@ -139,7 +139,7 @@ function ExchangePage () {
                     <BuySell_layer><BuySell Data={Data} UserID={location.state.UserID}/></BuySell_layer>
                     <Company_layer>
                         <Company_info><CompanyInfo Data={Data.companyInfo.companySummary} /></Company_info>
-                        <Shareholder><Share_holder Data={Data.shareHolder}/></Shareholder>
+                        <Shareholder><Share_holder Data={Data.primeHolder}/></Shareholder>
                     </Company_layer>
                     <Chat_layer><Chatting UserID={location.state.UserID} itemCode={location.state.itemCode} title={location.state.itemName} Chat={Chat} /></Chat_layer>
                 </Background>
